@@ -1,6 +1,5 @@
 package ca.qc.lpl.emumips;
 
-import ca.qc.lpl.emumips.ui.MainWindow;
 
 public class Arguments {
 

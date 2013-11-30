@@ -28,7 +28,7 @@ public class Reg$v0 implements Register {
 
 	@Override
 	public String getRegisterName() {
-		return "Reg$v0";
+		return "$v0";
 	}
 
 	@Override

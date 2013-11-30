@@ -1,0 +1,55 @@
+Language emu_mips;
+
+Lexer
+
+    digit = '0'..'9' ;
+    number = '-'? digit+ ;
+    numberu = digit+ ;
+   
+    str = ('a'..'z') | ('A'..'Z') ;
+    string = '_'* str+ (str | number | '_')* ;
+    
+    register = '$a3' | '$a1' | '$a2' | '$at' | '$a0' | '$zero' | '$t5' | '$t4' | '$t7' | '$t6' | '$t1' | '$t0' | '$t3' | '$t2' | '$t9' | '$t8' | '$v3' | '$v0' | '$ra' | '$k0' | '$gp' | '$k1' | '$s6' | '$s5' | '$s4' | '$s3' | '$s2' | '$s1' | '$s0' | '$sp' | '$fp' | '$s7' ; 
+    
+    blank = ' ' | #10 | #13 | #9 ;
+
+
+Ignored
+    blank ;
+    
+Parser
+
+    stmts = {many:} stmt stmts |
+            {one:} stmt ;
+        
+    stmt = {add:} 'add' reg_expr |
+           {addi:} 'addi' imm_expr |
+           {addu:} 'addu' reg_expr |
+           {addiu:} 'addiu' imm_expr |
+           {sub:} 'sub' reg_expr |
+           {subu:} 'subu' reg_expr |
+           {and:} 'and' reg_expr |
+           {andi:} 'andi' imm_expr |
+           {or:} 'or' reg_expr |
+           {ori:} 'ori' imm_expr |
+           {nor:} 'nor' reg_expr |
+           {slt:} 'slt' reg_expr |
+           {slti:} 'slti' imm_expr |
+           {sltu:} 'sltu' imm_expr |
+           {sltiu:} 'sltiu' imm_expr |
+           {sll:} 'sll' shift |
+           {srl:} 'srl' shift |
+           {lbl:} string ;
+        
+    reg_expr = rs ',' rt ',' rd ;
+    imm_expr = rs ',' rt ',' immediate ;
+    jmp_expr = {lbl:} address ':' ;
+    shift = rd ',' rt ',' immediate ;
+    
+    rs = register ;
+    rt = register ;
+    rd = register ;
+    immediate = {signed:} number |
+                {unsigned:} numberu ;
+    address = string ;
+

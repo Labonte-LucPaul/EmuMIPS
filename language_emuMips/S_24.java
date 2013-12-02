@@ -15,8 +15,18 @@ class S_24
 
   State getTarget(Symbol symbol) {
     switch(symbol) {
-    case Symbol__e:
-      return S_53.instance;
+    case Symbol__0:
+      return S_54.instance;
+    case Symbol__1:
+      return S_54.instance;
+    case Symbol__2:
+      return S_54.instance;
+    case Symbol__3:
+      return S_54.instance;
+    case Symbol__4:
+      return S_54.instance;
+    case Symbol__8:
+      return S_54.instance;
     default:
       return null;
     }

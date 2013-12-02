@@ -7,7 +7,7 @@ public class NStmt_Jmp
 
   private final int line;
   private final int pos;
-  private final N$31 e$31;
+  private final N$34 e$34;
   private final NString eString;
 
   @Override
@@ -34,14 +34,14 @@ public class NStmt_Jmp
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$31.apply(walker);
+    this.e$34.apply(walker);
     this.eString.apply(walker);
   }
 
-  NStmt_Jmp(int line, int pos, N$31 p$31, NString pString) {
+  NStmt_Jmp(int line, int pos, N$34 p$34, NString pString) {
     this.line = line;
     this.pos = pos;
-    this.e$31 = p$31;
+    this.e$34 = p$34;
     this.eString = pString;
   }
 
@@ -64,8 +64,8 @@ public class NStmt_Jmp
     return this.eString;
   }
 
-  N$31 internalGet$31() {
-    return this.e$31;
+  N$34 internalGet$34() {
+    return this.e$34;
   }
 
   NString internalGetString() {

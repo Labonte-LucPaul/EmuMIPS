@@ -6,6 +6,8 @@ enum Symbol {
   Symbol_min,
   Symbol_9,
   Symbol_36,
+  Symbol_40,
+  Symbol_41,
   Symbol_44,
   Symbol_45,
   Symbol__0,
@@ -47,6 +49,8 @@ enum Symbol {
     case 13: return Symbol_9;
     case 32: return Symbol_9;
     case 36: return Symbol_36;
+    case 40: return Symbol_40;
+    case 41: return Symbol_41;
     case 44: return Symbol_44;
     case 45: return Symbol_45;
     case 48: return Symbol__0;
@@ -99,7 +103,10 @@ enum Symbol {
       if(c >= 33 && c <= 35) {
         return Symbol_min;
       }
-      if(c >= 37 && c <= 43) {
+      if(c >= 37 && c <= 39) {
+        return Symbol_min;
+      }
+      if(c >= 42 && c <= 43) {
         return Symbol_min;
       }
       if(c >= 46 && c <= 47) {

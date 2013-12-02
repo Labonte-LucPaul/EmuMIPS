@@ -44,23 +44,27 @@ Parser
            {srl:} 'srl' shift |
            {beq:} 'beq' imm_expr |
            {bne:} 'bne' imm_expr |
-           {lbu:} 'lbu' imm_expr |
-           {lhu:} 'lhu' imm_expr |
-           {ll:} 'll' imm_expr |
-           {lui:} 'lui' imm_expr |
-           {lw:} 'lw' imm_expr |
-           {sb:} 'sb' imm_expr |
-           {sc:} 'sc' imm_expr |
-           {sh:} 'sh' imm_expr |
-           {sw:} 'sw' imm_expr |
+           {lbu:} 'lbu' array |
+           {lb:} 'lb' array |
+           {lhu:} 'lhu' array |
+           {ll:} 'll' array |
+           {lui:} 'lui' rt ',' immediate |
+           {lh:} 'lh' array |
+           {lw:} 'lw' array |
+           {sb:} 'sb' array |
+           {sc:} 'sc' array |
+           {sh:} 'sh' array |
+           {sw:} 'sw' array |
            {lbl:} string ':' | 
            {jmp:} 'j' string |
-           {jmpreg:} 'jr' register |
-           {jmllnk:} 'jal' string ;
+           {jmpreg:} 'jr' rs |
+           {jmplnk:} 'jal' string ;
 
     reg_expr = rd ',' rs ',' rt ;
     imm_expr = rt ',' rs ',' immediate ;
     shift = rd ',' rt ',' immediate ;
+    array = rt ',' immediate '(' rs ')' ;
+
     
     rs = register ;
     rt = register ;

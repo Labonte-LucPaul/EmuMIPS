@@ -15,6 +15,6 @@ class S_66
     int line = lexer.getAcceptLine();
     int pos = lexer.getAcceptPos();
 
-    return new N$23(text, line, pos);
+    return new N$22(text, line, pos);
   }
 }

@@ -8,7 +8,7 @@ public class NStmt_Lbu
   private final int line;
   private final int pos;
   private final N$21 e$21;
-  private final NImmExpr eImmExpr;
+  private final NArray eArray;
 
   @Override
   public int getLine() {
@@ -35,14 +35,14 @@ public class NStmt_Lbu
   @Override
   public void applyOnChildren(Walker walker) {
     this.e$21.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.eArray.apply(walker);
   }
 
-  NStmt_Lbu(int line, int pos, N$21 p$21, NImmExpr pImmExpr) {
+  NStmt_Lbu(int line, int pos, N$21 p$21, NArray pArray) {
     this.line = line;
     this.pos = pos;
     this.e$21 = p$21;
-    this.eImmExpr = pImmExpr;
+    this.eArray = pArray;
   }
 
   @Override
@@ -60,15 +60,15 @@ public class NStmt_Lbu
     return InternalType.T_Stmt_Lbu;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NArray get_Array() {
+    return this.eArray;
   }
 
   N$21 internalGet$21() {
     return this.e$21;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  NArray internalGetArray() {
+    return this.eArray;
   }
 }

@@ -2,13 +2,13 @@
 
 package language_emuMips;
 
-public class NStmt_Jmllnk
+public class NStmt_Lh
     extends NStmt {
 
   private final int line;
   private final int pos;
-  private final N$33 e$33;
-  private final NString eString;
+  private final N$27 e$27;
+  private final NArray eArray;
 
   @Override
   public int getLine() {
@@ -27,27 +27,27 @@ public class NStmt_Jmllnk
 
   @Override
   public void apply(Walker walker) {
-    walker.inStmt_Jmllnk(this);
-    walker.caseStmt_Jmllnk(this);
-    walker.outStmt_Jmllnk(this);
+    walker.inStmt_Lh(this);
+    walker.caseStmt_Lh(this);
+    walker.outStmt_Lh(this);
   }
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$33.apply(walker);
-    this.eString.apply(walker);
+    this.e$27.apply(walker);
+    this.eArray.apply(walker);
   }
 
-  NStmt_Jmllnk(int line, int pos, N$33 p$33, NString pString) {
+  NStmt_Lh(int line, int pos, N$27 p$27, NArray pArray) {
     this.line = line;
     this.pos = pos;
-    this.e$33 = p$33;
-    this.eString = pString;
+    this.e$27 = p$27;
+    this.eArray = pArray;
   }
 
   @Override
   public Type getType() {
-    return Type.T_Stmt_Jmllnk;
+    return Type.T_Stmt_Lh;
   }
 
   @Override
@@ -57,18 +57,18 @@ public class NStmt_Jmllnk
 
   @Override
   InternalType getInternalType() {
-    return InternalType.T_Stmt_Jmllnk;
+    return InternalType.T_Stmt_Lh;
   }
 
-  public NString get_String() {
-    return this.eString;
+  public NArray get_Array() {
+    return this.eArray;
   }
 
-  N$33 internalGet$33() {
-    return this.e$33;
+  N$27 internalGet$27() {
+    return this.e$27;
   }
 
-  NString internalGetString() {
-    return this.eString;
+  NArray internalGetArray() {
+    return this.eArray;
   }
 }

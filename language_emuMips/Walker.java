@@ -116,6 +116,10 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inStmt_Lb(NStmt_Lb node) {
+    defaultIn(node);
+  }
+
   public void inStmt_Lhu(NStmt_Lhu node) {
     defaultIn(node);
   }
@@ -125,6 +129,10 @@ public class Walker {
   }
 
   public void inStmt_Lui(NStmt_Lui node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Lh(NStmt_Lh node) {
     defaultIn(node);
   }
 
@@ -160,7 +168,7 @@ public class Walker {
     defaultIn(node);
   }
 
-  public void inStmt_Jmllnk(NStmt_Jmllnk node) {
+  public void inStmt_Jmplnk(NStmt_Jmplnk node) {
     defaultIn(node);
   }
 
@@ -176,11 +184,7 @@ public class Walker {
     defaultIn(node);
   }
 
-  public void inRd(NRd node) {
-    defaultIn(node);
-  }
-
-  public void inRs(NRs node) {
+  public void inArray(NArray node) {
     defaultIn(node);
   }
 
@@ -193,6 +197,14 @@ public class Walker {
   }
 
   public void inImmediate_Unsigned(NImmediate_Unsigned node) {
+    defaultIn(node);
+  }
+
+  public void inRs(NRs node) {
+    defaultIn(node);
+  }
+
+  public void inRd(NRd node) {
     defaultIn(node);
   }
 
@@ -311,6 +323,10 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseStmt_Lb(NStmt_Lb node) {
+    defaultCase(node);
+  }
+
   public void caseStmt_Lhu(NStmt_Lhu node) {
     defaultCase(node);
   }
@@ -320,6 +336,10 @@ public class Walker {
   }
 
   public void caseStmt_Lui(NStmt_Lui node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Lh(NStmt_Lh node) {
     defaultCase(node);
   }
 
@@ -355,7 +375,7 @@ public class Walker {
     defaultCase(node);
   }
 
-  public void caseStmt_Jmllnk(NStmt_Jmllnk node) {
+  public void caseStmt_Jmplnk(NStmt_Jmplnk node) {
     defaultCase(node);
   }
 
@@ -371,11 +391,7 @@ public class Walker {
     defaultCase(node);
   }
 
-  public void caseRd(NRd node) {
-    defaultCase(node);
-  }
-
-  public void caseRs(NRs node) {
+  public void caseArray(NArray node) {
     defaultCase(node);
   }
 
@@ -388,6 +404,14 @@ public class Walker {
   }
 
   public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
+    defaultCase(node);
+  }
+
+  public void caseRs(NRs node) {
+    defaultCase(node);
+  }
+
+  public void caseRd(NRd node) {
     defaultCase(node);
   }
 
@@ -507,6 +531,10 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outStmt_Lb(NStmt_Lb node) {
+    defaultOut(node);
+  }
+
   public void outStmt_Lhu(NStmt_Lhu node) {
     defaultOut(node);
   }
@@ -516,6 +544,10 @@ public class Walker {
   }
 
   public void outStmt_Lui(NStmt_Lui node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Lh(NStmt_Lh node) {
     defaultOut(node);
   }
 
@@ -551,7 +583,7 @@ public class Walker {
     defaultOut(node);
   }
 
-  public void outStmt_Jmllnk(NStmt_Jmllnk node) {
+  public void outStmt_Jmplnk(NStmt_Jmplnk node) {
     defaultOut(node);
   }
 
@@ -567,11 +599,7 @@ public class Walker {
     defaultOut(node);
   }
 
-  public void outRd(NRd node) {
-    defaultOut(node);
-  }
-
-  public void outRs(NRs node) {
+  public void outArray(NArray node) {
     defaultOut(node);
   }
 
@@ -584,6 +612,14 @@ public class Walker {
   }
 
   public void outImmediate_Unsigned(NImmediate_Unsigned node) {
+    defaultOut(node);
+  }
+
+  public void outRs(NRs node) {
+    defaultOut(node);
+  }
+
+  public void outRd(NRd node) {
     defaultOut(node);
   }
 

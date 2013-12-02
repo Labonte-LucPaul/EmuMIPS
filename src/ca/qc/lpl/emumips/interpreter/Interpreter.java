@@ -31,7 +31,7 @@ public class Interpreter extends Walker {
 
 	public Interpreter( HashMap<String,Register> r, HashMap<String, Register> registersBin, String source ) throws Exception {
 		
-		Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $a0, $a0 test: addi $a0, $a0, 1 add $a0, $a0, $a0 j test") );
+		Parser p = new Parser( new StringReader("fuck: fuck2: lw $a0, 12($t0) add $a0, $a0, $a0 test: addi $a0, $a0, 1 add $a0, $a0, $a0 j test") );
 
 		this.tree = p.parse();
 		ScopeAnalysis sa = new ScopeAnalysis(this.tree);

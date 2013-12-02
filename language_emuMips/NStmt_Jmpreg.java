@@ -7,8 +7,8 @@ public class NStmt_Jmpreg
 
   private final int line;
   private final int pos;
-  private final N$32 e$32;
-  private final NRegister eRegister;
+  private final N$35 e$35;
+  private final NRs eRs;
 
   @Override
   public int getLine() {
@@ -34,15 +34,15 @@ public class NStmt_Jmpreg
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$32.apply(walker);
-    this.eRegister.apply(walker);
+    this.e$35.apply(walker);
+    this.eRs.apply(walker);
   }
 
-  NStmt_Jmpreg(int line, int pos, N$32 p$32, NRegister pRegister) {
+  NStmt_Jmpreg(int line, int pos, N$35 p$35, NRs pRs) {
     this.line = line;
     this.pos = pos;
-    this.e$32 = p$32;
-    this.eRegister = pRegister;
+    this.e$35 = p$35;
+    this.eRs = pRs;
   }
 
   @Override
@@ -60,15 +60,15 @@ public class NStmt_Jmpreg
     return InternalType.T_Stmt_Jmpreg;
   }
 
-  public NRegister get_Register() {
-    return this.eRegister;
+  public NRs get_Rs() {
+    return this.eRs;
   }
 
-  N$32 internalGet$32() {
-    return this.e$32;
+  N$35 internalGet$35() {
+    return this.e$35;
   }
 
-  NRegister internalGetRegister() {
-    return this.eRegister;
+  NRs internalGetRs() {
+    return this.eRs;
   }
 }

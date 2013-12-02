@@ -21,22 +21,26 @@ class S_128
       return S_159.instance;
     case Symbol_36:
       return S_159.instance;
+    case Symbol_40:
+      return S_159.instance;
+    case Symbol_41:
+      return S_159.instance;
     case Symbol_44:
       return S_159.instance;
     case Symbol_45:
       return S_159.instance;
     case Symbol__0:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol__1:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol__2:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol__3:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol__4:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol__8:
-      return S_7.instance;
+      return S_9.instance;
     case Symbol_58:
       return S_159.instance;
     case Symbol__A:

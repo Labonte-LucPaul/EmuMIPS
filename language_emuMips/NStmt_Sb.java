@@ -7,8 +7,8 @@ public class NStmt_Sb
 
   private final int line;
   private final int pos;
-  private final N$26 e$26;
-  private final NImmExpr eImmExpr;
+  private final N$29 e$29;
+  private final NArray eArray;
 
   @Override
   public int getLine() {
@@ -34,15 +34,15 @@ public class NStmt_Sb
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$26.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.e$29.apply(walker);
+    this.eArray.apply(walker);
   }
 
-  NStmt_Sb(int line, int pos, N$26 p$26, NImmExpr pImmExpr) {
+  NStmt_Sb(int line, int pos, N$29 p$29, NArray pArray) {
     this.line = line;
     this.pos = pos;
-    this.e$26 = p$26;
-    this.eImmExpr = pImmExpr;
+    this.e$29 = p$29;
+    this.eArray = pArray;
   }
 
   @Override
@@ -60,15 +60,15 @@ public class NStmt_Sb
     return InternalType.T_Stmt_Sb;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NArray get_Array() {
+    return this.eArray;
   }
 
-  N$26 internalGet$26() {
-    return this.e$26;
+  N$29 internalGet$29() {
+    return this.e$29;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  NArray internalGetArray() {
+    return this.eArray;
   }
 }

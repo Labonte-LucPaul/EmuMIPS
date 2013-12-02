@@ -16,17 +16,9 @@ class S_21
   State getTarget(Symbol symbol) {
     switch(symbol) {
     case Symbol__0:
-      return S_52.instance;
+      return S_54.instance;
     case Symbol__1:
-      return S_52.instance;
-    case Symbol__2:
-      return S_52.instance;
-    case Symbol__3:
-      return S_52.instance;
-    case Symbol__4:
-      return S_52.instance;
-    case Symbol__p:
-      return S_52.instance;
+      return S_54.instance;
     default:
       return null;
     }

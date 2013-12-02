@@ -8,7 +8,11 @@ public class NStmt_Beq
   private final int line;
   private final int pos;
   private final N$19 e$19;
-  private final NImmExpr eImmExpr;
+  private final NRs eRs;
+  private final N$20 e$20$1;
+  private final NRt eRt;
+  private final N$20 e$20$2;
+  private final NString eString;
 
   @Override
   public int getLine() {
@@ -35,14 +39,22 @@ public class NStmt_Beq
   @Override
   public void applyOnChildren(Walker walker) {
     this.e$19.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.eRs.apply(walker);
+    this.e$20$1.apply(walker);
+    this.eRt.apply(walker);
+    this.e$20$2.apply(walker);
+    this.eString.apply(walker);
   }
 
-  NStmt_Beq(int line, int pos, N$19 p$19, NImmExpr pImmExpr) {
+  NStmt_Beq(int line, int pos, N$19 p$19, NRs pRs, N$20 p$20$1, NRt pRt, N$20 p$20$2, NString pString) {
     this.line = line;
     this.pos = pos;
     this.e$19 = p$19;
-    this.eImmExpr = pImmExpr;
+    this.eRs = pRs;
+    this.e$20$1 = p$20$1;
+    this.eRt = pRt;
+    this.e$20$2 = p$20$2;
+    this.eString = pString;
   }
 
   @Override
@@ -60,15 +72,39 @@ public class NStmt_Beq
     return InternalType.T_Stmt_Beq;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NRs get_Rs() {
+    return this.eRs;
+  }
+
+  public NRt get_Rt() {
+    return this.eRt;
+  }
+
+  public NString get_String() {
+    return this.eString;
   }
 
   N$19 internalGet$19() {
     return this.e$19;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  NRs internalGetRs() {
+    return this.eRs;
+  }
+
+  N$20 internalGet$20$1() {
+    return this.e$20$1;
+  }
+
+  NRt internalGetRt() {
+    return this.eRt;
+  }
+
+  N$20 internalGet$20$2() {
+    return this.e$20$2;
+  }
+
+  NString internalGetString() {
+    return this.eString;
   }
 }

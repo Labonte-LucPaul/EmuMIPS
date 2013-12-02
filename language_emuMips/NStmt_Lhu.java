@@ -7,7 +7,7 @@ public class NStmt_Lhu
 
   private final int line;
   private final int pos;
-  private final N$23 e$23;
+  private final N$24 e$24;
   private final NArray eArray;
 
   @Override
@@ -34,14 +34,14 @@ public class NStmt_Lhu
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$23.apply(walker);
+    this.e$24.apply(walker);
     this.eArray.apply(walker);
   }
 
-  NStmt_Lhu(int line, int pos, N$23 p$23, NArray pArray) {
+  NStmt_Lhu(int line, int pos, N$24 p$24, NArray pArray) {
     this.line = line;
     this.pos = pos;
-    this.e$23 = p$23;
+    this.e$24 = p$24;
     this.eArray = pArray;
   }
 
@@ -64,8 +64,8 @@ public class NStmt_Lhu
     return this.eArray;
   }
 
-  N$23 internalGet$23() {
-    return this.e$23;
+  N$24 internalGet$24() {
+    return this.e$24;
   }
 
   NArray internalGetArray() {

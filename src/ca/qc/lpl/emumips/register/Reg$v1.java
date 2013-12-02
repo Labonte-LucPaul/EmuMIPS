@@ -7,7 +7,7 @@ import ca.qc.lpl.util.Observer;
 public class Reg$v1 implements Register {
 
 	private ArrayList<Observer> lstObservers = new ArrayList<Observer>();
-	private int value;
+	private int value = 0;
 
 	@Override
 	public String getBinary() {

@@ -8,9 +8,9 @@ public class NShift
   private final int line;
   private final int pos;
   private final NRd eRd;
-  private final N$26 e$26$1;
+  private final N$20 e$20$1;
   private final NRt eRt;
-  private final N$26 e$26$2;
+  private final N$20 e$20$2;
   private final NImmediate eImmediate;
 
   @Override
@@ -38,19 +38,19 @@ public class NShift
   @Override
   public void applyOnChildren(Walker walker) {
     this.eRd.apply(walker);
-    this.e$26$1.apply(walker);
+    this.e$20$1.apply(walker);
     this.eRt.apply(walker);
-    this.e$26$2.apply(walker);
+    this.e$20$2.apply(walker);
     this.eImmediate.apply(walker);
   }
 
-  NShift(int line, int pos, NRd pRd, N$26 p$26$1, NRt pRt, N$26 p$26$2, NImmediate pImmediate) {
+  NShift(int line, int pos, NRd pRd, N$20 p$20$1, NRt pRt, N$20 p$20$2, NImmediate pImmediate) {
     this.line = line;
     this.pos = pos;
     this.eRd = pRd;
-    this.e$26$1 = p$26$1;
+    this.e$20$1 = p$20$1;
     this.eRt = pRt;
-    this.e$26$2 = p$26$2;
+    this.e$20$2 = p$20$2;
     this.eImmediate = pImmediate;
   }
 
@@ -85,16 +85,16 @@ public class NShift
     return this.eRd;
   }
 
-  N$26 internalGet$26$1() {
-    return this.e$26$1;
+  N$20 internalGet$20$1() {
+    return this.e$20$1;
   }
 
   NRt internalGetRt() {
     return this.eRt;
   }
 
-  N$26 internalGet$26$2() {
-    return this.e$26$2;
+  N$20 internalGet$20$2() {
+    return this.e$20$2;
   }
 
   NImmediate internalGetImmediate() {

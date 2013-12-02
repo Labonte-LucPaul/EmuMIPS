@@ -8,7 +8,7 @@ public class NArray
   private final int line;
   private final int pos;
   private final NRt eRt;
-  private final N$26 e$26;
+  private final N$20 e$20;
   private final NImmediate eImmediate;
   private final N$37 e$37;
   private final NRs eRs;
@@ -39,18 +39,18 @@ public class NArray
   @Override
   public void applyOnChildren(Walker walker) {
     this.eRt.apply(walker);
-    this.e$26.apply(walker);
+    this.e$20.apply(walker);
     this.eImmediate.apply(walker);
     this.e$37.apply(walker);
     this.eRs.apply(walker);
     this.e$38.apply(walker);
   }
 
-  NArray(int line, int pos, NRt pRt, N$26 p$26, NImmediate pImmediate, N$37 p$37, NRs pRs, N$38 p$38) {
+  NArray(int line, int pos, NRt pRt, N$20 p$20, NImmediate pImmediate, N$37 p$37, NRs pRs, N$38 p$38) {
     this.line = line;
     this.pos = pos;
     this.eRt = pRt;
-    this.e$26 = p$26;
+    this.e$20 = p$20;
     this.eImmediate = pImmediate;
     this.e$37 = p$37;
     this.eRs = pRs;
@@ -88,8 +88,8 @@ public class NArray
     return this.eRt;
   }
 
-  N$26 internalGet$26() {
-    return this.e$26;
+  N$20 internalGet$20() {
+    return this.e$20;
   }
 
   NImmediate internalGetImmediate() {

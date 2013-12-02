@@ -8,9 +8,9 @@ public class NRegExpr
   private final int line;
   private final int pos;
   private final NRd eRd;
-  private final N$26 e$26$1;
+  private final N$20 e$20$1;
   private final NRs eRs;
-  private final N$26 e$26$2;
+  private final N$20 e$20$2;
   private final NRt eRt;
 
   @Override
@@ -38,19 +38,19 @@ public class NRegExpr
   @Override
   public void applyOnChildren(Walker walker) {
     this.eRd.apply(walker);
-    this.e$26$1.apply(walker);
+    this.e$20$1.apply(walker);
     this.eRs.apply(walker);
-    this.e$26$2.apply(walker);
+    this.e$20$2.apply(walker);
     this.eRt.apply(walker);
   }
 
-  NRegExpr(int line, int pos, NRd pRd, N$26 p$26$1, NRs pRs, N$26 p$26$2, NRt pRt) {
+  NRegExpr(int line, int pos, NRd pRd, N$20 p$20$1, NRs pRs, N$20 p$20$2, NRt pRt) {
     this.line = line;
     this.pos = pos;
     this.eRd = pRd;
-    this.e$26$1 = p$26$1;
+    this.e$20$1 = p$20$1;
     this.eRs = pRs;
-    this.e$26$2 = p$26$2;
+    this.e$20$2 = p$20$2;
     this.eRt = pRt;
   }
 
@@ -85,16 +85,16 @@ public class NRegExpr
     return this.eRd;
   }
 
-  N$26 internalGet$26$1() {
-    return this.e$26$1;
+  N$20 internalGet$20$1() {
+    return this.e$20$1;
   }
 
   NRs internalGetRs() {
     return this.eRs;
   }
 
-  N$26 internalGet$26$2() {
-    return this.e$26$2;
+  N$20 internalGet$20$2() {
+    return this.e$20$2;
   }
 
   NRt internalGetRt() {

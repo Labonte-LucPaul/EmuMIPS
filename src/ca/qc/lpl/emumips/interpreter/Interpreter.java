@@ -22,23 +22,40 @@ public class Interpreter extends Walker {
 
 	private HashMap<String, Register> registers;
 	private HashMap<String, Register> registersBin;
-	private ArrayList<String> lstScope;
+	//private ArrayList<String> lstScope;
 	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
-	private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
+	private ArrayList<Node> preCompiled;
+	//private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
 
 
 	private String currentLabel = "";
+	public int iterator = 0;
 
 	public Interpreter( HashMap<String,Register> r, HashMap<String, Register> registersBin, String source ) throws Exception {
 		
-		Parser p = new Parser( new StringReader("fuck: fuck2: lw $a0, 12($t0) add $a0, $a0, $a0 test: addi $a0, $a0, 1 add $a0, $a0, $a0 j test") );
+		Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $zero, $zero addi $a1, $zero, 9 test: addi $a0, $a0, 1 slti $t0, $a0, 9 bne $t0, $zero, test") );
 
 		this.tree = p.parse();
 		ScopeAnalysis sa = new ScopeAnalysis(this.tree);
-	
+		this.lblAssociation = sa.getLblAssociation();
+		JustInTime jit = new JustInTime(sa.getInstructions());
+		this.preCompiled = jit.getPreCompiled();
+		
+		
 		this.registers = r;
 		this.registersBin = registersBin;
-		this.lstScope = new ArrayList<String>();
+		
+		
+		while( this.iterator < this.preCompiled.size() ) {
+			if( this.preCompiled.get(iterator) != null ) {
+				this.preCompiled.get(iterator).apply(this);
+			}
+			++this.iterator;
+			//System.out.println(this.registers.get("$a0").getValue());
+		}
+		
+		System.out.println(this.registers.get("$a0").getValue());
+		//this.lstScope = new ArrayList<String>();
 	
 		//this.tree.apply(this);
 		
@@ -84,32 +101,15 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("add %s,  %s, %s", rd, rs, rs));
-//		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();	
-//		this.registers.get(rd).setValue(add);
-//		BasicInstructionInfo tmp = new Add();
-//		try {
-//			tmp.setRegFormat(this.registers.get(rd).getBinary(), this.registers.get(rs).getBinary(), this.registers.get(rt).getBinary(), 0);
-//			this.lstScope.add(tmp);
-//		} catch (NotARegisterException e) {
-//			System.out.println(e.getMessage());
-//		}
+		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();	
+		this.registers.get(rd).setValue(add);
 	}
 	
 	@Override
 	public void caseStmt_Addi(NStmt_Addi node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("addi %s,  %s, %d", rs, rt, imm));
-//		int addi = this.registers.get(rs).getValue() + this.imm;
-//		this.registers.get(rt).setValue(addi);
-//		System.out.println(addi);
-//		BasicInstructionInfo tmp = new Addi();
-//		try {
-//			tmp.setImmFormat(this.registers.get(rt).getBinary(), this.registers.get(rs).getBinary(), imm);
-//			this.lstScope.add(tmp);
-//		} catch (NotAnImmediateException e) {
-//			System.out.println(e.getMessage());
-//		}
+		int addi = this.registers.get(rs).getValue() + this.imm;
+		this.registers.get(rt).setValue(addi);
 	}
 
 	@Override
@@ -220,26 +220,32 @@ public class Interpreter extends Walker {
 	
 	@Override
 	public void caseStmt_Lbl(NStmt_Lbl node) {
-//		if(currentLabel.length() > 0) {
-//			lstScope.add(0, currentLabel + ":");
-//		}
-		this.instructions.add(lstScope);
-		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
-		this.currentLabel = node.get_String().getText();
-		lstScope = new ArrayList<String>();
-//		this.instructions.put(currentLabel, lstScope);
-//		this.lstScope = new ArrayList<BasicInstructionInfo>();
-//		this.currentLabel = node.get_String().getText();
-		//lbl.put(node.get_String().getText(), node);
-		//System.out.println(node.get_String().getText());
 
-		//node.get_Stmts().apply(this);
-		//node.get_Eop().apply(this);
 	}
 	
 	@Override
 	public void caseStmt_Jmp(NStmt_Jmp node) {
-		//this.lbl.get(node.get_String().getText()).apply(this);
-		this.lstScope.add("j " + node.get_String().getText() );
+		this.iterator = (this.lblAssociation.get(node.get_String().getText()) -1);
+		//this.preCompiled.get(this.lblAssociation.get(node.get_String().getText())).apply(this);
+
 	}
+	
+	@Override
+	public void caseStmt_Bne(NStmt_Bne node) {
+		node.get_Rs().apply(this);
+		node.get_Rt().apply(this);
+		if( this.registers.get(rs).getValue() != this.registers.get(rt).getValue() ) {
+			this.iterator = this.lblAssociation.get(node.get_String().getText()) -1;
+		}
+	}
+	
+	@Override
+	public void caseStmt_Beq(NStmt_Beq node) {
+		node.get_Rs().apply(this);
+		node.get_Rt().apply(this);
+		if( this.registers.get(rs).getValue() == this.registers.get(rt).getValue() ) {
+			this.iterator = this.lblAssociation.get(node.get_String().getText()) -1;
+		}
+	}
+	
 }

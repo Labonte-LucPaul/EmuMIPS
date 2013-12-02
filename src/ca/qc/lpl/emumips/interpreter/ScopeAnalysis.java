@@ -57,32 +57,45 @@ public class ScopeAnalysis extends Walker {
 	private boolean isArray = false;
 
 //	private HashMap<String, Register> registers;
-	private ArrayList<String> lstScope;
+	//private ArrayList<String> lstScope;
+	private StringBuilder lstScope;
 	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
-	private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
+	private ArrayList<StringBuilder> instructions = new ArrayList<StringBuilder>();
 
 	private String currentLabel = "";
 	
 	public ScopeAnalysis(Node tree) {
 		
-		this.lstScope = new ArrayList<String>();
+		this.lstScope  = new StringBuilder();
 		tree.apply(this);
 		
 		this.instructions.add(lstScope);
 		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
 		
-		for(String key : lblAssociation.keySet()) {
-			System.out.println(key + ": " + lblAssociation.get(key).toString());
-		}
+//		for(String key : lblAssociation.keySet()) {
+//			System.out.println(key + ": " + lblAssociation.get(key).toString());
+//		}
 		
-		for(ArrayList<String> lst : instructions) {
-			System.out.println();
-			for(String lst2 : lst) {
-				System.out.println(lst2.toString());
-			}
-		}
+//		for(StringBuilder lst : instructions) {
+//			System.out.println();
+//			for(String lst2 : lst) {
+//				System.out.println(lst.toString());
+//			}
+//		}
 	}
 
+	//private void appendString(String s) {
+		//this.lstScope.append(s);
+	//}
+
+	public ArrayList<StringBuilder> getInstructions() {
+		return this.instructions;
+	}
+	
+	public HashMap<String, Integer> getLblAssociation() {
+		return this.lblAssociation;
+	}
+	
 	private void isMultiple4(int val, int l, int c) {
 		if( (val % 4) != 0 ) {
 			System.out.printf("Error @(%d,%d): value '%d' is not a multiple of 4.\n"
@@ -127,103 +140,103 @@ public class ScopeAnalysis extends Walker {
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("add %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("add %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Addi(NStmt_Addi node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("addi %s,  %s, %d", rt, rs, imm));
+		lstScope.append(String.format("addi %s, %s, %d", rt, rs, imm));
 	}
 
 	@Override
 	public void caseStmt_Addu(NStmt_Addu node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("addu %s,  %s, %d", rd, rs, rt));
+		lstScope.append(String.format("addu %s, %s, %d", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Addiu(NStmt_Addiu node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("addiu %s,  %s, %d", rt, rs, imm));
+		lstScope.append(String.format("addiu %s, %s, %d", rt, rs, imm));
 	}
 	
 	@Override
 	public void caseStmt_Sub(NStmt_Sub node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("sub %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("sub %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Subu(NStmt_Subu node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("subu %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("subu %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_And(NStmt_And node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("and %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("and %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Andi(NStmt_Andi node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("andi %s,  %s, %s", rt, rs, this.imm));
+		lstScope.append(String.format("andi %s, %s, %s", rt, rs, this.imm));
 	}
 
 	@Override
 	public void caseStmt_Or(NStmt_Or node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("or %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("or %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Ori(NStmt_Ori node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("ori %s,  %s, %s", rt, rs, this.imm));
+		lstScope.append(String.format("ori %s, %s, %s", rt, rs, this.imm));
 	}
 
 	@Override
 	public void caseStmt_Nor(NStmt_Nor node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("nor %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("nor %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Slt(NStmt_Slt node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("slt %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("slt %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Slti(NStmt_Slti node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("slti %s,  %s, %s", rt, rs, this.imm));
+		lstScope.append(String.format("slti %s, %s, %s", rt, rs, this.imm));
 	}
 	
 	@Override
 	public void caseStmt_Sltu(NStmt_Sltu node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("sltu %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("sltu %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Sltiu(NStmt_Sltiu node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("sltiu %s,  %s, %s", rt, rs, this.imm));
+		lstScope.append(String.format("sltiu %s, %s, %s", rt, rs, this.imm));
 	}
 
 	@Override
 	public void caseStmt_Sll(NStmt_Sll node) {
 		node.get_Shift().apply(this);
-		lstScope.add(String.format("sll %s,  %s, %s", rd, rt, imm));
+		lstScope.append(String.format("sll %s, %s, %s", rd, rt, imm));
 	}
 	
 	@Override
 	public void caseStmt_Srl(NStmt_Srl node) {
 		node.get_Shift().apply(this);
-		lstScope.add(String.format("subu %s,  %s, %s", rd, rt, this.imm));
+		lstScope.append(String.format("subu %s, %s, %s", rd, rt, this.imm));
 	}
 	
 	@Override
@@ -239,58 +252,64 @@ public class ScopeAnalysis extends Walker {
 		this.instructions.add(lstScope);
 		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
 		this.currentLabel = node.get_String().getText();
-		lstScope = new ArrayList<String>();
+		lstScope = new StringBuilder();
 
 	}
 	
 	@Override
 	public void caseStmt_Jmp(NStmt_Jmp node) {
-		this.lstScope.add("j " + node.get_String().getText() );
+		this.lstScope.append("j " + node.get_String().getText() );
 	}
 
 	@Override
 	public void caseStmt_Xor(NStmt_Xor node) {
 		node.get_RegExpr().apply(this);
-		lstScope.add(String.format("xor %s,  %s, %s", rd, rs, rt));
+		lstScope.append(String.format("xor %s, %s, %s", rd, rs, rt));
 	}
 
 	@Override
 	public void caseStmt_Xori(NStmt_Xori node) {
 		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("xori %s,  %s, %s", rt, rs, this.imm));
+		lstScope.append(String.format("xori %s, %s, %s", rt, rs, this.imm));
 	}
 
 	@Override
 	public void caseStmt_Beq(NStmt_Beq node) {
-		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("beq %s,  %s, %d", rd, rs, this.imm));
+		//node.get_ImmExpr().apply(this);
+		//lstScope.append(String.format("beq %s, %s, %d", rd, rs, this.imm));
+		lstScope.append(String.format("beq %s, %s, %s", node.get_Rs().get_Register().getText(),
+														node.get_Rt().get_Register().getText(),
+														node.get_String().getText()));
 	}
 
 	@Override
 	public void caseStmt_Bne(NStmt_Bne node) {
-		node.get_ImmExpr().apply(this);
-		lstScope.add(String.format("bne %s,  %s, %d", rd, rs, this.imm));
+		//node.get_ImmExpr().apply(this);
+		//lstScope.append(String.format("bne %s, %s, %d", rd, rs, this.imm));
+		lstScope.append(String.format("bne %s, %s, %s", node.get_Rs().get_Register().getText(),
+				node.get_Rt().get_Register().getText(),
+				node.get_String().getText()));
 	}
 
 	@Override
 	public void caseStmt_Lbu(NStmt_Lbu node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("lbu %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("lbu %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Lhu(NStmt_Lhu node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("lhu %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("lhu %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Ll(NStmt_Ll node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("ll %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("ll %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	
@@ -298,46 +317,46 @@ public class ScopeAnalysis extends Walker {
 	public void caseStmt_Lw(NStmt_Lw node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("lw %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("lw %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Sb(NStmt_Sb node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("sb %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("sb %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Sc(NStmt_Sc node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("sc %s,  %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("sc %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Sh(NStmt_Sh node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("sh %s, %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("sh %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Sw(NStmt_Sw node) {
 		this.isArray = true;
 		node.get_Array().apply(this);
-		lstScope.add(String.format("sw %s, %d(%s)", rt, this.imm, rs));
+		lstScope.append(String.format("sw %s, %d(%s)", rt, this.imm, rs));
 	}
 
 	@Override
 	public void caseStmt_Jmpreg(NStmt_Jmpreg node) {
 		node.get_Rs().apply(this);
-		this.lstScope.add("jr " + rs );
+		this.lstScope.append("jr " + rs );
 	}
 
 	@Override
 	public void caseStmt_Jmplnk(NStmt_Jmplnk node) {
-		this.lstScope.add("jal " + node.get_String().getText() );
+		this.lstScope.append("jal " + node.get_String().getText() );
 	}
 	
 }

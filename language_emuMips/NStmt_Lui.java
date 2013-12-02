@@ -7,9 +7,9 @@ public class NStmt_Lui
 
   private final int line;
   private final int pos;
-  private final N$25 e$25;
-  private final NRt eRt;
   private final N$26 e$26;
+  private final NRt eRt;
+  private final N$20 e$20;
   private final NImmediate eImmediate;
 
   @Override
@@ -36,18 +36,18 @@ public class NStmt_Lui
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$25.apply(walker);
-    this.eRt.apply(walker);
     this.e$26.apply(walker);
+    this.eRt.apply(walker);
+    this.e$20.apply(walker);
     this.eImmediate.apply(walker);
   }
 
-  NStmt_Lui(int line, int pos, N$25 p$25, NRt pRt, N$26 p$26, NImmediate pImmediate) {
+  NStmt_Lui(int line, int pos, N$26 p$26, NRt pRt, N$20 p$20, NImmediate pImmediate) {
     this.line = line;
     this.pos = pos;
-    this.e$25 = p$25;
-    this.eRt = pRt;
     this.e$26 = p$26;
+    this.eRt = pRt;
+    this.e$20 = p$20;
     this.eImmediate = pImmediate;
   }
 
@@ -74,16 +74,16 @@ public class NStmt_Lui
     return this.eImmediate;
   }
 
-  N$25 internalGet$25() {
-    return this.e$25;
+  N$26 internalGet$26() {
+    return this.e$26;
   }
 
   NRt internalGetRt() {
     return this.eRt;
   }
 
-  N$26 internalGet$26() {
-    return this.e$26;
+  N$20 internalGet$20() {
+    return this.e$20;
   }
 
   NImmediate internalGetImmediate() {

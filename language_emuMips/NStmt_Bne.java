@@ -7,8 +7,12 @@ public class NStmt_Bne
 
   private final int line;
   private final int pos;
-  private final N$20 e$20;
-  private final NImmExpr eImmExpr;
+  private final N$21 e$21;
+  private final NRs eRs;
+  private final N$20 e$20$1;
+  private final NRt eRt;
+  private final N$20 e$20$2;
+  private final NString eString;
 
   @Override
   public int getLine() {
@@ -34,15 +38,23 @@ public class NStmt_Bne
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$20.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.e$21.apply(walker);
+    this.eRs.apply(walker);
+    this.e$20$1.apply(walker);
+    this.eRt.apply(walker);
+    this.e$20$2.apply(walker);
+    this.eString.apply(walker);
   }
 
-  NStmt_Bne(int line, int pos, N$20 p$20, NImmExpr pImmExpr) {
+  NStmt_Bne(int line, int pos, N$21 p$21, NRs pRs, N$20 p$20$1, NRt pRt, N$20 p$20$2, NString pString) {
     this.line = line;
     this.pos = pos;
-    this.e$20 = p$20;
-    this.eImmExpr = pImmExpr;
+    this.e$21 = p$21;
+    this.eRs = pRs;
+    this.e$20$1 = p$20$1;
+    this.eRt = pRt;
+    this.e$20$2 = p$20$2;
+    this.eString = pString;
   }
 
   @Override
@@ -60,15 +72,39 @@ public class NStmt_Bne
     return InternalType.T_Stmt_Bne;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NRs get_Rs() {
+    return this.eRs;
   }
 
-  N$20 internalGet$20() {
-    return this.e$20;
+  public NRt get_Rt() {
+    return this.eRt;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  public NString get_String() {
+    return this.eString;
+  }
+
+  N$21 internalGet$21() {
+    return this.e$21;
+  }
+
+  NRs internalGetRs() {
+    return this.eRs;
+  }
+
+  N$20 internalGet$20$1() {
+    return this.e$20$1;
+  }
+
+  NRt internalGetRt() {
+    return this.eRt;
+  }
+
+  N$20 internalGet$20$2() {
+    return this.e$20$2;
+  }
+
+  NString internalGetString() {
+    return this.eString;
   }
 }

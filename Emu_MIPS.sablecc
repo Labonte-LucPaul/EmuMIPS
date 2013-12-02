@@ -42,8 +42,8 @@ Parser
            {sltiu:} 'sltiu' imm_expr |
            {sll:} 'sll' shift |
            {srl:} 'srl' shift |
-           {beq:} 'beq' imm_expr |
-           {bne:} 'bne' imm_expr |
+           {beq:} 'beq' rs ',' rt ',' string |
+           {bne:} 'bne' rs ',' rt ',' string |
            {lbu:} 'lbu' array |
            {lb:} 'lb' array |
            {lhu:} 'lhu' array |

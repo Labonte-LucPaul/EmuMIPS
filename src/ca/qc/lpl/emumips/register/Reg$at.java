@@ -7,7 +7,7 @@ import ca.qc.lpl.util.Observer;
 public class Reg$at implements Register {
 
 	private int regNumber = 1;
-	private int value;
+	private int value = 0;
 	private ArrayList<Observer> lstObservers = new ArrayList<Observer>();
 
 	@Override

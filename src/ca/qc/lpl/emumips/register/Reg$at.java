@@ -1,6 +1,7 @@
 package ca.qc.lpl.emumips.register;
 
 import java.util.ArrayList;
+
 import ca.qc.lpl.util.Observer;
 
 public class Reg$at implements Register {
@@ -9,6 +10,16 @@ public class Reg$at implements Register {
 	private int value;
 	private ArrayList<Observer> lstObservers = new ArrayList<Observer>();
 
+	@Override
+	public String getBinary() {
+		return String.format("%05d", Integer.parseInt(Integer.toBinaryString(this.getRegisterNumber())));
+	}
+
+	@Override
+	public String getHex() {
+		return String.format( "%02X", this.getRegisterNumber() );
+	}
+	
 	@Override
 	public String getRegisterName() {
 		return "$at";

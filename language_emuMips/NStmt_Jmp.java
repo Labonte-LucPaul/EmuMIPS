@@ -2,11 +2,12 @@
 
 package language_emuMips;
 
-public class NAddress
-    extends Node {
+public class NStmt_Jmp
+    extends NStmt {
 
   private final int line;
   private final int pos;
+  private final N$31 e$31;
   private final NString eString;
 
   @Override
@@ -26,39 +27,45 @@ public class NAddress
 
   @Override
   public void apply(Walker walker) {
-    walker.inAddress(this);
-    walker.caseAddress(this);
-    walker.outAddress(this);
+    walker.inStmt_Jmp(this);
+    walker.caseStmt_Jmp(this);
+    walker.outStmt_Jmp(this);
   }
 
   @Override
   public void applyOnChildren(Walker walker) {
+    this.e$31.apply(walker);
     this.eString.apply(walker);
   }
 
-  public NAddress(int line, int pos, NString pString) {
+  NStmt_Jmp(int line, int pos, N$31 p$31, NString pString) {
     this.line = line;
     this.pos = pos;
+    this.e$31 = p$31;
     this.eString = pString;
   }
 
   @Override
   public Type getType() {
-    return Type.T_Address;
+    return Type.T_Stmt_Jmp;
   }
 
   @Override
   public ProductionType getProductionType() {
-    return ProductionType.T_Address;
+    return ProductionType.T_Stmt;
   }
 
   @Override
   InternalType getInternalType() {
-    return InternalType.T_Address;
+    return InternalType.T_Stmt_Jmp;
   }
 
   public NString get_String() {
     return this.eString;
+  }
+
+  N$31 internalGet$31() {
+    return this.e$31;
   }
 
   NString internalGetString() {

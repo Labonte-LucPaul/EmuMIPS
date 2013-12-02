@@ -7,7 +7,7 @@ public class NStmt_Slt
 
   private final int line;
   private final int pos;
-  private final N$11 e$11;
+  private final N$13 e$13;
   private final NRegExpr eRegExpr;
 
   @Override
@@ -34,14 +34,14 @@ public class NStmt_Slt
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$11.apply(walker);
+    this.e$13.apply(walker);
     this.eRegExpr.apply(walker);
   }
 
-  NStmt_Slt(int line, int pos, N$11 p$11, NRegExpr pRegExpr) {
+  NStmt_Slt(int line, int pos, N$13 p$13, NRegExpr pRegExpr) {
     this.line = line;
     this.pos = pos;
-    this.e$11 = p$11;
+    this.e$13 = p$13;
     this.eRegExpr = pRegExpr;
   }
 
@@ -64,8 +64,8 @@ public class NStmt_Slt
     return this.eRegExpr;
   }
 
-  N$11 internalGet$11() {
-    return this.e$11;
+  N$13 internalGet$13() {
+    return this.e$13;
   }
 
   NRegExpr internalGetRegExpr() {

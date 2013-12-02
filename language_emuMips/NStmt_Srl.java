@@ -7,7 +7,7 @@ public class NStmt_Srl
 
   private final int line;
   private final int pos;
-  private final N$16 e$16;
+  private final N$18 e$18;
   private final NShift eShift;
 
   @Override
@@ -34,14 +34,14 @@ public class NStmt_Srl
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.e$16.apply(walker);
+    this.e$18.apply(walker);
     this.eShift.apply(walker);
   }
 
-  NStmt_Srl(int line, int pos, N$16 p$16, NShift pShift) {
+  NStmt_Srl(int line, int pos, N$18 p$18, NShift pShift) {
     this.line = line;
     this.pos = pos;
-    this.e$16 = p$16;
+    this.e$18 = p$18;
     this.eShift = pShift;
   }
 
@@ -64,8 +64,8 @@ public class NStmt_Srl
     return this.eShift;
   }
 
-  N$16 internalGet$16() {
-    return this.e$16;
+  N$18 internalGet$18() {
+    return this.e$18;
   }
 
   NShift internalGetShift() {

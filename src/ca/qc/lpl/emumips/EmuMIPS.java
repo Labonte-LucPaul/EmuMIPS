@@ -15,17 +15,29 @@ public class EmuMIPS {
 
 
 	private HashMap<String, Register> registers = new HashMap<String, Register>();
+	private HashMap<String, Register> registersBin = new HashMap<String, Register>();
 
+//	private String[] memory = new String[2147483645];
+	
 	public static void main(String[] args) {
 		
 		Arguments.progArguments(args);
 		MainWindow mw;
 		EmuMIPS self = new EmuMIPS();
-		
 		self.initRegisters();
-		
+
+//		try {
+//			Add add = new Add();
+//			add.setRegFormat(self.registers.get("$t0").getBinary(), self.registers.get("$a0").getBinary(), self.registers.get("$a1").getBinary(), 0);
+//			System.out.println( add.getStructInstructions().binary );
+//			System.out.println( "0x" + add.getStructInstructions().hex );
+//			System.out.println(add.getBinTrimmed() );
+//		} catch( Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+
 		if( Arguments.printVersion ) {
-			System.out.printf("Emu MIPS v.: %s - A simple MIPS emulator!", Version.getVersion());
+			Version.getInstance().printFullInfos();
 			System.exit(0);
 		}
 		
@@ -43,7 +55,7 @@ public class EmuMIPS {
 	private void startInterpreter() {
 		
 		try {
-			Interpreter i = new Interpreter(this.registers);
+			Interpreter i = new Interpreter(this.registers, this.registersBin, null);
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}
@@ -83,5 +95,9 @@ public class EmuMIPS {
 		registers.put("$t9", new Reg$t9());
 		registers.put("$v0", new Reg$v0());
 		registers.put("$v1", new Reg$v1());
+		
+		for( String key : registers.keySet() ) {
+			registersBin.put(registers.get(key).getBinary(), registers.get(key));
+		}
 	}
 }

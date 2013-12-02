@@ -44,6 +44,8 @@ class S_0
     case Symbol__a:
       return S_9.instance;
     case Symbol__b:
+      return S_10.instance;
+    case Symbol__c:
       return S_7.instance;
     case Symbol__d:
       return S_7.instance;
@@ -51,28 +53,38 @@ class S_0
       return S_7.instance;
     case Symbol__f:
       return S_7.instance;
+    case Symbol__h:
+      return S_7.instance;
     case Symbol__i:
       return S_7.instance;
+    case Symbol__j:
+      return S_11.instance;
     case Symbol__k:
       return S_7.instance;
     case Symbol__l:
-      return S_7.instance;
+      return S_12.instance;
     case Symbol__n:
-      return S_10.instance;
+      return S_13.instance;
     case Symbol__o:
-      return S_11.instance;
+      return S_14.instance;
     case Symbol__p:
+      return S_7.instance;
+    case Symbol__q:
       return S_7.instance;
     case Symbol__r:
       return S_7.instance;
     case Symbol__s:
-      return S_12.instance;
+      return S_15.instance;
     case Symbol__t:
       return S_7.instance;
     case Symbol__u:
       return S_7.instance;
     case Symbol__v:
       return S_7.instance;
+    case Symbol__w:
+      return S_7.instance;
+    case Symbol__x:
+      return S_16.instance;
     case Symbol__z:
       return S_7.instance;
     default:

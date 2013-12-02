@@ -20,4 +20,8 @@ public interface Register extends SubjectObserver {
 	
 	public void setValue( int value );
 
+	public String getBinary();
+	
+	public String getHex();
+
 }

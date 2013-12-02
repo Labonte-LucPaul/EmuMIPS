@@ -72,6 +72,14 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inStmt_Xor(NStmt_Xor node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Xori(NStmt_Xori node) {
+    defaultIn(node);
+  }
+
   public void inStmt_Slt(NStmt_Slt node) {
     defaultIn(node);
   }
@@ -96,7 +104,63 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inStmt_Beq(NStmt_Beq node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Bne(NStmt_Bne node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Lbu(NStmt_Lbu node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Lhu(NStmt_Lhu node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Ll(NStmt_Ll node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Lui(NStmt_Lui node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Lw(NStmt_Lw node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Sb(NStmt_Sb node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Sc(NStmt_Sc node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Sh(NStmt_Sh node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Sw(NStmt_Sw node) {
+    defaultIn(node);
+  }
+
   public void inStmt_Lbl(NStmt_Lbl node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Jmp(NStmt_Jmp node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Jmpreg(NStmt_Jmpreg node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Jmllnk(NStmt_Jmllnk node) {
     defaultIn(node);
   }
 
@@ -112,6 +176,10 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inRd(NRd node) {
+    defaultIn(node);
+  }
+
   public void inRs(NRs node) {
     defaultIn(node);
   }
@@ -120,23 +188,11 @@ public class Walker {
     defaultIn(node);
   }
 
-  public void inRd(NRd node) {
-    defaultIn(node);
-  }
-
   public void inImmediate_Signed(NImmediate_Signed node) {
     defaultIn(node);
   }
 
   public void inImmediate_Unsigned(NImmediate_Unsigned node) {
-    defaultIn(node);
-  }
-
-  public void inJmpExpr_Lbl(NJmpExpr_Lbl node) {
-    defaultIn(node);
-  }
-
-  public void inAddress(NAddress node) {
     defaultIn(node);
   }
 
@@ -211,6 +267,14 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseStmt_Xor(NStmt_Xor node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Xori(NStmt_Xori node) {
+    defaultCase(node);
+  }
+
   public void caseStmt_Slt(NStmt_Slt node) {
     defaultCase(node);
   }
@@ -235,7 +299,63 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseStmt_Beq(NStmt_Beq node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Bne(NStmt_Bne node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Lbu(NStmt_Lbu node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Lhu(NStmt_Lhu node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Ll(NStmt_Ll node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Lui(NStmt_Lui node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Lw(NStmt_Lw node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Sb(NStmt_Sb node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Sc(NStmt_Sc node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Sh(NStmt_Sh node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Sw(NStmt_Sw node) {
+    defaultCase(node);
+  }
+
   public void caseStmt_Lbl(NStmt_Lbl node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Jmp(NStmt_Jmp node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Jmpreg(NStmt_Jmpreg node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Jmllnk(NStmt_Jmllnk node) {
     defaultCase(node);
   }
 
@@ -251,6 +371,10 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseRd(NRd node) {
+    defaultCase(node);
+  }
+
   public void caseRs(NRs node) {
     defaultCase(node);
   }
@@ -259,23 +383,11 @@ public class Walker {
     defaultCase(node);
   }
 
-  public void caseRd(NRd node) {
-    defaultCase(node);
-  }
-
   public void caseImmediate_Signed(NImmediate_Signed node) {
     defaultCase(node);
   }
 
   public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-    defaultCase(node);
-  }
-
-  public void caseJmpExpr_Lbl(NJmpExpr_Lbl node) {
-    defaultCase(node);
-  }
-
-  public void caseAddress(NAddress node) {
     defaultCase(node);
   }
 
@@ -351,6 +463,14 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outStmt_Xor(NStmt_Xor node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Xori(NStmt_Xori node) {
+    defaultOut(node);
+  }
+
   public void outStmt_Slt(NStmt_Slt node) {
     defaultOut(node);
   }
@@ -375,7 +495,63 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outStmt_Beq(NStmt_Beq node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Bne(NStmt_Bne node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Lbu(NStmt_Lbu node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Lhu(NStmt_Lhu node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Ll(NStmt_Ll node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Lui(NStmt_Lui node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Lw(NStmt_Lw node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Sb(NStmt_Sb node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Sc(NStmt_Sc node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Sh(NStmt_Sh node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Sw(NStmt_Sw node) {
+    defaultOut(node);
+  }
+
   public void outStmt_Lbl(NStmt_Lbl node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Jmp(NStmt_Jmp node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Jmpreg(NStmt_Jmpreg node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Jmllnk(NStmt_Jmllnk node) {
     defaultOut(node);
   }
 
@@ -391,6 +567,10 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outRd(NRd node) {
+    defaultOut(node);
+  }
+
   public void outRs(NRs node) {
     defaultOut(node);
   }
@@ -399,23 +579,11 @@ public class Walker {
     defaultOut(node);
   }
 
-  public void outRd(NRd node) {
-    defaultOut(node);
-  }
-
   public void outImmediate_Signed(NImmediate_Signed node) {
     defaultOut(node);
   }
 
   public void outImmediate_Unsigned(NImmediate_Unsigned node) {
-    defaultOut(node);
-  }
-
-  public void outJmpExpr_Lbl(NJmpExpr_Lbl node) {
-    defaultOut(node);
-  }
-
-  public void outAddress(NAddress node) {
     defaultOut(node);
   }
 

@@ -8,6 +8,7 @@ public class NStmt_Lbl
   private final int line;
   private final int pos;
   private final NString eString;
+  private final N$30 e$30;
 
   @Override
   public int getLine() {
@@ -34,12 +35,14 @@ public class NStmt_Lbl
   @Override
   public void applyOnChildren(Walker walker) {
     this.eString.apply(walker);
+    this.e$30.apply(walker);
   }
 
-  public NStmt_Lbl(int line, int pos, NString pString) {
+  NStmt_Lbl(int line, int pos, NString pString, N$30 p$30) {
     this.line = line;
     this.pos = pos;
     this.eString = pString;
+    this.e$30 = p$30;
   }
 
   @Override
@@ -63,5 +66,9 @@ public class NStmt_Lbl
 
   NString internalGetString() {
     return this.eString;
+  }
+
+  N$30 internalGet$30() {
+    return this.e$30;
   }
 }

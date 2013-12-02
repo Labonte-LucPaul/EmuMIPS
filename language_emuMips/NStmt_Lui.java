@@ -2,13 +2,13 @@
 
 package language_emuMips;
 
-public class NJmpExpr_Lbl
-    extends NJmpExpr {
+public class NStmt_Lui
+    extends NStmt {
 
   private final int line;
   private final int pos;
-  private final NAddress eAddress;
-  private final N$18 e$18;
+  private final N$24 e$24;
+  private final NImmExpr eImmExpr;
 
   @Override
   public int getLine() {
@@ -27,48 +27,48 @@ public class NJmpExpr_Lbl
 
   @Override
   public void apply(Walker walker) {
-    walker.inJmpExpr_Lbl(this);
-    walker.caseJmpExpr_Lbl(this);
-    walker.outJmpExpr_Lbl(this);
+    walker.inStmt_Lui(this);
+    walker.caseStmt_Lui(this);
+    walker.outStmt_Lui(this);
   }
 
   @Override
   public void applyOnChildren(Walker walker) {
-    this.eAddress.apply(walker);
-    this.e$18.apply(walker);
+    this.e$24.apply(walker);
+    this.eImmExpr.apply(walker);
   }
 
-  NJmpExpr_Lbl(int line, int pos, NAddress pAddress, N$18 p$18) {
+  NStmt_Lui(int line, int pos, N$24 p$24, NImmExpr pImmExpr) {
     this.line = line;
     this.pos = pos;
-    this.eAddress = pAddress;
-    this.e$18 = p$18;
+    this.e$24 = p$24;
+    this.eImmExpr = pImmExpr;
   }
 
   @Override
   public Type getType() {
-    return Type.T_JmpExpr_Lbl;
+    return Type.T_Stmt_Lui;
   }
 
   @Override
   public ProductionType getProductionType() {
-    return ProductionType.T_JmpExpr;
+    return ProductionType.T_Stmt;
   }
 
   @Override
   InternalType getInternalType() {
-    return InternalType.T_JmpExpr_Lbl;
+    return InternalType.T_Stmt_Lui;
   }
 
-  public NAddress get_Address() {
-    return this.eAddress;
+  public NImmExpr get_ImmExpr() {
+    return this.eImmExpr;
   }
 
-  NAddress internalGetAddress() {
-    return this.eAddress;
+  N$24 internalGet$24() {
+    return this.e$24;
   }
 
-  N$18 internalGet$18() {
-    return this.e$18;
+  NImmExpr internalGetImmExpr() {
+    return this.eImmExpr;
   }
 }

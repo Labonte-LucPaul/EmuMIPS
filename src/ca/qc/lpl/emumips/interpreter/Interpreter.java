@@ -1,8 +1,13 @@
 package ca.qc.lpl.emumips.interpreter;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
+import ca.qc.lpl.emumips.interpreter.instructions.*;
+import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotARegisterException;
+import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotAnImmediateException;
 import ca.qc.lpl.emumips.register.Register;
 import language_emuMips.*;
 
@@ -11,21 +16,44 @@ public class Interpreter extends Walker {
 	private String rs = "";
 	private String rt = "";
 	private String rd = "";
-	private int immediate = 0;
+	private int imm = 0;
+
+	private Node tree;
 
 	private HashMap<String, Register> registers;
+	private HashMap<String, Register> registersBin;
+	private ArrayList<String> lstScope;
+	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
+	private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
+
+
+	private String currentLabel = "";
+
+	public Interpreter( HashMap<String,Register> r, HashMap<String, Register> registersBin, String source ) throws Exception {
+		
+		Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $a0, $a0 test: addi $a0, $a0, 1 add $a0, $a0, $a0 j test") );
+
+		this.tree = p.parse();
+		ScopeAnalysis sa = new ScopeAnalysis(this.tree);
 	
-	public Interpreter( HashMap<String,Register> r ) throws Exception {
-		
-		Parser p = new Parser( new StringReader("nor $t0, $t1, $s0") );
-
-		Node tree = p.parse();
-		
 		this.registers = r;
-		this.registers.get("$t0").setValue(5);
-		this.registers.get("$t1").setValue(6);
-
-		tree.apply(this);
+		this.registersBin = registersBin;
+		this.lstScope = new ArrayList<String>();
+	
+		//this.tree.apply(this);
+		
+//		if(currentLabel.length() > 0) {
+//			lstScope.add(0, currentLabel + ":");
+//		}
+//		this.instructions.add(lstScope);
+//		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
+//		
+//		for(ArrayList<String> lst : instructions) {
+//			for(String lst2 : lst) {
+//				System.out.println(lst2.toString());
+//			}
+//		}
+		
 	}
 
 	@Override
@@ -45,26 +73,43 @@ public class Interpreter extends Walker {
 	
 	@Override
 	public void caseImmediate_Signed(NImmediate_Signed node) {
-		this.immediate = Integer.parseInt( node.get_Number().getText() );
+		this.imm = Integer.parseInt( node.get_Number().getText() );
 	}
 
 	@Override
 	public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-		this.immediate = Integer.parseInt( node.get_Numberu().getText() );
+		this.imm = Integer.parseInt( node.get_Numberu().getText() );
 	}
 	
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
-		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();	
-		this.registers.get(rd).setValue(add);
+		lstScope.add(String.format("add %s,  %s, %s", rd, rs, rs));
+//		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();	
+//		this.registers.get(rd).setValue(add);
+//		BasicInstructionInfo tmp = new Add();
+//		try {
+//			tmp.setRegFormat(this.registers.get(rd).getBinary(), this.registers.get(rs).getBinary(), this.registers.get(rt).getBinary(), 0);
+//			this.lstScope.add(tmp);
+//		} catch (NotARegisterException e) {
+//			System.out.println(e.getMessage());
+//		}
 	}
 	
 	@Override
 	public void caseStmt_Addi(NStmt_Addi node) {
 		node.get_ImmExpr().apply(this);
-		int addi = this.registers.get(rs).getValue() + this.immediate;
-		this.registers.get(rt).setValue(addi);
+		lstScope.add(String.format("addi %s,  %s, %d", rs, rt, imm));
+//		int addi = this.registers.get(rs).getValue() + this.imm;
+//		this.registers.get(rt).setValue(addi);
+//		System.out.println(addi);
+//		BasicInstructionInfo tmp = new Addi();
+//		try {
+//			tmp.setImmFormat(this.registers.get(rt).getBinary(), this.registers.get(rs).getBinary(), imm);
+//			this.lstScope.add(tmp);
+//		} catch (NotAnImmediateException e) {
+//			System.out.println(e.getMessage());
+//		}
 	}
 
 	@Override
@@ -105,9 +150,8 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Andi(NStmt_Andi node) {
 		node.get_ImmExpr().apply(this);
-		int and = this.registers.get(rs).getValue() & this.immediate;
+		int and = this.registers.get(rs).getValue() & this.imm;
 		this.registers.get(rt).setValue(and);
-		System.out.println(and);
 	}
 
 	@Override
@@ -120,7 +164,7 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Ori(NStmt_Ori node) {
 		node.get_ImmExpr().apply(this);
-		int ori = this.registers.get(rs).getValue() | this.immediate;
+		int ori = this.registers.get(rs).getValue() | this.imm;
 		this.registers.get(rt).setValue(ori);
 
 	}
@@ -142,7 +186,7 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Slti(NStmt_Slti node) {
 		node.get_ImmExpr().apply(this);
-		int res = (this.registers.get(rs).getValue() < this.immediate) ? 1:0;
+		int res = (this.registers.get(rs).getValue() < this.imm) ? 1:0;
 		this.registers.get(rt).setValue(res);
 	}
 	
@@ -156,21 +200,46 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Sltiu(NStmt_Sltiu node) {
 		node.get_ImmExpr().apply(this);
-		int res = (this.registers.get(rs).getValue() < this.immediate) ? 1:0;
+		int res = (this.registers.get(rs).getValue() < this.imm) ? 1:0;
 		this.registers.get(rt).setValue(res);
 	}
 
 	@Override
 	public void caseStmt_Sll(NStmt_Sll node) {
 		node.get_Shift().apply(this);
-		int res = this.registers.get(rt).getValue() << this.immediate ;
+		int res = this.registers.get(rt).getValue() << this.imm ;
 		this.registers.get(rd).setValue(res);
 	}
 	
 	@Override
 	public void caseStmt_Srl(NStmt_Srl node) {
 		node.get_Shift().apply(this);
-		int res = this.registers.get(rt).getValue() >> this.immediate ;
+		int res = this.registers.get(rt).getValue() >> this.imm ;
 		this.registers.get(rd).setValue(res);
+	}
+	
+	@Override
+	public void caseStmt_Lbl(NStmt_Lbl node) {
+//		if(currentLabel.length() > 0) {
+//			lstScope.add(0, currentLabel + ":");
+//		}
+		this.instructions.add(lstScope);
+		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
+		this.currentLabel = node.get_String().getText();
+		lstScope = new ArrayList<String>();
+//		this.instructions.put(currentLabel, lstScope);
+//		this.lstScope = new ArrayList<BasicInstructionInfo>();
+//		this.currentLabel = node.get_String().getText();
+		//lbl.put(node.get_String().getText(), node);
+		//System.out.println(node.get_String().getText());
+
+		//node.get_Stmts().apply(this);
+		//node.get_Eop().apply(this);
+	}
+	
+	@Override
+	public void caseStmt_Jmp(NStmt_Jmp node) {
+		//this.lbl.get(node.get_String().getText()).apply(this);
+		this.lstScope.add("j " + node.get_String().getText() );
 	}
 }

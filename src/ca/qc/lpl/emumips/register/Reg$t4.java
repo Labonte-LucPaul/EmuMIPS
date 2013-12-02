@@ -8,6 +8,16 @@ public class Reg$t4 implements Register {
 
 	private ArrayList<Observer> lstObservers = new ArrayList<Observer>();
 	private int value;
+
+	@Override
+	public String getBinary() {
+		return String.format("%05d", Integer.parseInt(Integer.toBinaryString(this.getRegisterNumber())));
+	}
+
+	@Override
+	public String getHex() {
+		return String.format( "%02X", this.getRegisterNumber() );
+	}
 	
 	@Override
 	public void addObserver(Observer o) {

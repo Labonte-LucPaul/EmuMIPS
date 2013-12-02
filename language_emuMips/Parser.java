@@ -140,9 +140,9 @@ class L_0
 
     switch(node.getProductionType()) {
     case T_Stmts:
-      return L_56.instance;
+      return L_89.instance;
     case T_Stmt:
-      return L_58.instance;
+      return L_91.instance;
     default:
       switch(node.getInternalType()) {
         case T_$0:
@@ -178,9 +178,41 @@ class L_0
         case T_$15:
           return L_46.instance;
         case T_$16:
-          return L_53.instance;
+          return L_48.instance;
+        case T_$17:
+          return L_50.instance;
+        case T_$18:
+          return L_57.instance;
+        case T_$19:
+          return L_59.instance;
+        case T_$20:
+          return L_61.instance;
+        case T_$21:
+          return L_63.instance;
+        case T_$22:
+          return L_65.instance;
+        case T_$23:
+          return L_67.instance;
+        case T_$24:
+          return L_69.instance;
+        case T_$25:
+          return L_71.instance;
+        case T_$26:
+          return L_73.instance;
+        case T_$27:
+          return L_75.instance;
+        case T_$28:
+          return L_77.instance;
+        case T_$29:
+          return L_79.instance;
         case T_String:
-          return L_55.instance;
+          return L_81.instance;
+        case T_$31:
+          return L_83.instance;
+        case T_$32:
+          return L_85.instance;
+        case T_$33:
+          return L_87.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -214,7 +246,7 @@ class L_1
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_3.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -245,8 +277,8 @@ class L_2
 
       NRegister lRegister = (NRegister) stack.pop();
 
-      NRs lRs = new NRs(-1, -1, lRegister);
-      stack.push(lRs, stack.getState().getTarget(lRs));
+      NRd lRd = new NRd(-1, -1, lRegister);
+      stack.push(lRd, stack.getState().getTarget(lRd));
       return null;
     }
   }
@@ -330,7 +362,7 @@ class L_4
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
-        case T_$17:
+        case T_$34:
           return L_5.instance;
         default:
           throw new ParserException((Token) node);
@@ -363,7 +395,7 @@ class L_5
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Rt:
+    case T_Rs:
       return L_7.instance;
     default:
       switch(node.getInternalType()) {
@@ -394,8 +426,8 @@ class L_6
 
       NRegister lRegister = (NRegister) stack.pop();
 
-      NRt lRt = new NRt(-1, -1, lRegister);
-      stack.push(lRt, stack.getState().getTarget(lRt));
+      NRs lRs = new NRs(-1, -1, lRegister);
+      stack.push(lRs, stack.getState().getTarget(lRs));
       return null;
     }
   }
@@ -440,7 +472,7 @@ class L_7
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
-        case T_$17:
+        case T_$34:
           return L_8.instance;
         default:
           throw new ParserException((Token) node);
@@ -473,7 +505,7 @@ class L_8
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Rd:
+    case T_Rt:
       return L_10.instance;
     default:
       switch(node.getInternalType()) {
@@ -504,8 +536,8 @@ class L_9
 
       NRegister lRegister = (NRegister) stack.pop();
 
-      NRd lRd = new NRd(-1, -1, lRegister);
-      stack.push(lRd, stack.getState().getTarget(lRd));
+      NRt lRt = new NRt(-1, -1, lRegister);
+      stack.push(lRt, stack.getState().getTarget(lRt));
       return null;
     }
   }
@@ -540,13 +572,13 @@ class L_10
     {
       ParseStack stack = parser.getStack();
 
-      NRd lRd = (NRd) stack.pop();
-      N$17 l$17$2 = (N$17) stack.pop();
       NRt lRt = (NRt) stack.pop();
-      N$17 l$17$1 = (N$17) stack.pop();
+      N$34 l$34$2 = (N$34) stack.pop();
       NRs lRs = (NRs) stack.pop();
+      N$34 l$34$1 = (N$34) stack.pop();
+      NRd lRd = (NRd) stack.pop();
 
-      NRegExpr lRegExpr = new NRegExpr(-1, -1, lRs, l$17$1, lRt, l$17$2, lRd);
+      NRegExpr lRegExpr = new NRegExpr(-1, -1, lRd, l$34$1, lRs, l$34$2, lRt);
       stack.push(lRegExpr, stack.getState().getTarget(lRegExpr));
       return null;
     }
@@ -592,12 +624,12 @@ class L_11
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_12.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -670,7 +702,7 @@ class L_13
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
-        case T_$17:
+        case T_$34:
           return L_14.instance;
         default:
           throw new ParserException((Token) node);
@@ -703,7 +735,7 @@ class L_14
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Rt:
+    case T_Rs:
       return L_15.instance;
     default:
       switch(node.getInternalType()) {
@@ -742,7 +774,7 @@ class L_15
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
-        case T_$17:
+        case T_$34:
           return L_16.instance;
         default:
           throw new ParserException((Token) node);
@@ -883,12 +915,12 @@ class L_19
       ParseStack stack = parser.getStack();
 
       NImmediate lImmediate = (NImmediate) stack.pop();
-      N$17 l$17$2 = (N$17) stack.pop();
-      NRt lRt = (NRt) stack.pop();
-      N$17 l$17$1 = (N$17) stack.pop();
+      N$34 l$34$2 = (N$34) stack.pop();
       NRs lRs = (NRs) stack.pop();
+      N$34 l$34$1 = (N$34) stack.pop();
+      NRt lRt = (NRt) stack.pop();
 
-      NImmExpr lImmExpr = new NImmExpr(-1, -1, lRs, l$17$1, lRt, l$17$2, lImmediate);
+      NImmExpr lImmExpr = new NImmExpr(-1, -1, lRt, l$34$1, lRs, l$34$2, lImmediate);
       stack.push(lImmExpr, stack.getState().getTarget(lImmExpr));
       return null;
     }
@@ -934,7 +966,7 @@ class L_20
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_21.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1012,12 +1044,12 @@ class L_22
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_23.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -1090,7 +1122,7 @@ class L_24
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_25.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1168,7 +1200,7 @@ class L_26
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_27.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1246,7 +1278,7 @@ class L_28
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_29.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1324,12 +1356,12 @@ class L_30
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_31.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -1402,7 +1434,7 @@ class L_32
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_33.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1480,12 +1512,12 @@ class L_34
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_35.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -1558,7 +1590,7 @@ class L_36
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_37.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1636,7 +1668,7 @@ class L_38
     switch(node.getProductionType()) {
     case T_RegExpr:
       return L_39.instance;
-    case T_Rs:
+    case T_Rd:
       return L_4.instance;
     default:
       switch(node.getInternalType()) {
@@ -1668,8 +1700,8 @@ class L_39
       NRegExpr lRegExpr = (NRegExpr) stack.pop();
       N$11 l$11 = (N$11) stack.pop();
 
-      NStmt_Slt lStmt_Slt = new NStmt_Slt(-1, -1, l$11, lRegExpr);
-      stack.push(lStmt_Slt, stack.getState().getTarget(lStmt_Slt));
+      NStmt_Xor lStmt_Xor = new NStmt_Xor(-1, -1, l$11, lRegExpr);
+      stack.push(lStmt_Xor, stack.getState().getTarget(lStmt_Xor));
       return null;
     }
   }
@@ -1714,12 +1746,12 @@ class L_40
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_41.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -1746,8 +1778,8 @@ class L_41
       NImmExpr lImmExpr = (NImmExpr) stack.pop();
       N$12 l$12 = (N$12) stack.pop();
 
-      NStmt_Slti lStmt_Slti = new NStmt_Slti(-1, -1, l$12, lImmExpr);
-      stack.push(lStmt_Slti, stack.getState().getTarget(lStmt_Slti));
+      NStmt_Xori lStmt_Xori = new NStmt_Xori(-1, -1, l$12, lImmExpr);
+      stack.push(lStmt_Xori, stack.getState().getTarget(lStmt_Xori));
       return null;
     }
   }
@@ -1790,10 +1822,10 @@ class L_42
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_ImmExpr:
+    case T_RegExpr:
       return L_43.instance;
-    case T_Rs:
-      return L_13.instance;
+    case T_Rd:
+      return L_4.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
@@ -1821,11 +1853,11 @@ class L_43
     {
       ParseStack stack = parser.getStack();
 
-      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      NRegExpr lRegExpr = (NRegExpr) stack.pop();
       N$13 l$13 = (N$13) stack.pop();
 
-      NStmt_Sltu lStmt_Sltu = new NStmt_Sltu(-1, -1, l$13, lImmExpr);
-      stack.push(lStmt_Sltu, stack.getState().getTarget(lStmt_Sltu));
+      NStmt_Slt lStmt_Slt = new NStmt_Slt(-1, -1, l$13, lRegExpr);
+      stack.push(lStmt_Slt, stack.getState().getTarget(lStmt_Slt));
       return null;
     }
   }
@@ -1870,12 +1902,12 @@ class L_44
     switch(node.getProductionType()) {
     case T_ImmExpr:
       return L_45.instance;
-    case T_Rs:
+    case T_Rt:
       return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
-          return L_2.instance;
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -1902,8 +1934,8 @@ class L_45
       NImmExpr lImmExpr = (NImmExpr) stack.pop();
       N$14 l$14 = (N$14) stack.pop();
 
-      NStmt_Sltiu lStmt_Sltiu = new NStmt_Sltiu(-1, -1, l$14, lImmExpr);
-      stack.push(lStmt_Sltiu, stack.getState().getTarget(lStmt_Sltiu));
+      NStmt_Slti lStmt_Slti = new NStmt_Slti(-1, -1, l$14, lImmExpr);
+      stack.push(lStmt_Slti, stack.getState().getTarget(lStmt_Slti));
       return null;
     }
   }
@@ -1946,10 +1978,10 @@ class L_46
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Shift:
+    case T_ImmExpr:
       return L_47.instance;
-    case T_Rd:
-      return L_48.instance;
+    case T_Rt:
+      return L_13.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
@@ -1977,11 +2009,11 @@ class L_47
     {
       ParseStack stack = parser.getStack();
 
-      NShift lShift = (NShift) stack.pop();
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
       N$15 l$15 = (N$15) stack.pop();
 
-      NStmt_Sll lStmt_Sll = new NStmt_Sll(-1, -1, l$15, lShift);
-      stack.push(lStmt_Sll, stack.getState().getTarget(lStmt_Sll));
+      NStmt_Sltu lStmt_Sltu = new NStmt_Sltu(-1, -1, l$15, lImmExpr);
+      stack.push(lStmt_Sltu, stack.getState().getTarget(lStmt_Sltu));
       return null;
     }
   }
@@ -2024,10 +2056,14 @@ class L_48
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_49.instance;
+    case T_Rt:
+      return L_13.instance;
     default:
       switch(node.getInternalType()) {
-        case T_$17:
-          return L_49.instance;
+        case T_Register:
+          return L_9.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2049,7 +2085,13 @@ class L_49
 
     // LR(0) decisions
     {
-      parser.shift();
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$16 l$16 = (N$16) stack.pop();
+
+      NStmt_Sltiu lStmt_Sltiu = new NStmt_Sltiu(-1, -1, l$16, lImmExpr);
+      stack.push(lStmt_Sltiu, stack.getState().getTarget(lStmt_Sltiu));
       return null;
     }
   }
@@ -2059,12 +2101,8 @@ class L_49
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Rt:
-      return L_50.instance;
     default:
       switch(node.getInternalType()) {
-        case T_Register:
-          return L_6.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2096,10 +2134,14 @@ class L_50
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
+    case T_Shift:
+      return L_51.instance;
+    case T_Rd:
+      return L_52.instance;
     default:
       switch(node.getInternalType()) {
-        case T_$17:
-          return L_51.instance;
+        case T_Register:
+          return L_2.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2121,7 +2163,13 @@ class L_51
 
     // LR(0) decisions
     {
-      parser.shift();
+      ParseStack stack = parser.getStack();
+
+      NShift lShift = (NShift) stack.pop();
+      N$17 l$17 = (N$17) stack.pop();
+
+      NStmt_Sll lStmt_Sll = new NStmt_Sll(-1, -1, l$17, lShift);
+      stack.push(lStmt_Sll, stack.getState().getTarget(lStmt_Sll));
       return null;
     }
   }
@@ -2131,14 +2179,8 @@ class L_51
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Immediate:
-      return L_52.instance;
     default:
       switch(node.getInternalType()) {
-        case T_Number:
-          return L_17.instance;
-        case T_Numberu:
-          return L_18.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2160,16 +2202,7 @@ class L_52
 
     // LR(0) decisions
     {
-      ParseStack stack = parser.getStack();
-
-      NImmediate lImmediate = (NImmediate) stack.pop();
-      N$17 l$17$2 = (N$17) stack.pop();
-      NRt lRt = (NRt) stack.pop();
-      N$17 l$17$1 = (N$17) stack.pop();
-      NRd lRd = (NRd) stack.pop();
-
-      NShift lShift = new NShift(-1, -1, lRd, l$17$1, lRt, l$17$2, lImmediate);
-      stack.push(lShift, stack.getState().getTarget(lShift));
+      parser.shift();
       return null;
     }
   }
@@ -2181,6 +2214,8 @@ class L_52
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
+        case T_$34:
+          return L_53.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2212,10 +2247,8 @@ class L_53
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
-    case T_Shift:
+    case T_Rt:
       return L_54.instance;
-    case T_Rd:
-      return L_48.instance;
     default:
       switch(node.getInternalType()) {
         case T_Register:
@@ -2241,13 +2274,7 @@ class L_54
 
     // LR(0) decisions
     {
-      ParseStack stack = parser.getStack();
-
-      NShift lShift = (NShift) stack.pop();
-      N$16 l$16 = (N$16) stack.pop();
-
-      NStmt_Srl lStmt_Srl = new NStmt_Srl(-1, -1, l$16, lShift);
-      stack.push(lStmt_Srl, stack.getState().getTarget(lStmt_Srl));
+      parser.shift();
       return null;
     }
   }
@@ -2259,6 +2286,8 @@ class L_54
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
+        case T_$34:
+          return L_55.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2280,12 +2309,7 @@ class L_55
 
     // LR(0) decisions
     {
-      ParseStack stack = parser.getStack();
-
-      NString lString = (NString) stack.pop();
-
-      NStmt_Lbl lStmt_Lbl = new NStmt_Lbl(-1, -1, lString);
-      stack.push(lStmt_Lbl, stack.getState().getTarget(lStmt_Lbl));
+      parser.shift();
       return null;
     }
   }
@@ -2295,8 +2319,14 @@ class L_55
       throws ParserException, LexerException, IOException {
 
     switch(node.getProductionType()) {
+    case T_Immediate:
+      return L_56.instance;
     default:
       switch(node.getInternalType()) {
+        case T_Number:
+          return L_17.instance;
+        case T_Numberu:
+          return L_18.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2318,7 +2348,16 @@ class L_56
 
     // LR(0) decisions
     {
-      parser.shift();
+      ParseStack stack = parser.getStack();
+
+      NImmediate lImmediate = (NImmediate) stack.pop();
+      N$34 l$34$2 = (N$34) stack.pop();
+      NRt lRt = (NRt) stack.pop();
+      N$34 l$34$1 = (N$34) stack.pop();
+      NRd lRd = (NRd) stack.pop();
+
+      NShift lShift = new NShift(-1, -1, lRd, l$34$1, lRt, l$34$2, lImmediate);
+      stack.push(lShift, stack.getState().getTarget(lShift));
       return null;
     }
   }
@@ -2330,8 +2369,6 @@ class L_56
     switch(node.getProductionType()) {
     default:
       switch(node.getInternalType()) {
-        case TEnd:
-          return L_57.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2345,6 +2382,1273 @@ class L_57
   static final L_57 instance = new L_57();
 
   private L_57() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_Shift:
+      return L_58.instance;
+    case T_Rd:
+      return L_52.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_2.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_58
+    extends LRState {
+
+  static final L_58 instance = new L_58();
+
+  private L_58() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NShift lShift = (NShift) stack.pop();
+      N$18 l$18 = (N$18) stack.pop();
+
+      NStmt_Srl lStmt_Srl = new NStmt_Srl(-1, -1, l$18, lShift);
+      stack.push(lStmt_Srl, stack.getState().getTarget(lStmt_Srl));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_59
+    extends LRState {
+
+  static final L_59 instance = new L_59();
+
+  private L_59() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_60.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_60
+    extends LRState {
+
+  static final L_60 instance = new L_60();
+
+  private L_60() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$19 l$19 = (N$19) stack.pop();
+
+      NStmt_Beq lStmt_Beq = new NStmt_Beq(-1, -1, l$19, lImmExpr);
+      stack.push(lStmt_Beq, stack.getState().getTarget(lStmt_Beq));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_61
+    extends LRState {
+
+  static final L_61 instance = new L_61();
+
+  private L_61() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_62.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_62
+    extends LRState {
+
+  static final L_62 instance = new L_62();
+
+  private L_62() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$20 l$20 = (N$20) stack.pop();
+
+      NStmt_Bne lStmt_Bne = new NStmt_Bne(-1, -1, l$20, lImmExpr);
+      stack.push(lStmt_Bne, stack.getState().getTarget(lStmt_Bne));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_63
+    extends LRState {
+
+  static final L_63 instance = new L_63();
+
+  private L_63() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_64.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_64
+    extends LRState {
+
+  static final L_64 instance = new L_64();
+
+  private L_64() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$21 l$21 = (N$21) stack.pop();
+
+      NStmt_Lbu lStmt_Lbu = new NStmt_Lbu(-1, -1, l$21, lImmExpr);
+      stack.push(lStmt_Lbu, stack.getState().getTarget(lStmt_Lbu));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_65
+    extends LRState {
+
+  static final L_65 instance = new L_65();
+
+  private L_65() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_66.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_66
+    extends LRState {
+
+  static final L_66 instance = new L_66();
+
+  private L_66() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$22 l$22 = (N$22) stack.pop();
+
+      NStmt_Lhu lStmt_Lhu = new NStmt_Lhu(-1, -1, l$22, lImmExpr);
+      stack.push(lStmt_Lhu, stack.getState().getTarget(lStmt_Lhu));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_67
+    extends LRState {
+
+  static final L_67 instance = new L_67();
+
+  private L_67() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_68.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_68
+    extends LRState {
+
+  static final L_68 instance = new L_68();
+
+  private L_68() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$23 l$23 = (N$23) stack.pop();
+
+      NStmt_Ll lStmt_Ll = new NStmt_Ll(-1, -1, l$23, lImmExpr);
+      stack.push(lStmt_Ll, stack.getState().getTarget(lStmt_Ll));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_69
+    extends LRState {
+
+  static final L_69 instance = new L_69();
+
+  private L_69() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_70.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_70
+    extends LRState {
+
+  static final L_70 instance = new L_70();
+
+  private L_70() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$24 l$24 = (N$24) stack.pop();
+
+      NStmt_Lui lStmt_Lui = new NStmt_Lui(-1, -1, l$24, lImmExpr);
+      stack.push(lStmt_Lui, stack.getState().getTarget(lStmt_Lui));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_71
+    extends LRState {
+
+  static final L_71 instance = new L_71();
+
+  private L_71() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_72.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_72
+    extends LRState {
+
+  static final L_72 instance = new L_72();
+
+  private L_72() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$25 l$25 = (N$25) stack.pop();
+
+      NStmt_Lw lStmt_Lw = new NStmt_Lw(-1, -1, l$25, lImmExpr);
+      stack.push(lStmt_Lw, stack.getState().getTarget(lStmt_Lw));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_73
+    extends LRState {
+
+  static final L_73 instance = new L_73();
+
+  private L_73() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_74.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_74
+    extends LRState {
+
+  static final L_74 instance = new L_74();
+
+  private L_74() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$26 l$26 = (N$26) stack.pop();
+
+      NStmt_Sb lStmt_Sb = new NStmt_Sb(-1, -1, l$26, lImmExpr);
+      stack.push(lStmt_Sb, stack.getState().getTarget(lStmt_Sb));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_75
+    extends LRState {
+
+  static final L_75 instance = new L_75();
+
+  private L_75() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_76.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_76
+    extends LRState {
+
+  static final L_76 instance = new L_76();
+
+  private L_76() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$27 l$27 = (N$27) stack.pop();
+
+      NStmt_Sc lStmt_Sc = new NStmt_Sc(-1, -1, l$27, lImmExpr);
+      stack.push(lStmt_Sc, stack.getState().getTarget(lStmt_Sc));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_77
+    extends LRState {
+
+  static final L_77 instance = new L_77();
+
+  private L_77() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_78.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_78
+    extends LRState {
+
+  static final L_78 instance = new L_78();
+
+  private L_78() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$28 l$28 = (N$28) stack.pop();
+
+      NStmt_Sh lStmt_Sh = new NStmt_Sh(-1, -1, l$28, lImmExpr);
+      stack.push(lStmt_Sh, stack.getState().getTarget(lStmt_Sh));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_79
+    extends LRState {
+
+  static final L_79 instance = new L_79();
+
+  private L_79() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    case T_ImmExpr:
+      return L_80.instance;
+    case T_Rt:
+      return L_13.instance;
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_9.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_80
+    extends LRState {
+
+  static final L_80 instance = new L_80();
+
+  private L_80() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NImmExpr lImmExpr = (NImmExpr) stack.pop();
+      N$29 l$29 = (N$29) stack.pop();
+
+      NStmt_Sw lStmt_Sw = new NStmt_Sw(-1, -1, l$29, lImmExpr);
+      stack.push(lStmt_Sw, stack.getState().getTarget(lStmt_Sw));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_81
+    extends LRState {
+
+  static final L_81 instance = new L_81();
+
+  private L_81() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        case T_$30:
+          return L_82.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_82
+    extends LRState {
+
+  static final L_82 instance = new L_82();
+
+  private L_82() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      N$30 l$30 = (N$30) stack.pop();
+      NString lString = (NString) stack.pop();
+
+      NStmt_Lbl lStmt_Lbl = new NStmt_Lbl(-1, -1, lString, l$30);
+      stack.push(lStmt_Lbl, stack.getState().getTarget(lStmt_Lbl));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_83
+    extends LRState {
+
+  static final L_83 instance = new L_83();
+
+  private L_83() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        case T_String:
+          return L_84.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_84
+    extends LRState {
+
+  static final L_84 instance = new L_84();
+
+  private L_84() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NString lString = (NString) stack.pop();
+      N$31 l$31 = (N$31) stack.pop();
+
+      NStmt_Jmp lStmt_Jmp = new NStmt_Jmp(-1, -1, l$31, lString);
+      stack.push(lStmt_Jmp, stack.getState().getTarget(lStmt_Jmp));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_85
+    extends LRState {
+
+  static final L_85 instance = new L_85();
+
+  private L_85() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        case T_Register:
+          return L_86.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_86
+    extends LRState {
+
+  static final L_86 instance = new L_86();
+
+  private L_86() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NRegister lRegister = (NRegister) stack.pop();
+      N$32 l$32 = (N$32) stack.pop();
+
+      NStmt_Jmpreg lStmt_Jmpreg = new NStmt_Jmpreg(-1, -1, l$32, lRegister);
+      stack.push(lStmt_Jmpreg, stack.getState().getTarget(lStmt_Jmpreg));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_87
+    extends LRState {
+
+  static final L_87 instance = new L_87();
+
+  private L_87() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        case T_String:
+          return L_88.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_88
+    extends LRState {
+
+  static final L_88 instance = new L_88();
+
+  private L_88() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      ParseStack stack = parser.getStack();
+
+      NString lString = (NString) stack.pop();
+      N$33 l$33 = (N$33) stack.pop();
+
+      NStmt_Jmllnk lStmt_Jmllnk = new NStmt_Jmllnk(-1, -1, l$33, lString);
+      stack.push(lStmt_Jmllnk, stack.getState().getTarget(lStmt_Jmllnk));
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_89
+    extends LRState {
+
+  static final L_89 instance = new L_89();
+
+  private L_89() {
+  }
+
+  @Override
+  Node apply(Parser parser)
+      throws ParserException, LexerException, IOException {
+
+    // LR(0) decisions
+    {
+      parser.shift();
+      return null;
+    }
+  }
+
+  @Override
+  LRState getTarget(Node node)
+      throws ParserException, LexerException, IOException {
+
+    switch(node.getProductionType()) {
+    default:
+      switch(node.getInternalType()) {
+        case TEnd:
+          return L_90.instance;
+        default:
+          throw new ParserException((Token) node);
+      }
+    }
+  }
+}
+
+class L_90
+    extends LRState {
+
+  static final L_90 instance = new L_90();
+
+  private L_90() {
   }
 
   @Override
@@ -2376,12 +3680,12 @@ class L_57
   }
 }
 
-class L_58
+class L_91
     extends LRState {
 
-  static final L_58 instance = new L_58();
+  static final L_91 instance = new L_91();
 
-  private L_58() {
+  private L_91() {
   }
 
   @Override
@@ -2458,7 +3762,71 @@ class L_58
       parser.shift();
       return null;
     }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$17) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$18) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$19) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$20) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$21) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$22) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$23) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$24) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$25) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$26) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$27) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$28) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$29) {
+      parser.shift();
+      return null;
+    }
     if (parser.look(1).getInternalType() == Node.InternalType.T_String) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$31) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$32) {
+      parser.shift();
+      return null;
+    }
+    if (parser.look(1).getInternalType() == Node.InternalType.T_$33) {
       parser.shift();
       return null;
     }
@@ -2481,9 +3849,9 @@ class L_58
 
     switch(node.getProductionType()) {
     case T_Stmts:
-      return L_59.instance;
+      return L_92.instance;
     case T_Stmt:
-      return L_58.instance;
+      return L_91.instance;
     default:
       switch(node.getInternalType()) {
         case T_$0:
@@ -2519,9 +3887,41 @@ class L_58
         case T_$15:
           return L_46.instance;
         case T_$16:
-          return L_53.instance;
+          return L_48.instance;
+        case T_$17:
+          return L_50.instance;
+        case T_$18:
+          return L_57.instance;
+        case T_$19:
+          return L_59.instance;
+        case T_$20:
+          return L_61.instance;
+        case T_$21:
+          return L_63.instance;
+        case T_$22:
+          return L_65.instance;
+        case T_$23:
+          return L_67.instance;
+        case T_$24:
+          return L_69.instance;
+        case T_$25:
+          return L_71.instance;
+        case T_$26:
+          return L_73.instance;
+        case T_$27:
+          return L_75.instance;
+        case T_$28:
+          return L_77.instance;
+        case T_$29:
+          return L_79.instance;
         case T_String:
-          return L_55.instance;
+          return L_81.instance;
+        case T_$31:
+          return L_83.instance;
+        case T_$32:
+          return L_85.instance;
+        case T_$33:
+          return L_87.instance;
         default:
           throw new ParserException((Token) node);
       }
@@ -2529,12 +3929,12 @@ class L_58
   }
 }
 
-class L_59
+class L_92
     extends LRState {
 
-  static final L_59 instance = new L_59();
+  static final L_92 instance = new L_92();
 
-  private L_59() {
+  private L_92() {
   }
 
   @Override

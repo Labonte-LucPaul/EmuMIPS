@@ -21,6 +21,7 @@ Parser
 
     stmts = {many:} stmt stmts |
             {one:} stmt ;
+
         
     stmt = {add:} 'add' reg_expr |
            {addi:} 'addi' imm_expr |
@@ -33,17 +34,32 @@ Parser
            {or:} 'or' reg_expr |
            {ori:} 'ori' imm_expr |
            {nor:} 'nor' reg_expr |
+           {xor:} 'xor' reg_expr |
+           {xori:} 'xori' imm_expr |
            {slt:} 'slt' reg_expr |
            {slti:} 'slti' imm_expr |
            {sltu:} 'sltu' imm_expr |
            {sltiu:} 'sltiu' imm_expr |
            {sll:} 'sll' shift |
            {srl:} 'srl' shift |
-           {lbl:} string ;
-        
-    reg_expr = rs ',' rt ',' rd ;
-    imm_expr = rs ',' rt ',' immediate ;
-    jmp_expr = {lbl:} address ':' ;
+           {beq:} 'beq' imm_expr |
+           {bne:} 'bne' imm_expr |
+           {lbu:} 'lbu' imm_expr |
+           {lhu:} 'lhu' imm_expr |
+           {ll:} 'll' imm_expr |
+           {lui:} 'lui' imm_expr |
+           {lw:} 'lw' imm_expr |
+           {sb:} 'sb' imm_expr |
+           {sc:} 'sc' imm_expr |
+           {sh:} 'sh' imm_expr |
+           {sw:} 'sw' imm_expr |
+           {lbl:} string ':' | 
+           {jmp:} 'j' string |
+           {jmpreg:} 'jr' register |
+           {jmllnk:} 'jal' string ;
+
+    reg_expr = rd ',' rs ',' rt ;
+    imm_expr = rt ',' rs ',' immediate ;
     shift = rd ',' rt ',' immediate ;
     
     rs = register ;
@@ -51,5 +67,4 @@ Parser
     rd = register ;
     immediate = {signed:} number |
                 {unsigned:} numberu ;
-    address = string ;
 

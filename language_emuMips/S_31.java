@@ -16,15 +16,15 @@ class S_31
   State getTarget(Symbol symbol) {
     switch(symbol) {
     case Symbol_min:
-      return S_23.instance;
+      return S_27.instance;
     case Symbol_9:
-      return S_23.instance;
+      return S_27.instance;
     case Symbol_36:
-      return S_23.instance;
+      return S_27.instance;
     case Symbol_44:
-      return S_23.instance;
+      return S_27.instance;
     case Symbol_45:
-      return S_24.instance;
+      return S_28.instance;
     case Symbol__0:
       return S_7.instance;
     case Symbol__1:
@@ -38,7 +38,7 @@ class S_31
     case Symbol__8:
       return S_7.instance;
     case Symbol_58:
-      return S_23.instance;
+      return S_27.instance;
     case Symbol__A:
       return S_7.instance;
     case Symbol_95:
@@ -46,14 +46,20 @@ class S_31
     case Symbol__a:
       return S_7.instance;
     case Symbol__b:
-      return S_45.instance;
+      return S_7.instance;
+    case Symbol__c:
+      return S_7.instance;
     case Symbol__d:
       return S_7.instance;
     case Symbol__e:
       return S_7.instance;
     case Symbol__f:
       return S_7.instance;
+    case Symbol__h:
+      return S_7.instance;
     case Symbol__i:
+      return S_7.instance;
+    case Symbol__j:
       return S_7.instance;
     case Symbol__k:
       return S_7.instance;
@@ -65,6 +71,8 @@ class S_31
       return S_7.instance;
     case Symbol__p:
       return S_7.instance;
+    case Symbol__q:
+      return S_58.instance;
     case Symbol__r:
       return S_7.instance;
     case Symbol__s:
@@ -75,10 +83,14 @@ class S_31
       return S_7.instance;
     case Symbol__v:
       return S_7.instance;
+    case Symbol__w:
+      return S_7.instance;
+    case Symbol__x:
+      return S_7.instance;
     case Symbol__z:
       return S_7.instance;
     case Symbol_end:
-      return S_23.instance;
+      return S_27.instance;
     default:
       return null;
     }

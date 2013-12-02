@@ -13,6 +13,16 @@ public class Reg$zero implements Register {
 	
 	public Reg$zero() {
 	}
+
+	@Override
+	public String getBinary() {
+		return String.format("%05d", Integer.parseInt(Integer.toBinaryString(this.getRegisterNumber())));
+	}
+
+	@Override
+	public String getHex() {
+		return String.format( "%02X", this.getRegisterNumber() );
+	}
 	
 	@Override
 	public String getRegisterName() {

@@ -10,16 +10,6 @@ public class Reg$a0 implements Register {
 	private int value;
 
 	@Override
-	public void addObserver(Observer o) {
-		this.lstObserver.add(o);
-	}
-
-	@Override
-	public void removeObserver(Observer o) {
-		this.lstObserver.remove(o);
-	}
-
-	@Override
 	public void notifyObserver() {
 		for(Observer o : this.lstObserver) {
 			o.update(this);
@@ -68,4 +58,26 @@ public class Reg$a0 implements Register {
 		this.value = value;
 	}
 
+	@Override
+	public void addObserver(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver(Observer o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getBinary() {
+		return String.format("%05d", Integer.parseInt(Integer.toBinaryString(this.getRegisterNumber())));
+	}
+
+	@Override
+	public String getHex() {
+		return String.format( "%02X", this.getRegisterNumber() );
+	}
+	
 }

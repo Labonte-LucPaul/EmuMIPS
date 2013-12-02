@@ -3,18 +3,25 @@
 package language_emuMips;
 
 class S_23
-    extends FinalState {
+    extends TransitionState {
 
   static final S_23 instance = new S_23();
 
   private S_23() {
   }
 
-  Token getToken(Lexer lexer) {
-    String text = lexer.accept(1);
-    int line = lexer.getAcceptLine();
-    int pos = lexer.getAcceptPos();
-
-    return new NString(text, line, pos);
+  void setMarker(Lexer lexer) {
   }
+
+  State getTarget(Symbol symbol) {
+    switch(symbol) {
+    case Symbol__0:
+      return S_52.instance;
+    case Symbol__3:
+      return S_52.instance;
+    default:
+      return null;
+    }
+  }
+
 }

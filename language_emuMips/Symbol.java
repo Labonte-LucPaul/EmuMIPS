@@ -19,20 +19,26 @@ enum Symbol {
   Symbol_95,
   Symbol__a,
   Symbol__b,
+  Symbol__c,
   Symbol__d,
   Symbol__e,
   Symbol__f,
+  Symbol__h,
   Symbol__i,
+  Symbol__j,
   Symbol__k,
   Symbol__l,
   Symbol__n,
   Symbol__o,
   Symbol__p,
+  Symbol__q,
   Symbol__r,
   Symbol__s,
   Symbol__t,
   Symbol__u,
   Symbol__v,
+  Symbol__w,
+  Symbol__x,
   Symbol__z,
   Symbol_end;
 
@@ -52,24 +58,27 @@ enum Symbol {
     case 96: return Symbol_min;
     case 97: return Symbol__a;
     case 98: return Symbol__b;
-    case 99: return Symbol__A;
+    case 99: return Symbol__c;
     case 100: return Symbol__d;
     case 101: return Symbol__e;
-    case 104: return Symbol__A;
+    case 104: return Symbol__h;
     case 105: return Symbol__i;
-    case 106: return Symbol__A;
+    case 106: return Symbol__j;
     case 107: return Symbol__k;
     case 108: return Symbol__l;
     case 109: return Symbol__A;
     case 110: return Symbol__n;
     case 111: return Symbol__o;
     case 112: return Symbol__p;
-    case 113: return Symbol__A;
+    case 113: return Symbol__q;
     case 114: return Symbol__r;
     case 115: return Symbol__s;
     case 116: return Symbol__t;
     case 117: return Symbol__u;
     case 118: return Symbol__v;
+    case 119: return Symbol__w;
+    case 120: return Symbol__x;
+    case 121: return Symbol__A;
     case 122: return Symbol__z;
     default:
       if(c <= 8) {
@@ -113,9 +122,6 @@ enum Symbol {
       }
       if(c >= 102 && c <= 103) {
         return Symbol__f;
-      }
-      if(c >= 119 && c <= 121) {
-        return Symbol__A;
       }
     }
 

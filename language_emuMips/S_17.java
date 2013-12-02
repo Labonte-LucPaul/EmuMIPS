@@ -16,17 +16,15 @@ class S_17
   State getTarget(Symbol symbol) {
     switch(symbol) {
     case Symbol__0:
-      return S_32.instance;
+      return S_52.instance;
     case Symbol__1:
-      return S_32.instance;
+      return S_52.instance;
     case Symbol__2:
-      return S_32.instance;
+      return S_52.instance;
     case Symbol__3:
-      return S_32.instance;
-    case Symbol__4:
-      return S_32.instance;
-    case Symbol__p:
-      return S_32.instance;
+      return S_52.instance;
+    case Symbol__t:
+      return S_52.instance;
     default:
       return null;
     }

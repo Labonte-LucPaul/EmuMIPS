@@ -8,14 +8,16 @@ package ca.qc.lpl.emumips;
 import java.util.HashMap;
 
 import ca.qc.lpl.emumips.interpreter.Interpreter;
+import ca.qc.lpl.emumips.io.ReadFile;
 import ca.qc.lpl.emumips.register.*;
 import ca.qc.lpl.emumips.ui.MainWindow;
 
 public class EmuMIPS {
 
 
-	private HashMap<String, Register> registers = new HashMap<String, Register>();
+	public static HashMap<String, Register> registers = new HashMap<String, Register>();
 	private HashMap<String, Register> registersBin = new HashMap<String, Register>();
+	private String sourceContent = "";
 
 //	private String[] memory = new String[2147483645];
 	
@@ -25,6 +27,7 @@ public class EmuMIPS {
 		MainWindow mw;
 		EmuMIPS self = new EmuMIPS();
 		self.initRegisters();
+		
 
 //		try {
 //			Add add = new Add();
@@ -44,8 +47,11 @@ public class EmuMIPS {
 		if( Arguments.windowMode ) {
 			mw = new MainWindow();
 		} else {
+			ReadFile rf = new ReadFile(Arguments.sourcePath);
+			self.sourceContent = rf.readFile();
 			self.startInterpreter();
 		}
+		
 //		
 //		for(String key : self.registers.keySet()) {
 //			System.out.print("'"+self.registers.get(key).getRegisterName() + "' | ");
@@ -55,7 +61,7 @@ public class EmuMIPS {
 	private void startInterpreter() {
 		
 		try {
-			Interpreter i = new Interpreter(this.registers, this.registersBin, null);
+			Interpreter i = new Interpreter(this.sourceContent);
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}
@@ -96,8 +102,8 @@ public class EmuMIPS {
 		registers.put("$v0", new Reg$v0());
 		registers.put("$v1", new Reg$v1());
 		
-		for( String key : registers.keySet() ) {
-			registersBin.put(registers.get(key).getBinary(), registers.get(key));
-		}
+//		for( String key : registers.keySet() ) {
+//			registersBin.put(registers.get(key).getBinary(), registers.get(key));
+//		}
 	}
 }

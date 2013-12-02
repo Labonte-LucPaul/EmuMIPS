@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import ca.qc.lpl.emumips.EmuMIPS;
 import ca.qc.lpl.emumips.interpreter.instructions.*;
 import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotARegisterException;
 import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotAnImmediateException;
@@ -21,19 +22,21 @@ public class Interpreter extends Walker {
 	private Node tree;
 
 	private HashMap<String, Register> registers;
-	private HashMap<String, Register> registersBin;
+	//private HashMap<String, Register> registersBin;
 	//private ArrayList<String> lstScope;
 	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
 	private ArrayList<Node> preCompiled;
 	//private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
 
 
-	private String currentLabel = "";
+	//private String currentLabel = "";
 	public int iterator = 0;
 
-	public Interpreter( HashMap<String,Register> r, HashMap<String, Register> registersBin, String source ) throws Exception {
+	public Interpreter( String source ) throws Exception {
 		
-		Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $zero, $zero addi $a1, $zero, 9 test: addi $a0, $a0, 1 slti $t0, $a0, 9 bne $t0, $zero, test") );
+		
+		//Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $zero, $zero addi $a1, $zero, 9 test: addi $a0, $a0, 1 slti $t0, $a0, 9 bne $t0, $zero, test") );
+		Parser p = new Parser( new StringReader(source) );
 
 		this.tree = p.parse();
 		ScopeAnalysis sa = new ScopeAnalysis(this.tree);
@@ -42,8 +45,9 @@ public class Interpreter extends Walker {
 		this.preCompiled = jit.getPreCompiled();
 		
 		
-		this.registers = r;
-		this.registersBin = registersBin;
+		//this.registers = r;
+		this.registers = EmuMIPS.registers;
+		//this.registersBin = registersBin;
 		
 		
 		while( this.iterator < this.preCompiled.size() ) {

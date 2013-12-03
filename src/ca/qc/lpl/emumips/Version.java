@@ -5,7 +5,7 @@ public class Version {
 	private static Version v = new Version();
 	
 	private String version = "0.0.1";
-	private String codeName = "";
+	private String codeName = "ATLANTIS";
 	private String description = "A simple emulator for MIPS.";
 	private String author = "Luc Paul Labonté";
 	
@@ -22,6 +22,6 @@ public class Version {
 	}
 
 	public void printFullInfos() {
-		System.out.printf("EmuMIPS: %s - %s\nBy: %s\n", version, description, author);
+		System.out.printf("EmuMIPS: %s : %s - %s\nBy: %s\n", version, codeName, description, author);
 	}
 }

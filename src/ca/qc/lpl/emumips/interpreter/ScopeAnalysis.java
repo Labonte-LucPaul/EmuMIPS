@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ca.qc.lpl.emumips.ExitStatus;
-import language_emuMips.NImmediate_Signed;
-import language_emuMips.NImmediate_Unsigned;
+import ca.qc.lpl.emumips.interpreter.Exceptions.SignedOverflowException;
+import ca.qc.lpl.util.UnsignedException;
+import language_emuMips.NNumber;
+//import language_emuMips.NNumberu;
 import language_emuMips.NRd;
 import language_emuMips.NRs;
 import language_emuMips.NRt;
@@ -55,6 +57,7 @@ public class ScopeAnalysis extends Walker {
 	private int imm = 0;
 
 	private boolean isArray = false;
+	private boolean isSigned = true;
 
 //	private HashMap<String, Register> registers;
 	//private ArrayList<String> lstScope;
@@ -121,21 +124,60 @@ public class ScopeAnalysis extends Walker {
 		this.rd = node.get_Register().getText();
 	}
 	
-	@Override
-	public void caseImmediate_Signed(NImmediate_Signed node) {
-		this.imm = Integer.parseInt( node.get_Number().getText() );
-		if( this.isArray == true ) {
-			this.isMultiple4(this.imm, node.get_Number().getLine(), node.get_Number().getPos());
-		}
-	}
+//	@Override
+//	public void caseNumberu(NNumberu node) {
+//		this.imm = Integer.parseInt( node.getText() );
+//		
+//		if( this.isArray == true ) {
+//			this.isMultiple4(this.imm, node.getLine(), node.getPos());
+//		}
+//	}
 
 	@Override
-	public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-		this.imm = Integer.parseInt( node.get_Numberu().getText() );
+	public void caseNumber(NNumber node) {
+		int err = 0;
+		try {
+			
+			long val = Long.parseLong(node.getText());
+			
+			if( this.isSigned == true && (val > Integer.MAX_VALUE || val < Integer.MIN_VALUE)  ) {
+				err = ExitStatus.SIGNED_OVERFLOW.getStatus();
+				throw new SignedOverflowException(node.getText());	
+			} else if( this.isSigned == false && val < 0 ) {
+				err = ExitStatus.UNSIGNED_OVERFLOW.getStatus();
+				throw new UnsignedException(node.getText());
+			}
+			
+		} catch (SignedOverflowException | UnsignedException e) {
+			System.out.println(e.getMessage());
+			System.exit(err);
+		} finally {
+			this.isSigned = true;
+		}
+		this.imm = Integer.parseInt( node.getText() );
+		
 		if( this.isArray == true ) {
-			this.isMultiple4(this.imm, node.get_Numberu().getLine(), node.get_Numberu().getPos());
+			this.isMultiple4(this.imm, node.getLine(), node.getPos());
 		}
 	}
+	  
+//	@Override
+//	public void caseImmediate_Signed(NImmediate_Signed node) {
+//		
+//		this.imm = Integer.parseInt( node.get_Number().getText() );
+//		
+//		if( this.isArray == true ) {
+//			this.isMultiple4(this.imm, node.get_Number().getLine(), node.get_Number().getPos());
+//		}
+//	}
+//
+//	@Override
+//	public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
+//		this.imm = Integer.parseInt( node.get_Numberu().getText() );
+//		if( this.isArray == true ) {
+//			this.isMultiple4(this.imm, node.get_Numberu().getLine(), node.get_Numberu().getPos());
+//		}
+//	}
 	
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
@@ -151,13 +193,15 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Addu(NStmt_Addu node) {
+		this.isSigned = false;
 		node.get_RegExpr().apply(this);
 		lstScope.append(String.format("addu %s, %s, %d", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Addiu(NStmt_Addiu node) {
-		node.get_ImmExpr().apply(this);
+		this.isSigned = false;
+		node.get_ImmExpru().apply(this);
 		lstScope.append(String.format("addiu %s, %s, %d", rt, rs, imm));
 	}
 	
@@ -169,6 +213,7 @@ public class ScopeAnalysis extends Walker {
 	
 	@Override
 	public void caseStmt_Subu(NStmt_Subu node) {
+		this.isSigned = false;
 		node.get_RegExpr().apply(this);
 		lstScope.append(String.format("subu %s, %s, %s", rd, rs, rt));
 	}
@@ -217,13 +262,15 @@ public class ScopeAnalysis extends Walker {
 	
 	@Override
 	public void caseStmt_Sltu(NStmt_Sltu node) {
+		this.isSigned = false;
 		node.get_ImmExpr().apply(this);
 		lstScope.append(String.format("sltu %s, %s, %s", rd, rs, rt));
 	}
 	
 	@Override
 	public void caseStmt_Sltiu(NStmt_Sltiu node) {
-		node.get_ImmExpr().apply(this);
+		this.isSigned = false;
+		node.get_ImmExpru().apply(this);
 		lstScope.append(String.format("sltiu %s, %s, %s", rt, rs, this.imm));
 	}
 
@@ -293,6 +340,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Lbu(NStmt_Lbu node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("lbu %s, %d(%s)", rt, this.imm, rs));
@@ -300,6 +348,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Lhu(NStmt_Lhu node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("lhu %s, %d(%s)", rt, this.imm, rs));
@@ -307,6 +356,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Ll(NStmt_Ll node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("ll %s, %d(%s)", rt, this.imm, rs));
@@ -315,6 +365,7 @@ public class ScopeAnalysis extends Walker {
 	
 	@Override
 	public void caseStmt_Lw(NStmt_Lw node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("lw %s, %d(%s)", rt, this.imm, rs));
@@ -322,6 +373,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Sb(NStmt_Sb node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("sb %s, %d(%s)", rt, this.imm, rs));
@@ -329,6 +381,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Sc(NStmt_Sc node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("sc %s, %d(%s)", rt, this.imm, rs));
@@ -336,6 +389,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Sh(NStmt_Sh node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("sh %s, %d(%s)", rt, this.imm, rs));
@@ -343,6 +397,7 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Sw(NStmt_Sw node) {
+		this.isSigned = false;
 		this.isArray = true;
 		node.get_Array().apply(this);
 		lstScope.append(String.format("sw %s, %d(%s)", rt, this.imm, rs));

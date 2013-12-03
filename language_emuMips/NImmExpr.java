@@ -11,7 +11,7 @@ public class NImmExpr
   private final N$20 e$20$1;
   private final NRs eRs;
   private final N$20 e$20$2;
-  private final NImmediate eImmediate;
+  private final NNumber eNumber;
 
   @Override
   public int getLine() {
@@ -41,17 +41,17 @@ public class NImmExpr
     this.e$20$1.apply(walker);
     this.eRs.apply(walker);
     this.e$20$2.apply(walker);
-    this.eImmediate.apply(walker);
+    this.eNumber.apply(walker);
   }
 
-  NImmExpr(int line, int pos, NRt pRt, N$20 p$20$1, NRs pRs, N$20 p$20$2, NImmediate pImmediate) {
+  NImmExpr(int line, int pos, NRt pRt, N$20 p$20$1, NRs pRs, N$20 p$20$2, NNumber pNumber) {
     this.line = line;
     this.pos = pos;
     this.eRt = pRt;
     this.e$20$1 = p$20$1;
     this.eRs = pRs;
     this.e$20$2 = p$20$2;
-    this.eImmediate = pImmediate;
+    this.eNumber = pNumber;
   }
 
   @Override
@@ -77,8 +77,8 @@ public class NImmExpr
     return this.eRs;
   }
 
-  public NImmediate get_Immediate() {
-    return this.eImmediate;
+  public NNumber get_Number() {
+    return this.eNumber;
   }
 
   NRt internalGetRt() {
@@ -97,7 +97,7 @@ public class NImmExpr
     return this.e$20$2;
   }
 
-  NImmediate internalGetImmediate() {
-    return this.eImmediate;
+  NNumber internalGetNumber() {
+    return this.eNumber;
   }
 }

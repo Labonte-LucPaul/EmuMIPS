@@ -8,7 +8,7 @@ public class NStmt_Addiu
   private final int line;
   private final int pos;
   private final N$3 e$3;
-  private final NImmExpr eImmExpr;
+  private final NImmExpru eImmExpru;
 
   @Override
   public int getLine() {
@@ -35,14 +35,14 @@ public class NStmt_Addiu
   @Override
   public void applyOnChildren(Walker walker) {
     this.e$3.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.eImmExpru.apply(walker);
   }
 
-  NStmt_Addiu(int line, int pos, N$3 p$3, NImmExpr pImmExpr) {
+  NStmt_Addiu(int line, int pos, N$3 p$3, NImmExpru pImmExpru) {
     this.line = line;
     this.pos = pos;
     this.e$3 = p$3;
-    this.eImmExpr = pImmExpr;
+    this.eImmExpru = pImmExpru;
   }
 
   @Override
@@ -60,15 +60,15 @@ public class NStmt_Addiu
     return InternalType.T_Stmt_Addiu;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NImmExpru get_ImmExpru() {
+    return this.eImmExpru;
   }
 
   N$3 internalGet$3() {
     return this.e$3;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  NImmExpru internalGetImmExpru() {
+    return this.eImmExpru;
   }
 }

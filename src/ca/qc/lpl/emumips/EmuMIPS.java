@@ -73,9 +73,9 @@ public class EmuMIPS {
 
 	private String getRegistersValues() {
 		StringBuilder reg = new StringBuilder();
-		reg.append( String.format("%s   %s      %s             %s\n", "REGISTER", "DECIMAL", "HEXADECIMAL", "BINARY") );
+		reg.append( String.format("%s    %s      %s             %s\n", "REGISTER", "DECIMAL", "HEXADECIMAL", "BINARY") );
 		for( String key : registers.keySet() ) {
-			reg.append( String.format("%-6s->   % 10d   0x%s   %s\r",  
+			reg.append( String.format("%-6s->   % 11d   0x%s   %s\r",  
 					registers.get(key).getRegisterName(),
 					registers.get(key).getValue(),
 					registers.get(key).getHexValue(),

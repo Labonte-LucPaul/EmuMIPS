@@ -20,7 +20,7 @@ public class ReadFile {
 		
 			String tmp = "";
 			while( (tmp = read.readLine()) != null ) {
-				content.append(tmp);
+				content.append(tmp + "\n");
 			}
 			
 		} catch( Exception e ) {

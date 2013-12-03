@@ -10,7 +10,7 @@ public class NStmt_Lui
   private final N$26 e$26;
   private final NRt eRt;
   private final N$20 e$20;
-  private final NImmediate eImmediate;
+  private final NNumber eNumber;
 
   @Override
   public int getLine() {
@@ -39,16 +39,16 @@ public class NStmt_Lui
     this.e$26.apply(walker);
     this.eRt.apply(walker);
     this.e$20.apply(walker);
-    this.eImmediate.apply(walker);
+    this.eNumber.apply(walker);
   }
 
-  NStmt_Lui(int line, int pos, N$26 p$26, NRt pRt, N$20 p$20, NImmediate pImmediate) {
+  NStmt_Lui(int line, int pos, N$26 p$26, NRt pRt, N$20 p$20, NNumber pNumber) {
     this.line = line;
     this.pos = pos;
     this.e$26 = p$26;
     this.eRt = pRt;
     this.e$20 = p$20;
-    this.eImmediate = pImmediate;
+    this.eNumber = pNumber;
   }
 
   @Override
@@ -70,8 +70,8 @@ public class NStmt_Lui
     return this.eRt;
   }
 
-  public NImmediate get_Immediate() {
-    return this.eImmediate;
+  public NNumber get_Number() {
+    return this.eNumber;
   }
 
   N$26 internalGet$26() {
@@ -86,7 +86,7 @@ public class NStmt_Lui
     return this.e$20;
   }
 
-  NImmediate internalGetImmediate() {
-    return this.eImmediate;
+  NNumber internalGetNumber() {
+    return this.eNumber;
   }
 }

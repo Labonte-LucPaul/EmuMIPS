@@ -15,6 +15,6 @@ class S_28
     int line = lexer.getAcceptLine();
     int pos = lexer.getAcceptPos();
 
-    return new NNumberu(text, line, pos);
+    return new NString(text, line, pos);
   }
 }

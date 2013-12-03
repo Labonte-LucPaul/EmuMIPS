@@ -16,19 +16,19 @@ class S_40
   State getTarget(Symbol symbol) {
     switch(symbol) {
     case Symbol_min:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_9:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_36:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_40:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_41:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_44:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol_45:
-      return S_70.instance;
+      return S_65.instance;
     case Symbol__0:
       return S_9.instance;
     case Symbol__1:
@@ -42,7 +42,7 @@ class S_40
     case Symbol__8:
       return S_9.instance;
     case Symbol_58:
-      return S_69.instance;
+      return S_65.instance;
     case Symbol__A:
       return S_9.instance;
     case Symbol_95:
@@ -84,7 +84,7 @@ class S_40
     case Symbol__t:
       return S_9.instance;
     case Symbol__u:
-      return S_71.instance;
+      return S_9.instance;
     case Symbol__v:
       return S_9.instance;
     case Symbol__w:
@@ -94,7 +94,7 @@ class S_40
     case Symbol__z:
       return S_9.instance;
     case Symbol_end:
-      return S_69.instance;
+      return S_65.instance;
     default:
       return null;
     }

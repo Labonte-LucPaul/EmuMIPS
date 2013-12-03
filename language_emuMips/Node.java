@@ -8,9 +8,8 @@ public abstract class Node {
 
   public static enum Type {
     T_String,
-    T_Register,
     T_Number,
-    T_Numberu,
+    T_Register,
     T_Stmts_Many,
     T_Stmts_One,
     T_Stmt_Add,
@@ -51,12 +50,11 @@ public abstract class Node {
     T_Stmt_Jmplnk,
     T_RegExpr,
     T_ImmExpr,
+    T_ImmExpru,
     T_Shift,
     T_Rs,
     T_Rt,
     T_Array,
-    T_Immediate_Signed,
-    T_Immediate_Unsigned,
     T_Rd,
     TEnd,
     TAnonymous;
@@ -70,11 +68,11 @@ public abstract class Node {
     T_Stmt,
     T_RegExpr,
     T_ImmExpr,
+    T_ImmExpru,
     T_Shift,
     T_Rs,
     T_Rt,
     T_Array,
-    T_Immediate,
     T_Rd,
     TNotAProduction;
   }
@@ -131,6 +129,7 @@ public abstract class Node {
     T_$24,
     T_$25,
     T_$26,
+    T_Number,
     T_$27,
     T_$28,
     T_$29,
@@ -144,8 +143,6 @@ public abstract class Node {
     T_$37,
     T_$38,
     T_Register,
-    T_Number,
-    T_Numberu,
     T_$Start,
     T_Stmts_Many,
     T_Stmts_One,
@@ -187,12 +184,11 @@ public abstract class Node {
     T_Stmt_Jmplnk,
     T_RegExpr,
     T_ImmExpr,
+    T_ImmExpru,
     T_Shift,
     T_Rs,
     T_Rt,
     T_Array,
-    T_Immediate_Signed,
-    T_Immediate_Unsigned,
     T_Rd,
     TEnd;
   }

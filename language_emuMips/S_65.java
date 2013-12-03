@@ -3,101 +3,18 @@
 package language_emuMips;
 
 class S_65
-    extends TransitionState {
+    extends FinalState {
 
   static final S_65 instance = new S_65();
 
   private S_65() {
   }
 
-  void setMarker(Lexer lexer) {
-  }
+  Token getToken(Lexer lexer) {
+    String text = lexer.accept(1);
+    int line = lexer.getAcceptLine();
+    int pos = lexer.getAcceptPos();
 
-  State getTarget(Symbol symbol) {
-    switch(symbol) {
-    case Symbol_min:
-      return S_108.instance;
-    case Symbol_9:
-      return S_108.instance;
-    case Symbol_36:
-      return S_108.instance;
-    case Symbol_40:
-      return S_108.instance;
-    case Symbol_41:
-      return S_108.instance;
-    case Symbol_44:
-      return S_108.instance;
-    case Symbol_45:
-      return S_108.instance;
-    case Symbol__0:
-      return S_9.instance;
-    case Symbol__1:
-      return S_9.instance;
-    case Symbol__2:
-      return S_9.instance;
-    case Symbol__3:
-      return S_9.instance;
-    case Symbol__4:
-      return S_9.instance;
-    case Symbol__8:
-      return S_9.instance;
-    case Symbol_58:
-      return S_108.instance;
-    case Symbol__A:
-      return S_108.instance;
-    case Symbol_95:
-      return S_108.instance;
-    case Symbol__a:
-      return S_108.instance;
-    case Symbol__b:
-      return S_108.instance;
-    case Symbol__c:
-      return S_108.instance;
-    case Symbol__d:
-      return S_108.instance;
-    case Symbol__e:
-      return S_108.instance;
-    case Symbol__f:
-      return S_108.instance;
-    case Symbol__h:
-      return S_108.instance;
-    case Symbol__i:
-      return S_108.instance;
-    case Symbol__j:
-      return S_108.instance;
-    case Symbol__k:
-      return S_108.instance;
-    case Symbol__l:
-      return S_108.instance;
-    case Symbol__n:
-      return S_108.instance;
-    case Symbol__o:
-      return S_108.instance;
-    case Symbol__p:
-      return S_108.instance;
-    case Symbol__q:
-      return S_108.instance;
-    case Symbol__r:
-      return S_108.instance;
-    case Symbol__s:
-      return S_108.instance;
-    case Symbol__t:
-      return S_108.instance;
-    case Symbol__u:
-      return S_108.instance;
-    case Symbol__v:
-      return S_108.instance;
-    case Symbol__w:
-      return S_108.instance;
-    case Symbol__x:
-      return S_108.instance;
-    case Symbol__z:
-      return S_108.instance;
-    case Symbol_end:
-      return S_108.instance;
-    default:
-      return null;
-    }
+    return new N$28(text, line, pos);
   }
-
 }

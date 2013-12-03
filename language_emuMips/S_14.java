@@ -16,19 +16,19 @@ class S_14
   State getTarget(Symbol symbol) {
     switch(symbol) {
     case Symbol_min:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_9:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_36:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_40:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_41:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_44:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol_45:
-      return S_30.instance;
+      return S_28.instance;
     case Symbol__0:
       return S_9.instance;
     case Symbol__1:
@@ -42,7 +42,7 @@ class S_14
     case Symbol__8:
       return S_9.instance;
     case Symbol_58:
-      return S_29.instance;
+      return S_28.instance;
     case Symbol__A:
       return S_9.instance;
     case Symbol_95:
@@ -50,7 +50,7 @@ class S_14
     case Symbol__a:
       return S_9.instance;
     case Symbol__b:
-      return S_39.instance;
+      return S_36.instance;
     case Symbol__c:
       return S_9.instance;
     case Symbol__d:
@@ -60,7 +60,7 @@ class S_14
     case Symbol__f:
       return S_9.instance;
     case Symbol__h:
-      return S_40.instance;
+      return S_37.instance;
     case Symbol__i:
       return S_9.instance;
     case Symbol__j:
@@ -68,7 +68,7 @@ class S_14
     case Symbol__k:
       return S_9.instance;
     case Symbol__l:
-      return S_41.instance;
+      return S_38.instance;
     case Symbol__n:
       return S_9.instance;
     case Symbol__o:
@@ -84,17 +84,17 @@ class S_14
     case Symbol__t:
       return S_9.instance;
     case Symbol__u:
-      return S_42.instance;
+      return S_39.instance;
     case Symbol__v:
       return S_9.instance;
     case Symbol__w:
-      return S_43.instance;
+      return S_40.instance;
     case Symbol__x:
       return S_9.instance;
     case Symbol__z:
       return S_9.instance;
     case Symbol_end:
-      return S_29.instance;
+      return S_28.instance;
     default:
       return null;
     }

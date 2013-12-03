@@ -3,11 +3,11 @@ Language emu_mips;
 Lexer
 
     digit = '0'..'9' ;
+    //number = digit+ ;
     number = '-'? digit+ ;
-    numberu = digit+ ;
    
     str = ('a'..'z') | ('A'..'Z') ;
-    string = '_'* str+ (str | number | '_')* ;
+    string = '_'* str+ (str | digit | '_')* ;
     
     register = '$a3' | '$a1' | '$a2' | '$at' | '$a0' | '$zero' | '$t5' | '$t4' | '$t7' | '$t6' | '$t1' | '$t0' | '$t3' | '$t2' | '$t9' | '$t8' | '$v3' | '$v0' | '$ra' | '$k0' | '$gp' | '$k1' | '$s6' | '$s5' | '$s4' | '$s3' | '$s2' | '$s1' | '$s0' | '$sp' | '$fp' | '$s7' ; 
     
@@ -26,7 +26,7 @@ Parser
     stmt = {add:} 'add' reg_expr |
            {addi:} 'addi' imm_expr |
            {addu:} 'addu' reg_expr |
-           {addiu:} 'addiu' imm_expr |
+           {addiu:} 'addiu' imm_expru |
            {sub:} 'sub' reg_expr |
            {subu:} 'subu' reg_expr |
            {and:} 'and' reg_expr |
@@ -39,7 +39,7 @@ Parser
            {slt:} 'slt' reg_expr |
            {slti:} 'slti' imm_expr |
            {sltu:} 'sltu' imm_expr |
-           {sltiu:} 'sltiu' imm_expr |
+           {sltiu:} 'sltiu' imm_expru |
            {sll:} 'sll' shift |
            {srl:} 'srl' shift |
            {beq:} 'beq' rs ',' rt ',' string |
@@ -48,7 +48,7 @@ Parser
            {lb:} 'lb' array |
            {lhu:} 'lhu' array |
            {ll:} 'll' array |
-           {lui:} 'lui' rt ',' immediate |
+           {lui:} 'lui' rt ',' number |
            {lh:} 'lh' array |
            {lw:} 'lw' array |
            {sb:} 'sb' array |
@@ -61,14 +61,12 @@ Parser
            {jmplnk:} 'jal' string ;
 
     reg_expr = rd ',' rs ',' rt ;
-    imm_expr = rt ',' rs ',' immediate ;
-    shift = rd ',' rt ',' immediate ;
-    array = rt ',' immediate '(' rs ')' ;
-
+    imm_expr = rt ',' rs ',' number ;
+    imm_expru = rt ',' rs ',' number ;
+    shift = rd ',' rt ',' number ;
+    array = rt ',' number '(' rs ')' ;
     
     rs = register ;
     rt = register ;
     rd = register ;
-    immediate = {signed:} number |
-                {unsigned:} numberu ;
 

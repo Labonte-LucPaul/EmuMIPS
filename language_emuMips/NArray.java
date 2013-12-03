@@ -9,7 +9,7 @@ public class NArray
   private final int pos;
   private final NRt eRt;
   private final N$20 e$20;
-  private final NImmediate eImmediate;
+  private final NNumber eNumber;
   private final N$37 e$37;
   private final NRs eRs;
   private final N$38 e$38;
@@ -40,18 +40,18 @@ public class NArray
   public void applyOnChildren(Walker walker) {
     this.eRt.apply(walker);
     this.e$20.apply(walker);
-    this.eImmediate.apply(walker);
+    this.eNumber.apply(walker);
     this.e$37.apply(walker);
     this.eRs.apply(walker);
     this.e$38.apply(walker);
   }
 
-  NArray(int line, int pos, NRt pRt, N$20 p$20, NImmediate pImmediate, N$37 p$37, NRs pRs, N$38 p$38) {
+  NArray(int line, int pos, NRt pRt, N$20 p$20, NNumber pNumber, N$37 p$37, NRs pRs, N$38 p$38) {
     this.line = line;
     this.pos = pos;
     this.eRt = pRt;
     this.e$20 = p$20;
-    this.eImmediate = pImmediate;
+    this.eNumber = pNumber;
     this.e$37 = p$37;
     this.eRs = pRs;
     this.e$38 = p$38;
@@ -76,8 +76,8 @@ public class NArray
     return this.eRt;
   }
 
-  public NImmediate get_Immediate() {
-    return this.eImmediate;
+  public NNumber get_Number() {
+    return this.eNumber;
   }
 
   public NRs get_Rs() {
@@ -92,8 +92,8 @@ public class NArray
     return this.e$20;
   }
 
-  NImmediate internalGetImmediate() {
-    return this.eImmediate;
+  NNumber internalGetNumber() {
+    return this.eNumber;
   }
 
   N$37 internalGet$37() {

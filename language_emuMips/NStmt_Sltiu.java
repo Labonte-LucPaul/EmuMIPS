@@ -8,7 +8,7 @@ public class NStmt_Sltiu
   private final int line;
   private final int pos;
   private final N$16 e$16;
-  private final NImmExpr eImmExpr;
+  private final NImmExpru eImmExpru;
 
   @Override
   public int getLine() {
@@ -35,14 +35,14 @@ public class NStmt_Sltiu
   @Override
   public void applyOnChildren(Walker walker) {
     this.e$16.apply(walker);
-    this.eImmExpr.apply(walker);
+    this.eImmExpru.apply(walker);
   }
 
-  NStmt_Sltiu(int line, int pos, N$16 p$16, NImmExpr pImmExpr) {
+  NStmt_Sltiu(int line, int pos, N$16 p$16, NImmExpru pImmExpru) {
     this.line = line;
     this.pos = pos;
     this.e$16 = p$16;
-    this.eImmExpr = pImmExpr;
+    this.eImmExpru = pImmExpru;
   }
 
   @Override
@@ -60,15 +60,15 @@ public class NStmt_Sltiu
     return InternalType.T_Stmt_Sltiu;
   }
 
-  public NImmExpr get_ImmExpr() {
-    return this.eImmExpr;
+  public NImmExpru get_ImmExpru() {
+    return this.eImmExpru;
   }
 
   N$16 internalGet$16() {
     return this.e$16;
   }
 
-  NImmExpr internalGetImmExpr() {
-    return this.eImmExpr;
+  NImmExpru internalGetImmExpru() {
+    return this.eImmExpru;
   }
 }

@@ -8,15 +8,11 @@ public class Walker {
     defaultIn(node);
   }
 
-  public void inRegister(NRegister node) {
-    defaultIn(node);
-  }
-
   public void inNumber(NNumber node) {
     defaultIn(node);
   }
 
-  public void inNumberu(NNumberu node) {
+  public void inRegister(NRegister node) {
     defaultIn(node);
   }
 
@@ -180,6 +176,10 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inImmExpru(NImmExpru node) {
+    defaultIn(node);
+  }
+
   public void inShift(NShift node) {
     defaultIn(node);
   }
@@ -196,14 +196,6 @@ public class Walker {
     defaultIn(node);
   }
 
-  public void inImmediate_Signed(NImmediate_Signed node) {
-    defaultIn(node);
-  }
-
-  public void inImmediate_Unsigned(NImmediate_Unsigned node) {
-    defaultIn(node);
-  }
-
   public void inRd(NRd node) {
     defaultIn(node);
   }
@@ -215,15 +207,11 @@ public class Walker {
     defaultCase(node);
   }
 
-  public void caseRegister(NRegister node) {
-    defaultCase(node);
-  }
-
   public void caseNumber(NNumber node) {
     defaultCase(node);
   }
 
-  public void caseNumberu(NNumberu node) {
+  public void caseRegister(NRegister node) {
     defaultCase(node);
   }
 
@@ -387,6 +375,10 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseImmExpru(NImmExpru node) {
+    defaultCase(node);
+  }
+
   public void caseShift(NShift node) {
     defaultCase(node);
   }
@@ -403,14 +395,6 @@ public class Walker {
     defaultCase(node);
   }
 
-  public void caseImmediate_Signed(NImmediate_Signed node) {
-    defaultCase(node);
-  }
-
-  public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-    defaultCase(node);
-  }
-
   public void caseRd(NRd node) {
     defaultCase(node);
   }
@@ -423,15 +407,11 @@ public class Walker {
     defaultOut(node);
   }
 
-  public void outRegister(NRegister node) {
-    defaultOut(node);
-  }
-
   public void outNumber(NNumber node) {
     defaultOut(node);
   }
 
-  public void outNumberu(NNumberu node) {
+  public void outRegister(NRegister node) {
     defaultOut(node);
   }
 
@@ -595,6 +575,10 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outImmExpru(NImmExpru node) {
+    defaultOut(node);
+  }
+
   public void outShift(NShift node) {
     defaultOut(node);
   }
@@ -608,14 +592,6 @@ public class Walker {
   }
 
   public void outArray(NArray node) {
-    defaultOut(node);
-  }
-
-  public void outImmediate_Signed(NImmediate_Signed node) {
-    defaultOut(node);
-  }
-
-  public void outImmediate_Unsigned(NImmediate_Unsigned node) {
     defaultOut(node);
   }
 

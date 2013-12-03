@@ -3,14 +3,38 @@ package ca.qc.lpl.emumips.interpreter;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
+import language_emuMips.NNumber;
+//import language_emuMips.NNumberu;
+import language_emuMips.NRd;
+import language_emuMips.NRs;
+import language_emuMips.NRt;
+import language_emuMips.NStmt_Add;
+import language_emuMips.NStmt_Addi;
+import language_emuMips.NStmt_Addiu;
+import language_emuMips.NStmt_Addu;
+import language_emuMips.NStmt_And;
+import language_emuMips.NStmt_Andi;
+import language_emuMips.NStmt_Beq;
+import language_emuMips.NStmt_Bne;
+import language_emuMips.NStmt_Jmp;
+import language_emuMips.NStmt_Lbl;
+import language_emuMips.NStmt_Nor;
+import language_emuMips.NStmt_Or;
+import language_emuMips.NStmt_Ori;
+import language_emuMips.NStmt_Sll;
+import language_emuMips.NStmt_Slt;
+import language_emuMips.NStmt_Slti;
+import language_emuMips.NStmt_Sltiu;
+import language_emuMips.NStmt_Sltu;
+import language_emuMips.NStmt_Srl;
+import language_emuMips.NStmt_Sub;
+import language_emuMips.NStmt_Subu;
+import language_emuMips.Node;
+import language_emuMips.Parser;
+import language_emuMips.Walker;
 import ca.qc.lpl.emumips.EmuMIPS;
-import ca.qc.lpl.emumips.interpreter.instructions.*;
-import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotARegisterException;
-import ca.qc.lpl.emumips.interpreter.instructions.Exceptions.NotAnImmediateException;
 import ca.qc.lpl.emumips.register.Register;
-import language_emuMips.*;
 
 public class Interpreter extends Walker {
 
@@ -39,6 +63,7 @@ public class Interpreter extends Walker {
 		Parser p = new Parser( new StringReader(source) );
 
 		this.tree = p.parse();
+
 		ScopeAnalysis sa = new ScopeAnalysis(this.tree);
 		this.lblAssociation = sa.getLblAssociation();
 		JustInTime jit = new JustInTime(sa.getInstructions());
@@ -55,7 +80,7 @@ public class Interpreter extends Walker {
 				this.preCompiled.get(iterator).apply(this);
 			}
 			++this.iterator;
-			//System.out.println(this.registers.get("$a1").getValue());
+			//System.out.println(this.registers.get("$a0").getValue());
 		}
 		
 		//System.out.println(this.registers.get("$a0").getValue());
@@ -93,14 +118,14 @@ public class Interpreter extends Walker {
 	}
 	
 	@Override
-	public void caseImmediate_Signed(NImmediate_Signed node) {
-		this.imm = Integer.parseInt( node.get_Number().getText() );
+	public void caseNumber(NNumber node) {
+		this.imm = Integer.parseInt( node.getText() );
 	}
 
-	@Override
-	public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-		this.imm = Integer.parseInt( node.get_Numberu().getText() );
-	}
+//	@Override
+//	public void caseNumberu(NNumberu node) {
+//		this.imm = Integer.parseInt( node.getText() );
+//	}
 	
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
@@ -125,7 +150,7 @@ public class Interpreter extends Walker {
 	
 	@Override
 	public void caseStmt_Addiu(NStmt_Addiu node) {
-		node.get_ImmExpr().apply(this);
+		node.get_ImmExpru().apply(this);
 		int addiu = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(addiu);
 	}
@@ -203,7 +228,7 @@ public class Interpreter extends Walker {
 	
 	@Override
 	public void caseStmt_Sltiu(NStmt_Sltiu node) {
-		node.get_ImmExpr().apply(this);
+		node.get_ImmExpru().apply(this);
 		int res = (this.registers.get(rs).getValue() < this.imm) ? 1:0;
 		this.registers.get(rt).setValue(res);
 	}

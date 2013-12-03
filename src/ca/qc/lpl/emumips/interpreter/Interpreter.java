@@ -46,20 +46,13 @@ public class Interpreter extends Walker {
 	private Node tree;
 
 	private HashMap<String, Register> registers;
-	//private HashMap<String, Register> registersBin;
-	//private ArrayList<String> lstScope;
 	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
 	private ArrayList<Node> preCompiled;
-	//private ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
 
-
-	//private String currentLabel = "";
 	public int iterator = 0;
 
 	public Interpreter( String source ) throws Exception {
-		
-		
-		//Parser p = new Parser( new StringReader("fuck: fuck2: add $a0, $zero, $zero addi $a1, $zero, 9 test: addi $a0, $a0, 1 slti $t0, $a0, 9 bne $t0, $zero, test") );
+	
 		Parser p = new Parser( new StringReader(source) );
 
 		this.tree = p.parse();
@@ -69,10 +62,7 @@ public class Interpreter extends Walker {
 		JustInTime jit = new JustInTime(sa.getInstructions());
 		this.preCompiled = jit.getPreCompiled();
 		
-		
-		//this.registers = r;
 		this.registers = EmuMIPS.registers;
-		//this.registersBin = registersBin;
 		
 		
 		while( this.iterator < this.preCompiled.size() ) {
@@ -80,26 +70,8 @@ public class Interpreter extends Walker {
 				this.preCompiled.get(iterator).apply(this);
 			}
 			++this.iterator;
-			//System.out.println(this.registers.get("$a0").getValue());
 		}
-		
-		//System.out.println(this.registers.get("$a0").getValue());
-		//this.lstScope = new ArrayList<String>();
-	
-		//this.tree.apply(this);
-		
-//		if(currentLabel.length() > 0) {
-//			lstScope.add(0, currentLabel + ":");
-//		}
-//		this.instructions.add(lstScope);
-//		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
-//		
-//		for(ArrayList<String> lst : instructions) {
-//			for(String lst2 : lst) {
-//				System.out.println(lst2.toString());
-//			}
-//		}
-		
+
 	}
 
 	@Override
@@ -122,11 +94,6 @@ public class Interpreter extends Walker {
 		this.imm = Integer.parseInt( node.getText() );
 	}
 
-//	@Override
-//	public void caseNumberu(NNumberu node) {
-//		this.imm = Integer.parseInt( node.getText() );
-//	}
-	
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
@@ -255,8 +222,6 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Jmp(NStmt_Jmp node) {
 		this.iterator = (this.lblAssociation.get(node.get_String().getText()) -1);
-		//this.preCompiled.get(this.lblAssociation.get(node.get_String().getText())).apply(this);
-
 	}
 	
 	@Override

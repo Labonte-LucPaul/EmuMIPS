@@ -3,11 +3,7 @@ package ca.qc.lpl.emumips.interpreter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import ca.qc.lpl.emumips.ExitStatus;
-import ca.qc.lpl.emumips.interpreter.Exceptions.SignedOverflowException;
-import ca.qc.lpl.util.UnsignedException;
 import language_emuMips.NNumber;
-//import language_emuMips.NNumberu;
 import language_emuMips.NRd;
 import language_emuMips.NRs;
 import language_emuMips.NRt;
@@ -19,14 +15,13 @@ import language_emuMips.NStmt_And;
 import language_emuMips.NStmt_Andi;
 import language_emuMips.NStmt_Beq;
 import language_emuMips.NStmt_Bne;
-import language_emuMips.NStmt_Jmplnk;
 import language_emuMips.NStmt_Jmp;
+import language_emuMips.NStmt_Jmplnk;
 import language_emuMips.NStmt_Jmpreg;
 import language_emuMips.NStmt_Lbl;
 import language_emuMips.NStmt_Lbu;
 import language_emuMips.NStmt_Lhu;
 import language_emuMips.NStmt_Ll;
-import language_emuMips.NStmt_Lui;
 import language_emuMips.NStmt_Lw;
 import language_emuMips.NStmt_Nor;
 import language_emuMips.NStmt_Or;
@@ -45,9 +40,11 @@ import language_emuMips.NStmt_Subu;
 import language_emuMips.NStmt_Sw;
 import language_emuMips.NStmt_Xor;
 import language_emuMips.NStmt_Xori;
-import language_emuMips.NStmts_One;
 import language_emuMips.Node;
 import language_emuMips.Walker;
+import ca.qc.lpl.emumips.ExitStatus;
+import ca.qc.lpl.emumips.interpreter.Exceptions.SignedOverflowException;
+import ca.qc.lpl.util.UnsignedException;
 
 public class ScopeAnalysis extends Walker {
 
@@ -59,8 +56,6 @@ public class ScopeAnalysis extends Walker {
 	private boolean isArray = false;
 	private boolean isSigned = true;
 
-//	private HashMap<String, Register> registers;
-	//private ArrayList<String> lstScope;
 	private StringBuilder lstScope;
 	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
 	private ArrayList<StringBuilder> instructions = new ArrayList<StringBuilder>();
@@ -75,21 +70,7 @@ public class ScopeAnalysis extends Walker {
 		this.instructions.add(lstScope);
 		this.lblAssociation.put(currentLabel, this.instructions.indexOf(lstScope));
 		
-//		for(String key : lblAssociation.keySet()) {
-//			System.out.println(key + ": " + lblAssociation.get(key).toString());
-//		}
-		
-//		for(StringBuilder lst : instructions) {
-//			System.out.println();
-//			for(String lst2 : lst) {
-//				System.out.println(lst.toString());
-//			}
-//		}
 	}
-
-	//private void appendString(String s) {
-		//this.lstScope.append(s);
-	//}
 
 	public ArrayList<StringBuilder> getInstructions() {
 		return this.instructions;
@@ -123,15 +104,6 @@ public class ScopeAnalysis extends Walker {
 	public void caseRd(NRd node) {
 		this.rd = node.get_Register().getText();
 	}
-	
-//	@Override
-//	public void caseNumberu(NNumberu node) {
-//		this.imm = Integer.parseInt( node.getText() );
-//		
-//		if( this.isArray == true ) {
-//			this.isMultiple4(this.imm, node.getLine(), node.getPos());
-//		}
-//	}
 
 	@Override
 	public void caseNumber(NNumber node) {
@@ -142,10 +114,10 @@ public class ScopeAnalysis extends Walker {
 			
 			if( this.isSigned == true && (val > Integer.MAX_VALUE || val < Integer.MIN_VALUE)  ) {
 				err = ExitStatus.SIGNED_OVERFLOW.getStatus();
-				throw new SignedOverflowException(node.getText());	
+				throw new SignedOverflowException(node.getText(), node.getLine(), node.getPos());	
 			} else if( this.isSigned == false && val < 0 ) {
 				err = ExitStatus.UNSIGNED_OVERFLOW.getStatus();
-				throw new UnsignedException(node.getText());
+				throw new UnsignedException(node.getText(), node.getLine(), node.getPos());
 			}
 			
 		} catch (SignedOverflowException | UnsignedException e) {
@@ -160,25 +132,7 @@ public class ScopeAnalysis extends Walker {
 			this.isMultiple4(this.imm, node.getLine(), node.getPos());
 		}
 	}
-	  
-//	@Override
-//	public void caseImmediate_Signed(NImmediate_Signed node) {
-//		
-//		this.imm = Integer.parseInt( node.get_Number().getText() );
-//		
-//		if( this.isArray == true ) {
-//			this.isMultiple4(this.imm, node.get_Number().getLine(), node.get_Number().getPos());
-//		}
-//	}
-//
-//	@Override
-//	public void caseImmediate_Unsigned(NImmediate_Unsigned node) {
-//		this.imm = Integer.parseInt( node.get_Numberu().getText() );
-//		if( this.isArray == true ) {
-//			this.isMultiple4(this.imm, node.get_Numberu().getLine(), node.get_Numberu().getPos());
-//		}
-//	}
-	
+
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
@@ -322,8 +276,6 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Beq(NStmt_Beq node) {
-		//node.get_ImmExpr().apply(this);
-		//lstScope.append(String.format("beq %s, %s, %d", rd, rs, this.imm));
 		lstScope.append(String.format("beq %s, %s, %s", node.get_Rs().get_Register().getText(),
 														node.get_Rt().get_Register().getText(),
 														node.get_String().getText()));
@@ -331,8 +283,6 @@ public class ScopeAnalysis extends Walker {
 
 	@Override
 	public void caseStmt_Bne(NStmt_Bne node) {
-		//node.get_ImmExpr().apply(this);
-		//lstScope.append(String.format("bne %s, %s, %d", rd, rs, this.imm));
 		lstScope.append(String.format("bne %s, %s, %s", node.get_Rs().get_Register().getText(),
 				node.get_Rt().get_Register().getText(),
 				node.get_String().getText()));

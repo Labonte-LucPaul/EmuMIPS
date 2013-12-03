@@ -65,7 +65,7 @@ public class EmuMIPS {
 			Interpreter i = new Interpreter(this.sourceContent);
 			WriteFile wf = new WriteFile(Arguments.sourcePath, true);
 			wf.writeFile(getRegistersValues());
-			System.out.printf("Saved registers do path: '%s'\n", wf.getPath());
+			System.out.printf("Saved registers to path: '%s'\n", wf.getPath());
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}

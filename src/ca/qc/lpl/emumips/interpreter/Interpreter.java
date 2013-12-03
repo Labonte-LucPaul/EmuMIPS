@@ -55,10 +55,10 @@ public class Interpreter extends Walker {
 				this.preCompiled.get(iterator).apply(this);
 			}
 			++this.iterator;
-			//System.out.println(this.registers.get("$a0").getValue());
+			//System.out.println(this.registers.get("$a1").getValue());
 		}
 		
-		System.out.println(this.registers.get("$a0").getValue());
+		//System.out.println(this.registers.get("$a0").getValue());
 		//this.lstScope = new ArrayList<String>();
 	
 		//this.tree.apply(this);

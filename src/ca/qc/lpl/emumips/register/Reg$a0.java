@@ -38,14 +38,14 @@ public class Reg$a0 implements Register {
 
 	@Override
 	public String getBinaryValue() {
-		// TODO Auto-generated method stub
-		return null;
+		//System.out.printf("%s\n", String.format("%32s", Integer.toBinaryString(this.value)).replace(' ', '0'));
+		return String.format("%32s", Integer.toBinaryString(this.value)).replace(' ', '0');
+		//return String.format("%032d", Long.parseLong(Integer.toBinaryString(this.value), 2));
 	}
 
 	@Override
 	public String getHexValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format("%08X", this.value);
 	}
 
 	@Override
@@ -60,14 +60,12 @@ public class Reg$a0 implements Register {
 
 	@Override
 	public void addObserver(Observer o) {
-		// TODO Auto-generated method stub
-		
+		this.lstObserver.add(o);
 	}
 
 	@Override
 	public void removeObserver(Observer o) {
-		// TODO Auto-generated method stub
-		
+		this.lstObserver.remove(0);
 	}
 
 	@Override

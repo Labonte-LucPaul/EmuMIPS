@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import ca.qc.lpl.emumips.interpreter.Interpreter;
 import ca.qc.lpl.emumips.io.ReadFile;
+import ca.qc.lpl.emumips.io.WriteFile;
 import ca.qc.lpl.emumips.register.*;
 import ca.qc.lpl.emumips.ui.MainWindow;
 
@@ -62,11 +63,27 @@ public class EmuMIPS {
 		
 		try {
 			Interpreter i = new Interpreter(this.sourceContent);
+			WriteFile wf = new WriteFile(Arguments.sourcePath, true);
+			wf.writeFile(getRegistersValues());
+			System.out.printf("Saved registers do path: '%s'\n", wf.getPath());
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}
 	}
 
+	private String getRegistersValues() {
+		StringBuilder reg = new StringBuilder();
+		reg.append( String.format("%s   %s      %s             %s\n", "REGISTER", "DECIMAL", "HEXADECIMAL", "BINARY") );
+		for( String key : registers.keySet() ) {
+			reg.append( String.format("%-6s->   % 10d   0x%s   %s\r",  
+					registers.get(key).getRegisterName(),
+					registers.get(key).getValue(),
+					registers.get(key).getHexValue(),
+					registers.get(key).getBinaryValue()) );
+		}
+		
+		return reg.toString();
+	}
 	private void initRegisters() {
 		
 		registers.put("$zero", new Reg$zero());

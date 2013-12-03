@@ -53,19 +53,18 @@ public class Reg$t2 implements Register {
 	}
 
 	@Override
-	public boolean isPreservedAcrossCall() {
-		
+	public boolean isPreservedAcrossCall() {	
 		return false;
 	}
 
 	@Override
 	public String getBinaryValue() {
-		return null;
+		return String.format("%32s", Integer.toBinaryString(this.value)).replace(' ', '0');
 	}
 
 	@Override
 	public String getHexValue() {
-		return null;
+		return String.format("%08X", this.value);
 	}
 
 	@Override

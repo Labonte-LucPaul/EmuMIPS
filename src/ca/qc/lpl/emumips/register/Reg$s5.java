@@ -60,22 +60,22 @@ public class Reg$s5 implements Register {
 
 	@Override
 	public String getBinaryValue() {
-		return null;
+		return String.format("%32s", Integer.toBinaryString(this.value)).replace(' ', '0');
 	}
 
 	@Override
 	public String getHexValue() {
-		return null;
-	}
-
-	@Override
-	public int getValue() {
-		return this.value;
+		return String.format("%08X", this.value);
 	}
 
 	@Override
 	public void setValue(int value) {
 		this.value = value;
+	}
+
+	@Override
+	public int getValue() {
+		return this.value;
 	}
 
 }

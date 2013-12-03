@@ -46,13 +46,12 @@ public class Reg$zero implements Register {
 
 	@Override
 	public String getBinaryValue() {
-		return Integer.toBinaryString(value);
+		return String.format("%32s", Integer.toBinaryString(this.value)).replace(' ', '0');
 	}
 
 	@Override
 	public String getHexValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.format("%08X", this.value);
 	}
 
 	@Override

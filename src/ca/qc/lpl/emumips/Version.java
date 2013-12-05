@@ -8,7 +8,13 @@ public class Version {
 	private String codeName = "ATLANTIS";
 	private String description = "A simple emulator for MIPS.";
 	private String author = "Luc Paul Labonté";
-	
+	private String contact = "Contact: labonte.luc_paul@gmail.com\n"
+						   + "-----------------------------------\n"
+						   + "For subject field use one of the description below, copy-paste with brackets included:\n"
+						   + "For questions       : [EmuMIPS question]\n"
+						   + "For a bug           : [EmuMIPS bug]\n"
+						   + "For features request: [EmuMIPS feature]\n"
+						   + "Comments            : [EmuMIPS comments]";
 	private Version() {
 	
 	}
@@ -22,6 +28,6 @@ public class Version {
 	}
 
 	public void printFullInfos() {
-		System.out.printf("EmuMIPS: %s : %s - %s\nBy: %s\n", version, codeName, description, author);
+		System.out.printf("EmuMIPS: - %s\nVersion: %s\nCode name: %s \nBy: %s\n%s", description, version, codeName, author, contact);
 	}
 }

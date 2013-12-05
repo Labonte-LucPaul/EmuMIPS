@@ -1,3 +1,11 @@
+#testage
+
+.data
+.word 45, 34, 54
+test: .space 55
+
+.text
+
 fuck:
 fuck2:
     addi $a0, $zero, -9

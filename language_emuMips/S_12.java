@@ -3,101 +3,18 @@
 package language_emuMips;
 
 class S_12
-    extends TransitionState {
+    extends FinalState {
 
   static final S_12 instance = new S_12();
 
   private S_12() {
   }
 
-  void setMarker(Lexer lexer) {
-  }
+  Token getToken(Lexer lexer) {
+    String text = lexer.accept(0);
+    int line = lexer.getAcceptLine();
+    int pos = lexer.getAcceptPos();
 
-  State getTarget(Symbol symbol) {
-    switch(symbol) {
-    case Symbol_min:
-      return S_28.instance;
-    case Symbol_9:
-      return S_28.instance;
-    case Symbol_36:
-      return S_28.instance;
-    case Symbol_40:
-      return S_28.instance;
-    case Symbol_41:
-      return S_28.instance;
-    case Symbol_44:
-      return S_28.instance;
-    case Symbol_45:
-      return S_28.instance;
-    case Symbol__0:
-      return S_9.instance;
-    case Symbol__1:
-      return S_9.instance;
-    case Symbol__2:
-      return S_9.instance;
-    case Symbol__3:
-      return S_9.instance;
-    case Symbol__4:
-      return S_9.instance;
-    case Symbol__8:
-      return S_9.instance;
-    case Symbol_58:
-      return S_28.instance;
-    case Symbol__A:
-      return S_9.instance;
-    case Symbol_95:
-      return S_9.instance;
-    case Symbol__a:
-      return S_9.instance;
-    case Symbol__b:
-      return S_9.instance;
-    case Symbol__c:
-      return S_9.instance;
-    case Symbol__d:
-      return S_9.instance;
-    case Symbol__e:
-      return S_31.instance;
-    case Symbol__f:
-      return S_9.instance;
-    case Symbol__h:
-      return S_9.instance;
-    case Symbol__i:
-      return S_9.instance;
-    case Symbol__j:
-      return S_9.instance;
-    case Symbol__k:
-      return S_9.instance;
-    case Symbol__l:
-      return S_9.instance;
-    case Symbol__n:
-      return S_32.instance;
-    case Symbol__o:
-      return S_9.instance;
-    case Symbol__p:
-      return S_9.instance;
-    case Symbol__q:
-      return S_9.instance;
-    case Symbol__r:
-      return S_9.instance;
-    case Symbol__s:
-      return S_9.instance;
-    case Symbol__t:
-      return S_9.instance;
-    case Symbol__u:
-      return S_9.instance;
-    case Symbol__v:
-      return S_9.instance;
-    case Symbol__w:
-      return S_9.instance;
-    case Symbol__x:
-      return S_9.instance;
-    case Symbol__z:
-      return S_9.instance;
-    case Symbol_end:
-      return S_28.instance;
-    default:
-      return null;
-    }
+    return new N$33(text, line, pos);
   }
-
 }

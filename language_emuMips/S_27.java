@@ -11,10 +11,10 @@ class S_27
   }
 
   Token getToken(Lexer lexer) {
-    String text = lexer.accept(1);
+    String text = lexer.accept(0);
     int line = lexer.getAcceptLine();
     int pos = lexer.getAcceptPos();
 
-    return new NNumber(text, line, pos);
+    return null;
   }
 }

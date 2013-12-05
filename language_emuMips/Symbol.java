@@ -5,11 +5,16 @@ package language_emuMips;
 enum Symbol {
   Symbol_min,
   Symbol_9,
+  Symbol_10,
+  Symbol_13,
+  Symbol_34,
+  Symbol_35,
   Symbol_36,
   Symbol_40,
   Symbol_41,
   Symbol_44,
   Symbol_45,
+  Symbol_46,
   Symbol__0,
   Symbol__1,
   Symbol__2,
@@ -17,6 +22,7 @@ enum Symbol {
   Symbol__4,
   Symbol__8,
   Symbol_58,
+  Symbol_59,
   Symbol__A,
   Symbol_95,
   Symbol__a,
@@ -25,11 +31,13 @@ enum Symbol {
   Symbol__d,
   Symbol__e,
   Symbol__f,
+  Symbol__g,
   Symbol__h,
   Symbol__i,
   Symbol__j,
   Symbol__k,
   Symbol__l,
+  Symbol__m,
   Symbol__n,
   Symbol__o,
   Symbol__p,
@@ -41,23 +49,32 @@ enum Symbol {
   Symbol__v,
   Symbol__w,
   Symbol__x,
+  Symbol__y,
   Symbol__z,
   Symbol_end;
 
   static Symbol getSymbol(char c) {
     switch(c) {
-    case 13: return Symbol_9;
+    case 9: return Symbol_9;
+    case 10: return Symbol_10;
+    case 13: return Symbol_13;
     case 32: return Symbol_9;
+    case 33: return Symbol_min;
+    case 34: return Symbol_34;
+    case 35: return Symbol_35;
     case 36: return Symbol_36;
     case 40: return Symbol_40;
     case 41: return Symbol_41;
     case 44: return Symbol_44;
     case 45: return Symbol_45;
+    case 46: return Symbol_46;
+    case 47: return Symbol_min;
     case 48: return Symbol__0;
     case 49: return Symbol__1;
     case 50: return Symbol__2;
     case 51: return Symbol__3;
     case 58: return Symbol_58;
+    case 59: return Symbol_59;
     case 95: return Symbol_95;
     case 96: return Symbol_min;
     case 97: return Symbol__a;
@@ -65,12 +82,14 @@ enum Symbol {
     case 99: return Symbol__c;
     case 100: return Symbol__d;
     case 101: return Symbol__e;
+    case 102: return Symbol__f;
+    case 103: return Symbol__g;
     case 104: return Symbol__h;
     case 105: return Symbol__i;
     case 106: return Symbol__j;
     case 107: return Symbol__k;
     case 108: return Symbol__l;
-    case 109: return Symbol__A;
+    case 109: return Symbol__m;
     case 110: return Symbol__n;
     case 111: return Symbol__o;
     case 112: return Symbol__p;
@@ -82,7 +101,7 @@ enum Symbol {
     case 118: return Symbol__v;
     case 119: return Symbol__w;
     case 120: return Symbol__x;
-    case 121: return Symbol__A;
+    case 121: return Symbol__y;
     case 122: return Symbol__z;
     default:
       if(c <= 8) {
@@ -91,16 +110,10 @@ enum Symbol {
       if(c >= 123) {
         return Symbol_min;
       }
-      if(c >= 9 && c <= 10) {
-        return Symbol_9;
-      }
       if(c >= 11 && c <= 12) {
         return Symbol_min;
       }
       if(c >= 14 && c <= 31) {
-        return Symbol_min;
-      }
-      if(c >= 33 && c <= 35) {
         return Symbol_min;
       }
       if(c >= 37 && c <= 39) {
@@ -109,16 +122,13 @@ enum Symbol {
       if(c >= 42 && c <= 43) {
         return Symbol_min;
       }
-      if(c >= 46 && c <= 47) {
-        return Symbol_min;
-      }
       if(c >= 52 && c <= 55) {
         return Symbol__4;
       }
       if(c >= 56 && c <= 57) {
         return Symbol__8;
       }
-      if(c >= 59 && c <= 64) {
+      if(c >= 60 && c <= 64) {
         return Symbol_min;
       }
       if(c >= 65 && c <= 90) {
@@ -126,9 +136,6 @@ enum Symbol {
       }
       if(c >= 91 && c <= 94) {
         return Symbol_min;
-      }
-      if(c >= 102 && c <= 103) {
-        return Symbol__f;
       }
     }
 

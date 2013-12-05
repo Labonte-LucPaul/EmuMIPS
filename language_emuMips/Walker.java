@@ -16,6 +16,10 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inConsoleString(NConsoleString node) {
+    defaultIn(node);
+  }
+
   public void inStmts_Many(NStmts_Many node) {
     defaultIn(node);
   }
@@ -168,6 +172,34 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inStmt_Data(NStmt_Data node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Text(NStmt_Text node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Globl(NStmt_Globl node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Syscall(NStmt_Syscall node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Mov(NStmt_Mov node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_La(NStmt_La node) {
+    defaultIn(node);
+  }
+
+  public void inStmt_Li(NStmt_Li node) {
+    defaultIn(node);
+  }
+
   public void inRegExpr(NRegExpr node) {
     defaultIn(node);
   }
@@ -196,7 +228,59 @@ public class Walker {
     defaultIn(node);
   }
 
+  public void inCommonDatas_Many(NCommonDatas_Many node) {
+    defaultIn(node);
+  }
+
+  public void inCommonDatas_One(NCommonDatas_One node) {
+    defaultIn(node);
+  }
+
   public void inRd(NRd node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Word(NCommonData_Word node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Half(NCommonData_Half node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Byte(NCommonData_Byte node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Ascii(NCommonData_Ascii node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Asciiz(NCommonData_Asciiz node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Float(NCommonData_Float node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Double(NCommonData_Double node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Space(NCommonData_Space node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Align(NCommonData_Align node) {
+    defaultIn(node);
+  }
+
+  public void inCommonData_Lbl(NCommonData_Lbl node) {
+    defaultIn(node);
+  }
+
+  public void inDirectivesQte_Dirqt(NDirectivesQte_Dirqt node) {
     defaultIn(node);
   }
 
@@ -212,6 +296,10 @@ public class Walker {
   }
 
   public void caseRegister(NRegister node) {
+    defaultCase(node);
+  }
+
+  public void caseConsoleString(NConsoleString node) {
     defaultCase(node);
   }
 
@@ -367,6 +455,34 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseStmt_Data(NStmt_Data node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Text(NStmt_Text node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Globl(NStmt_Globl node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Syscall(NStmt_Syscall node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Mov(NStmt_Mov node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_La(NStmt_La node) {
+    defaultCase(node);
+  }
+
+  public void caseStmt_Li(NStmt_Li node) {
+    defaultCase(node);
+  }
+
   public void caseRegExpr(NRegExpr node) {
     defaultCase(node);
   }
@@ -395,7 +511,59 @@ public class Walker {
     defaultCase(node);
   }
 
+  public void caseCommonDatas_Many(NCommonDatas_Many node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonDatas_One(NCommonDatas_One node) {
+    defaultCase(node);
+  }
+
   public void caseRd(NRd node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Word(NCommonData_Word node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Half(NCommonData_Half node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Byte(NCommonData_Byte node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Ascii(NCommonData_Ascii node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Asciiz(NCommonData_Asciiz node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Float(NCommonData_Float node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Double(NCommonData_Double node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Space(NCommonData_Space node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Align(NCommonData_Align node) {
+    defaultCase(node);
+  }
+
+  public void caseCommonData_Lbl(NCommonData_Lbl node) {
+    defaultCase(node);
+  }
+
+  public void caseDirectivesQte_Dirqt(NDirectivesQte_Dirqt node) {
     defaultCase(node);
   }
 
@@ -412,6 +580,10 @@ public class Walker {
   }
 
   public void outRegister(NRegister node) {
+    defaultOut(node);
+  }
+
+  public void outConsoleString(NConsoleString node) {
     defaultOut(node);
   }
 
@@ -567,6 +739,34 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outStmt_Data(NStmt_Data node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Text(NStmt_Text node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Globl(NStmt_Globl node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Syscall(NStmt_Syscall node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Mov(NStmt_Mov node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_La(NStmt_La node) {
+    defaultOut(node);
+  }
+
+  public void outStmt_Li(NStmt_Li node) {
+    defaultOut(node);
+  }
+
   public void outRegExpr(NRegExpr node) {
     defaultOut(node);
   }
@@ -595,7 +795,59 @@ public class Walker {
     defaultOut(node);
   }
 
+  public void outCommonDatas_Many(NCommonDatas_Many node) {
+    defaultOut(node);
+  }
+
+  public void outCommonDatas_One(NCommonDatas_One node) {
+    defaultOut(node);
+  }
+
   public void outRd(NRd node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Word(NCommonData_Word node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Half(NCommonData_Half node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Byte(NCommonData_Byte node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Ascii(NCommonData_Ascii node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Asciiz(NCommonData_Asciiz node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Float(NCommonData_Float node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Double(NCommonData_Double node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Space(NCommonData_Space node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Align(NCommonData_Align node) {
+    defaultOut(node);
+  }
+
+  public void outCommonData_Lbl(NCommonData_Lbl node) {
+    defaultOut(node);
+  }
+
+  public void outDirectivesQte_Dirqt(NDirectivesQte_Dirqt node) {
     defaultOut(node);
   }
 

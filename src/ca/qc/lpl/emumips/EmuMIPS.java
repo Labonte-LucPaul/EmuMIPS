@@ -5,25 +5,62 @@
 
 package ca.qc.lpl.emumips;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import ca.qc.lpl.emumips.interpreter.Interpreter;
 import ca.qc.lpl.emumips.io.ReadFile;
 import ca.qc.lpl.emumips.io.WriteFile;
-import ca.qc.lpl.emumips.register.*;
+import ca.qc.lpl.emumips.memory.BuildMemoryData;
+import ca.qc.lpl.emumips.register.Reg$a0;
+import ca.qc.lpl.emumips.register.Reg$a1;
+import ca.qc.lpl.emumips.register.Reg$a2;
+import ca.qc.lpl.emumips.register.Reg$a3;
+import ca.qc.lpl.emumips.register.Reg$at;
+import ca.qc.lpl.emumips.register.Reg$fp;
+import ca.qc.lpl.emumips.register.Reg$gp;
+import ca.qc.lpl.emumips.register.Reg$k0;
+import ca.qc.lpl.emumips.register.Reg$k1;
+import ca.qc.lpl.emumips.register.Reg$ra;
+import ca.qc.lpl.emumips.register.Reg$s0;
+import ca.qc.lpl.emumips.register.Reg$s1;
+import ca.qc.lpl.emumips.register.Reg$s2;
+import ca.qc.lpl.emumips.register.Reg$s3;
+import ca.qc.lpl.emumips.register.Reg$s4;
+import ca.qc.lpl.emumips.register.Reg$s5;
+import ca.qc.lpl.emumips.register.Reg$s6;
+import ca.qc.lpl.emumips.register.Reg$s7;
+import ca.qc.lpl.emumips.register.Reg$sp;
+import ca.qc.lpl.emumips.register.Reg$t0;
+import ca.qc.lpl.emumips.register.Reg$t1;
+import ca.qc.lpl.emumips.register.Reg$t2;
+import ca.qc.lpl.emumips.register.Reg$t3;
+import ca.qc.lpl.emumips.register.Reg$t4;
+import ca.qc.lpl.emumips.register.Reg$t5;
+import ca.qc.lpl.emumips.register.Reg$t6;
+import ca.qc.lpl.emumips.register.Reg$t7;
+import ca.qc.lpl.emumips.register.Reg$t8;
+import ca.qc.lpl.emumips.register.Reg$t9;
+import ca.qc.lpl.emumips.register.Reg$v0;
+import ca.qc.lpl.emumips.register.Reg$v1;
+import ca.qc.lpl.emumips.register.Reg$zero;
+import ca.qc.lpl.emumips.register.Register;
 import ca.qc.lpl.emumips.ui.MainWindow;
 
 public class EmuMIPS {
 
 
 	public static HashMap<String, Register> registers = new HashMap<String, Register>();
-	private HashMap<String, Register> registersBin = new HashMap<String, Register>();
-	private String sourceContent = "";
+	//private HashMap<String, Register> registersBin = new HashMap<String, Register>();
+	public static String sourceContent = "";
+	public static HashMap<String, Integer> lblAssociation;
+	public static ArrayList<StringBuilder> instructions;
+	public static BuildMemoryData memoryData = new BuildMemoryData();
 
-//	private String[] memory = new String[2147483645];
-	
+	public static int instructionCounter = 0; // Count the number of instructions. Usefull for addresses.
+
 	public static void main(String[] args) {
-		
+
 		Arguments.progArguments(args);
 		MainWindow mw;
 		EmuMIPS self = new EmuMIPS();
@@ -52,7 +89,6 @@ public class EmuMIPS {
 			self.sourceContent = rf.readFile();
 			self.startInterpreter();
 		}
-		
 //		
 //		for(String key : self.registers.keySet()) {
 //			System.out.print("'"+self.registers.get(key).getRegisterName() + "' | ");

@@ -10,9 +10,9 @@ public class NArray
   private final NRt eRt;
   private final N$20 e$20;
   private final NNumber eNumber;
-  private final N$37 e$37;
+  private final N$44 e$44;
   private final NRs eRs;
-  private final N$38 e$38;
+  private final N$45 e$45;
 
   @Override
   public int getLine() {
@@ -41,20 +41,20 @@ public class NArray
     this.eRt.apply(walker);
     this.e$20.apply(walker);
     this.eNumber.apply(walker);
-    this.e$37.apply(walker);
+    this.e$44.apply(walker);
     this.eRs.apply(walker);
-    this.e$38.apply(walker);
+    this.e$45.apply(walker);
   }
 
-  NArray(int line, int pos, NRt pRt, N$20 p$20, NNumber pNumber, N$37 p$37, NRs pRs, N$38 p$38) {
+  NArray(int line, int pos, NRt pRt, N$20 p$20, NNumber pNumber, N$44 p$44, NRs pRs, N$45 p$45) {
     this.line = line;
     this.pos = pos;
     this.eRt = pRt;
     this.e$20 = p$20;
     this.eNumber = pNumber;
-    this.e$37 = p$37;
+    this.e$44 = p$44;
     this.eRs = pRs;
-    this.e$38 = p$38;
+    this.e$45 = p$45;
   }
 
   @Override
@@ -96,15 +96,15 @@ public class NArray
     return this.eNumber;
   }
 
-  N$37 internalGet$37() {
-    return this.e$37;
+  N$44 internalGet$44() {
+    return this.e$44;
   }
 
   NRs internalGetRs() {
     return this.eRs;
   }
 
-  N$38 internalGet$38() {
-    return this.e$38;
+  N$45 internalGet$45() {
+    return this.e$45;
   }
 }

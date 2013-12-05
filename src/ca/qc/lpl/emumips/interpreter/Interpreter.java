@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import language_emuMips.NNumber;
-//import language_emuMips.NNumberu;
 import language_emuMips.NRd;
 import language_emuMips.NRs;
 import language_emuMips.NRt;
@@ -18,7 +17,7 @@ import language_emuMips.NStmt_Andi;
 import language_emuMips.NStmt_Beq;
 import language_emuMips.NStmt_Bne;
 import language_emuMips.NStmt_Jmp;
-import language_emuMips.NStmt_Lbl;
+import language_emuMips.NStmt_Lw;
 import language_emuMips.NStmt_Nor;
 import language_emuMips.NStmt_Or;
 import language_emuMips.NStmt_Ori;
@@ -52,7 +51,9 @@ public class Interpreter extends Walker {
 	public int iterator = 0;
 
 	public Interpreter( String source ) throws Exception {
-	
+		
+		PreParse pp = new PreParse(source);
+		source = pp.getSource();
 		Parser p = new Parser( new StringReader(source) );
 
 		this.tree = p.parse();
@@ -214,9 +215,15 @@ public class Interpreter extends Walker {
 		this.registers.get(rd).setValue(res);
 	}
 	
-	@Override
-	public void caseStmt_Lbl(NStmt_Lbl node) {
+	//@Override
+	//public void caseStmt_Lbl(NStmt_Lbl node) {
 
+	//}
+	
+	@Override
+	public void caseStmt_Lw(NStmt_Lw node) {
+		node.get_Array().apply(this);
+		
 	}
 	
 	@Override

@@ -65,7 +65,7 @@ public class EmuMIPS {
 		MainWindow mw;
 		EmuMIPS self = new EmuMIPS();
 		self.initRegisters();
-		
+
 
 //		try {
 //			Add add = new Add();
@@ -81,7 +81,7 @@ public class EmuMIPS {
 			Version.getInstance().printFullInfos();
 			System.exit(0);
 		}
-		
+
 		if( Arguments.windowMode ) {
 			mw = new MainWindow();
 		} else {
@@ -89,19 +89,20 @@ public class EmuMIPS {
 			self.sourceContent = rf.readFile();
 			self.startInterpreter();
 		}
-//		
+//
 //		for(String key : self.registers.keySet()) {
 //			System.out.print("'"+self.registers.get(key).getRegisterName() + "' | ");
 //		}
 	}
-	
+
 	private void startInterpreter() {
-		
+
 		try {
 			Interpreter i = new Interpreter(this.sourceContent);
 			WriteFile wf = new WriteFile(Arguments.sourcePath, true);
 			wf.writeFile(getRegistersValues());
 			System.out.printf("Saved registers to path: '%s'\n", wf.getPath());
+			System.out.println(memoryData.getMemoryDump());
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}
@@ -111,17 +112,17 @@ public class EmuMIPS {
 		StringBuilder reg = new StringBuilder();
 		reg.append( String.format("%s    %s      %s             %s\n", "REGISTER", "DECIMAL", "HEXADECIMAL", "BINARY") );
 		for( String key : registers.keySet() ) {
-			reg.append( String.format("%-6s->   % 11d   0x%s   %s\r",  
+			reg.append( String.format("%-6s->   % 11d   0x%s   %s\r",
 					registers.get(key).getRegisterName(),
 					registers.get(key).getValue(),
 					registers.get(key).getHexValue(),
 					registers.get(key).getBinaryValue()) );
 		}
-		
+
 		return reg.toString();
 	}
 	private void initRegisters() {
-		
+
 		registers.put("$zero", new Reg$zero());
 		registers.put("$a0", new Reg$a0());
 		registers.put("$a1", new Reg$a1());
@@ -154,7 +155,7 @@ public class EmuMIPS {
 		registers.put("$t9", new Reg$t9());
 		registers.put("$v0", new Reg$v0());
 		registers.put("$v1", new Reg$v1());
-		
+
 //		for( String key : registers.keySet() ) {
 //			registersBin.put(registers.get(key).getBinary(), registers.get(key));
 //		}

@@ -17,6 +17,7 @@ import language_emuMips.NStmt_Andi;
 import language_emuMips.NStmt_Beq;
 import language_emuMips.NStmt_Bne;
 import language_emuMips.NStmt_Jmp;
+import language_emuMips.NStmt_La;
 import language_emuMips.NStmt_Lw;
 import language_emuMips.NStmt_Nor;
 import language_emuMips.NStmt_Or;
@@ -45,13 +46,15 @@ public class Interpreter extends Walker {
 	private Node tree;
 
 	private HashMap<String, Register> registers;
-	private HashMap<String, Integer> lblAssociation = new HashMap<String, Integer>();
+	private HashMap<String, Integer> lblAssociation;// = new HashMap<String, Integer>();
+	private HashMap<String, String> lblDataAssociation;
+
 	private ArrayList<Node> preCompiled;
 
 	public int iterator = 0;
 
 	public Interpreter( String source ) throws Exception {
-		
+
 		PreParse pp = new PreParse(source);
 		source = pp.getSource();
 		Parser p = new Parser( new StringReader(source) );
@@ -60,12 +63,13 @@ public class Interpreter extends Walker {
 
 		ScopeAnalysis sa = new ScopeAnalysis(this.tree);
 		this.lblAssociation = sa.getLblAssociation();
+		this.lblDataAssociation = sa.getLblDataAssociation();
 		JustInTime jit = new JustInTime(sa.getInstructions());
 		this.preCompiled = jit.getPreCompiled();
-		
+
 		this.registers = EmuMIPS.registers;
-		
-		
+
+
 		while( this.iterator < this.preCompiled.size() ) {
 			if( this.preCompiled.get(iterator) != null ) {
 				this.preCompiled.get(iterator).apply(this);
@@ -79,7 +83,7 @@ public class Interpreter extends Walker {
 	public void caseRs(NRs node) {
 		this.rs = node.get_Register().getText();
 	}
-	
+
 	@Override
 	public void caseRt(NRt node) {
 		this.rt = node.get_Register().getText();
@@ -89,7 +93,7 @@ public class Interpreter extends Walker {
 	public void caseRd(NRd node) {
 		this.rd = node.get_Register().getText();
 	}
-	
+
 	@Override
 	public void caseNumber(NNumber node) {
 		this.imm = Integer.parseInt( node.getText() );
@@ -98,10 +102,10 @@ public class Interpreter extends Walker {
 	@Override
 	public void caseStmt_Add(NStmt_Add node) {
 		node.get_RegExpr().apply(this);
-		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();	
+		int add = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(add);
 	}
-	
+
 	@Override
 	public void caseStmt_Addi(NStmt_Addi node) {
 		node.get_ImmExpr().apply(this);
@@ -115,35 +119,35 @@ public class Interpreter extends Walker {
 		int addu = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(addu);
 	}
-	
+
 	@Override
 	public void caseStmt_Addiu(NStmt_Addiu node) {
 		node.get_ImmExpru().apply(this);
 		int addiu = this.registers.get(rs).getValue() + this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(addiu);
 	}
-	
+
 	@Override
 	public void caseStmt_Sub(NStmt_Sub node) {
 		node.get_RegExpr().apply(this);
 		int sub = this.registers.get(rs).getValue() - this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(sub);
 	}
-	
+
 	@Override
 	public void caseStmt_Subu(NStmt_Subu node) {
 		node.get_RegExpr().apply(this);
 		int subu = this.registers.get(rs).getValue() - this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(subu);
 	}
-	
+
 	@Override
 	public void caseStmt_And(NStmt_And node) {
 		node.get_RegExpr().apply(this);
 		int and = this.registers.get(rs).getValue() & this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(and);
 	}
-	
+
 	@Override
 	public void caseStmt_Andi(NStmt_Andi node) {
 		node.get_ImmExpr().apply(this);
@@ -157,7 +161,7 @@ public class Interpreter extends Walker {
 		int or = this.registers.get(rs).getValue() | this.registers.get(rt).getValue();
 		this.registers.get(rd).setValue(or);
 	}
-	
+
 	@Override
 	public void caseStmt_Ori(NStmt_Ori node) {
 		node.get_ImmExpr().apply(this);
@@ -172,28 +176,28 @@ public class Interpreter extends Walker {
 		int nor = (this.registers.get(rs).getValue() ^ this.registers.get(rt).getValue());
 		this.registers.get(rd).setValue(nor);
 	}
-	
+
 	@Override
 	public void caseStmt_Slt(NStmt_Slt node) {
 		node.get_RegExpr().apply(this);
 		int res = (this.registers.get(rs).getValue() < this.registers.get(rt).getValue()) ? 1:0;
 		this.registers.get(rd).setValue(res);
 	}
-	
+
 	@Override
 	public void caseStmt_Slti(NStmt_Slti node) {
 		node.get_ImmExpr().apply(this);
 		int res = (this.registers.get(rs).getValue() < this.imm) ? 1:0;
 		this.registers.get(rt).setValue(res);
 	}
-	
+
 	@Override
 	public void caseStmt_Sltu(NStmt_Sltu node) {
 		node.get_ImmExpr().apply(this);
 		int res = (this.registers.get(rs).getValue() < this.registers.get(rt).getValue()) ? 1:0;
 		this.registers.get(rd).setValue(res);
 	}
-	
+
 	@Override
 	public void caseStmt_Sltiu(NStmt_Sltiu node) {
 		node.get_ImmExpru().apply(this);
@@ -207,30 +211,30 @@ public class Interpreter extends Walker {
 		int res = this.registers.get(rt).getValue() << this.imm ;
 		this.registers.get(rd).setValue(res);
 	}
-	
+
 	@Override
 	public void caseStmt_Srl(NStmt_Srl node) {
 		node.get_Shift().apply(this);
 		int res = this.registers.get(rt).getValue() >> this.imm ;
 		this.registers.get(rd).setValue(res);
 	}
-	
+
 	//@Override
 	//public void caseStmt_Lbl(NStmt_Lbl node) {
 
 	//}
-	
+
 	@Override
 	public void caseStmt_Lw(NStmt_Lw node) {
 		node.get_Array().apply(this);
-		
+
 	}
-	
+
 	@Override
 	public void caseStmt_Jmp(NStmt_Jmp node) {
 		this.iterator = (this.lblAssociation.get(node.get_String().getText()) -1);
 	}
-	
+
 	@Override
 	public void caseStmt_Bne(NStmt_Bne node) {
 		node.get_Rs().apply(this);
@@ -239,7 +243,7 @@ public class Interpreter extends Walker {
 			this.iterator = this.lblAssociation.get(node.get_String().getText()) -1;
 		}
 	}
-	
+
 	@Override
 	public void caseStmt_Beq(NStmt_Beq node) {
 		node.get_Rs().apply(this);
@@ -248,5 +252,11 @@ public class Interpreter extends Walker {
 			this.iterator = this.lblAssociation.get(node.get_String().getText()) -1;
 		}
 	}
-	
+
+	@Override
+	public void caseStmt_La(NStmt_La node) {
+		String reg = node.get_Register().getText();
+		String address = this.lblDataAssociation.get(node.get_String().getText());
+		this.registers.get(reg).setValue(Integer.parseInt(address, 16));
+	}
 }

@@ -1,8 +1,9 @@
 #testage
 
 .data
-.word 45, 34, 54
-test: .space 55
+lbl1: .asciiz "test #1"
+lbl2: .asciiz "Ceci est un test!"
+.word -125, 125
 
 .text
 
@@ -13,3 +14,4 @@ fuck2:
 test: addi $a0, $a0, 1
     slti $t0, $a0, -3
     bne $t0, $zero, test
+    la $a3, lbl2

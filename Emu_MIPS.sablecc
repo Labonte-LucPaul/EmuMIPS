@@ -94,8 +94,8 @@ Parser
            {double:} '.double' directives_qtes |
            {space:} '.space' number |
            {align:} '.align' number |
-           {lbl:} string ';' ; // Crappy but will do for now ;(
-    
+           {lbl:} string ';' ; // Crappy but will do for now ;(   
+
     directives_qtes = directives_qte ',' directives_qtes | directives_qte ;
     directives_qte = {dirqt:} number ;
 

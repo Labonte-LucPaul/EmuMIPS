@@ -46,6 +46,7 @@ import ca.qc.lpl.emumips.register.Reg$v1;
 import ca.qc.lpl.emumips.register.Reg$zero;
 import ca.qc.lpl.emumips.register.Register;
 import ca.qc.lpl.emumips.ui.MainWindow;
+import ca.qc.lpl.util.FileType;
 
 public class EmuMIPS {
 
@@ -65,17 +66,6 @@ public class EmuMIPS {
 		MainWindow mw;
 		EmuMIPS self = new EmuMIPS();
 		self.initRegisters();
-
-
-//		try {
-//			Add add = new Add();
-//			add.setRegFormat(self.registers.get("$t0").getBinary(), self.registers.get("$a0").getBinary(), self.registers.get("$a1").getBinary(), 0);
-//			System.out.println( add.getStructInstructions().binary );
-//			System.out.println( "0x" + add.getStructInstructions().hex );
-//			System.out.println(add.getBinTrimmed() );
-//		} catch( Exception e) {
-//			System.out.println(e.getMessage());
-//		}
 
 		if( Arguments.printVersion ) {
 			Version.getInstance().printFullInfos();
@@ -99,10 +89,12 @@ public class EmuMIPS {
 
 		try {
 			Interpreter i = new Interpreter(this.sourceContent);
-			WriteFile wf = new WriteFile(Arguments.sourcePath, true);
+			WriteFile wf = new WriteFile(Arguments.sourcePath, true, FileType.REGISTERS);
 			wf.writeFile(getRegistersValues());
-			System.out.printf("Saved registers to path: '%s'\n", wf.getPath());
-			System.out.println(memoryData.getMemoryDump());
+			System.out.printf("Saved registers to path: '%s'\n", wf.getNewPath());
+			wf.setFileType(FileType.MEMORY_DATA);
+			wf.writeFile(memoryData.getMemoryDump());
+			System.out.printf("Saved Memory DATA to path: '%s'\n", wf.getNewPath());
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}

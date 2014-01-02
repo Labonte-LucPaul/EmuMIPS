@@ -18,4 +18,4 @@ test: addi $a0, $a0, 1
     sw $a0, 8($a3)
     lw $t0, 0($a3)
     lw $t1, 4($a3)
-    #lb $t3, 0($a3)
+    lb $t3, 0($a3)

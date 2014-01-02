@@ -54,9 +54,6 @@ public class BuildMemoryData {
 
 	private void addInteger(String s, int sz) {
 		itTemp = it;
-
-		//int i = 0;
-		//while( i < sz ) {
 		for( int i = 0; i < s.length(); ++i ) {
 			String hex = "";
 			hex += s.charAt(i);
@@ -80,16 +77,11 @@ public class BuildMemoryData {
 	}
 
 	public String addWord(String word) {
-		//this.add(word, DataAlignment.WORD.getValue());
 		this.addInteger(String.format("%08X", Integer.valueOf(word)), DataAlignment.WORD.getValue());
 		return Integer.toHexString(DATA_MIN + itTemp);
 	}
 
-	//public String addWord(String word, String address) {
 	public String addWord(String word, int address) {
-		//long addr = Long.parseLong(address, 16);
-		//this.addInteger(word, DataAlignment.WORD.getValue(), ((int)addr) - DATA_MIN);
-		//this.addInteger(String.format("%032s", word), DataAlignment.WORD.getValue(), ((int)addr) - DATA_MIN);
 		this.addInteger(word, DataAlignment.WORD.getValue(), address - DATA_MIN);
 		return null;
 	}
@@ -104,9 +96,19 @@ public class BuildMemoryData {
 		return Integer.toHexString(DATA_MIN + itTemp);
 	}
 
+	public String addHalfWord(String hWord, int address) {
+		this.addInteger(hWord, DataAlignment.HALF_WORD.getValue(), address - DATA_MIN);
+		return null;
+	}
+
 	public String addByte(String BYTE) {
 		this.addInteger(String.format("%02X", Integer.valueOf(BYTE)), DataAlignment.BYTE.getValue());
 		return Integer.toHexString(DATA_MIN + itTemp);
+	}
+
+	public String addByte(String BYTE, int address) {
+		this.addInteger(BYTE, DataAlignment.BYTE.getValue(), address - DATA_MIN);
+		return null;
 	}
 
 	private String get(String s, int nb) {

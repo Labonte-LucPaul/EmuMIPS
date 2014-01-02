@@ -19,11 +19,16 @@ import language_emuMips.NStmt_Bne;
 import language_emuMips.NStmt_Jmp;
 import language_emuMips.NStmt_La;
 import language_emuMips.NStmt_Lb;
+import language_emuMips.NStmt_Lbu;
 import language_emuMips.NStmt_Lh;
+import language_emuMips.NStmt_Lhu;
+import language_emuMips.NStmt_Lui;
 import language_emuMips.NStmt_Lw;
 import language_emuMips.NStmt_Nor;
 import language_emuMips.NStmt_Or;
 import language_emuMips.NStmt_Ori;
+import language_emuMips.NStmt_Sb;
+import language_emuMips.NStmt_Sh;
 import language_emuMips.NStmt_Sll;
 import language_emuMips.NStmt_Slt;
 import language_emuMips.NStmt_Slti;
@@ -236,9 +241,15 @@ public class Interpreter extends Walker {
 		node.get_Array().apply(this);
 		int rs = this.registers.get(this.rs).getValue();
 		int rt = this.registers.get(this.rt).getValue();
-		//EmuMIPS.memoryData.addWord(Integer.toString(rt), Integer.toHexString(rs+this.imm));
-		//EmuMIPS.memoryData.addWord(Integer.toString(rt), rs+this.imm);
 		EmuMIPS.memoryData.addWord(String.format("%08X",rt), rs+this.imm);
+	}
+
+	@Override
+	public void caseStmt_Sb(NStmt_Sb node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		int rt = this.registers.get(this.rt).getValue();
+		EmuMIPS.memoryData.addByte(String.format("%02X",rt), rs+this.imm);
 	}
 
 	@Override
@@ -251,11 +262,50 @@ public class Interpreter extends Walker {
 	}
 
 	@Override
+	public void caseStmt_Lui(NStmt_Lui node) {
+		int imm = Integer.parseInt( node.get_Number().getText() );
+		String rt = node.get_Rt().getText();
+		this.registers.get(rt).setValue(imm * 65536);
+	}
+
+	@Override
+	public void caseStmt_Lhu(NStmt_Lhu node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		String rt = EmuMIPS.memoryData.getHalfWord(String.format("%X", this.imm + rs));
+		long val = Long.parseLong(rt, 16);
+		if( val < 0 ) {
+			val *= -1;
+		}
+		this.registers.get(this.rt).setValue((int)val);
+	}
+
+	@Override
+	public void caseStmt_Sh(NStmt_Sh node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		int rt = this.registers.get(this.rt).getValue();
+		EmuMIPS.memoryData.addHalfWord(String.format("%016X",rt), rs+this.imm);
+	}
+
+	@Override
 	public void caseStmt_Lb(NStmt_Lb node) {
 		node.get_Array().apply(this);
 		int rs = this.registers.get(this.rs).getValue();
 		String rt = EmuMIPS.memoryData.getByte(String.format("%X", this.imm + rs));
 		long val = Long.parseLong(rt, 16);
+		this.registers.get(this.rt).setValue((int)val);
+	}
+
+	@Override
+	public void caseStmt_Lbu(NStmt_Lbu node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		String rt = EmuMIPS.memoryData.getByte(String.format("%X", this.imm + rs));
+		long val = Long.parseLong(rt, 16);
+		if( val < 0 ) {
+			val *= -1;
+		}
 		this.registers.get(this.rt).setValue((int)val);
 	}
 

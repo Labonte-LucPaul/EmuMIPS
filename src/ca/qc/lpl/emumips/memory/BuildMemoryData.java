@@ -55,6 +55,8 @@ public class BuildMemoryData {
 	private void addInteger(String s, int sz) {
 		itTemp = it;
 
+		//int i = 0;
+		//while( i < sz ) {
 		for( int i = 0; i < s.length(); ++i ) {
 			String hex = "";
 			hex += s.charAt(i);
@@ -63,6 +65,13 @@ public class BuildMemoryData {
 			this.memoryData[it] = hex;
 			++it;
 		}
+	}
+
+	private void addInteger(String s, int sz, int addr) {
+		int tmpIt = this.it;
+		it = addr;
+		this.addInteger(s, sz);
+		this.it = tmpIt;
 	}
 
 	public String malloc(int size) {
@@ -74,6 +83,15 @@ public class BuildMemoryData {
 		//this.add(word, DataAlignment.WORD.getValue());
 		this.addInteger(String.format("%08X", Integer.valueOf(word)), DataAlignment.WORD.getValue());
 		return Integer.toHexString(DATA_MIN + itTemp);
+	}
+
+	//public String addWord(String word, String address) {
+	public String addWord(String word, int address) {
+		//long addr = Long.parseLong(address, 16);
+		//this.addInteger(word, DataAlignment.WORD.getValue(), ((int)addr) - DATA_MIN);
+		//this.addInteger(String.format("%032s", word), DataAlignment.WORD.getValue(), ((int)addr) - DATA_MIN);
+		this.addInteger(word, DataAlignment.WORD.getValue(), address - DATA_MIN);
+		return null;
 	}
 
 	public String addDoubleWord(String dWord) {
@@ -97,8 +115,8 @@ public class BuildMemoryData {
 		nb = nb / 8;	// Hex values are grouped by bytes in each position in array
 
 		for(int i = 0; i < nb; ++i) {
-			//sb.append(this.memoryData[tmp+i]);
-			sb.append(String.format("%c", Integer.valueOf(this.memoryData[tmp+i], 16)));
+			sb.append(this.memoryData[tmp+i]);
+			//sb.append(String.format("%c", Integer.valueOf(this.memoryData[tmp+i], 16)));
 		}
 
 		return sb.toString();

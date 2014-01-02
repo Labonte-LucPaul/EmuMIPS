@@ -18,6 +18,8 @@ import language_emuMips.NStmt_Beq;
 import language_emuMips.NStmt_Bne;
 import language_emuMips.NStmt_Jmp;
 import language_emuMips.NStmt_La;
+import language_emuMips.NStmt_Lb;
+import language_emuMips.NStmt_Lh;
 import language_emuMips.NStmt_Lw;
 import language_emuMips.NStmt_Nor;
 import language_emuMips.NStmt_Or;
@@ -30,6 +32,7 @@ import language_emuMips.NStmt_Sltu;
 import language_emuMips.NStmt_Srl;
 import language_emuMips.NStmt_Sub;
 import language_emuMips.NStmt_Subu;
+import language_emuMips.NStmt_Sw;
 import language_emuMips.Node;
 import language_emuMips.Parser;
 import language_emuMips.Walker;
@@ -219,15 +222,41 @@ public class Interpreter extends Walker {
 		this.registers.get(rd).setValue(res);
 	}
 
-	//@Override
-	//public void caseStmt_Lbl(NStmt_Lbl node) {
-
-	//}
-
 	@Override
 	public void caseStmt_Lw(NStmt_Lw node) {
 		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		String rt = EmuMIPS.memoryData.getWord(String.format("%X", this.imm + rs));
+		long val = Long.parseLong(rt, 16);
+		this.registers.get(this.rt).setValue((int)val);
+	}
 
+	@Override
+	public void caseStmt_Sw(NStmt_Sw node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		int rt = this.registers.get(this.rt).getValue();
+		//EmuMIPS.memoryData.addWord(Integer.toString(rt), Integer.toHexString(rs+this.imm));
+		//EmuMIPS.memoryData.addWord(Integer.toString(rt), rs+this.imm);
+		EmuMIPS.memoryData.addWord(String.format("%08X",rt), rs+this.imm);
+	}
+
+	@Override
+	public void caseStmt_Lh(NStmt_Lh node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		String rt = EmuMIPS.memoryData.getHalfWord(String.format("%X", this.imm + rs));
+		long val = Long.parseLong(rt, 16);
+		this.registers.get(this.rt).setValue((int)val);
+	}
+
+	@Override
+	public void caseStmt_Lb(NStmt_Lb node) {
+		node.get_Array().apply(this);
+		int rs = this.registers.get(this.rs).getValue();
+		String rt = EmuMIPS.memoryData.getByte(String.format("%X", this.imm + rs));
+		long val = Long.parseLong(rt, 16);
+		this.registers.get(this.rt).setValue((int)val);
 	}
 
 	@Override

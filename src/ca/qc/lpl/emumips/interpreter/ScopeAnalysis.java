@@ -28,6 +28,7 @@ import language_emuMips.NStmt_Jmp;
 import language_emuMips.NStmt_Jmplnk;
 import language_emuMips.NStmt_Jmpreg;
 import language_emuMips.NStmt_La;
+import language_emuMips.NStmt_Lb;
 import language_emuMips.NStmt_Lbl;
 import language_emuMips.NStmt_Lbu;
 import language_emuMips.NStmt_Lhu;
@@ -340,6 +341,14 @@ public class ScopeAnalysis extends Walker {
 	}
 
 	@Override
+	public void caseStmt_Lb(NStmt_Lb node) {
+		this.isSigned = false;
+		this.isArray = true;
+		node.get_Array().apply(this);
+		appendInstruction(String.format("lb %s, %d(%s)", rt, this.imm, rs));
+	}
+
+	@Override
 	public void caseStmt_Lhu(NStmt_Lhu node) {
 		this.isSigned = false;
 		this.isArray = true;
@@ -493,8 +502,7 @@ public class ScopeAnalysis extends Walker {
 			try {
 				throw new NegativeSpaceSizeException(size, node.get_Number().getLine(), node.get_Number().getPos());
 			} catch (NegativeSpaceSizeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
 			}
 		}
 		String addr = EmuMIPS.memoryData.malloc(size);
@@ -510,4 +518,5 @@ public class ScopeAnalysis extends Walker {
 	public void caseStmt_La(NStmt_La node) {
 		this.appendInstruction("la " + node.get_Register().getText() + "," + node.get_String().getText() );
 	}
+
 }

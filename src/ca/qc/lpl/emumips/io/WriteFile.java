@@ -43,6 +43,10 @@ public class WriteFile {
 					sb.append(".memory_data_dump.txt");
 				break;
 
+				case MEMORY_DATA_BIN:
+					sb.append(".memory_data_bin_dump.txt");
+				break;
+
 				default:
 					sb.append(".txt");
 			}

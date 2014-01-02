@@ -198,4 +198,29 @@ public class BuildMemoryData {
 
 		return sb.toString();
 	}
+
+	public String getMemoryDumpBinary() {
+		StringBuilder sb = new StringBuilder();
+
+		int i = 0;
+		while( i < 500 ) {
+			String tmp = "";
+			int j = 0;
+			while( i < this.memoryData.length && j < 4 ) {
+				tmp += this.memoryData[i];
+				++i;
+				++j;
+			}
+
+			int val = (int) Long.parseLong(tmp, 16);
+			//String sBin = Integer.toBinaryString(val);
+			sb.append( String.format("%32s", Integer.toBinaryString(val)).replace(' ', '0') );
+			sb.append(" ");
+
+			if( (i % 16) == 0 ) {
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
 }

@@ -1,18 +1,13 @@
 package ca.qc.lpl.emumips.memory;
 
-import java.util.Stack;
-
 import ca.qc.lpl.emumips.memory.Exceptions.OverMemorySizeException;
 import ca.qc.lpl.util.DataAlignment;
 
 public class BuildMemoryData {
 
-	//private HashMap<String, String> memoryData = new HashMap<String, String>();
-	//private char[] memoryData = new char[Character.MAX_VALUE];
 	private String[] memoryData = new String[Character.MAX_VALUE];
-	private Stack<String> memoryDataStack = new Stack<String>();
 
-	private final int DATA_MAX = 0x7FFFFFFC;
+	//private final int DATA_MAX = 0x7FFFFFFC;
 	private final int DATA_MIN = 0x10008000;
 
 	private int it = 0;
@@ -24,14 +19,20 @@ public class BuildMemoryData {
 		}
 	}
 
+//	private void inc() {
+//		++this.it;
+//	}
+//
+//	private void dec() {
+//		--this.it;
+//	}
+
 	private void add(String s, int nb) {
 		itTemp = it;
 		for( int i = 0; i < nb; ++i ) {
 			if( i < s.length() ) {
-				//this.memoryData[it] = s.charAt(i);
 				this.memoryData[it] = String.format("%02X", (int) s.charAt(i));
 			} else {
-				//this.memoryData[it] = '\0';
 				this.memoryData[it] = String.format("%02X", (int)'\0');
 			}
 			++it;
@@ -118,7 +119,6 @@ public class BuildMemoryData {
 
 		for(int i = 0; i < nb; ++i) {
 			sb.append(this.memoryData[tmp+i]);
-			//sb.append(String.format("%c", Integer.valueOf(this.memoryData[tmp+i], 16)));
 		}
 
 		return sb.toString();
@@ -146,11 +146,8 @@ public class BuildMemoryData {
 		int tmp = Integer.parseInt(addressHexa, 16) - this.DATA_MIN;
 
 		int i = 0;
-		//for(int i = 0; i < nb; ++i) {
-		//while( this.memoryData[tmp+i] != '\0' ) {
 		while( this.memoryData[tmp+i].equals("00") == false ) {
 			int val = Integer.valueOf(this.memoryData[tmp+i], 16);
-			//sb.append(this.memoryData[tmp+i]);
 			sb.append((char)val);
 			++i;
 		}
@@ -161,7 +158,7 @@ public class BuildMemoryData {
 	public String index2Address(int index) throws OverMemorySizeException {
 
 		if( index < 0 || index > 66060288) {
-			throw new OverMemorySizeException(DATA_MIN, DATA_MAX);
+			throw new OverMemorySizeException(DATA_MIN);
 		}
 		return Integer.toHexString(DATA_MIN + (index * 4));
 	}
@@ -172,7 +169,6 @@ public class BuildMemoryData {
 		String hex = "";
 		String ascii = "";
 
-		//for(int i = 0; i < 100; ++i) {
 		for(int i = 0; i < 500; ++i) {
 			if( (i % 16) == 0 && i > 0 ) {	// && i != 0
 				sb.append("\n");
@@ -188,9 +184,7 @@ public class BuildMemoryData {
 			if( (i % 4) == 0 ) {
 				hex += " ";
 			}
-			//hex += String.format("%02X", (int)this.memoryData[i]);
 			hex += this.memoryData[i];
-			//ascii += this.memoryData[i] == '\0' ? "." : this.memoryData[i];
 
 			ascii += this.memoryData[i].equals("00") ? "." : String.format("%c",Integer.valueOf(this.memoryData[i], 16));
 			ascii += " ";
@@ -213,7 +207,6 @@ public class BuildMemoryData {
 			}
 
 			int val = (int) Long.parseLong(tmp, 16);
-			//String sBin = Integer.toBinaryString(val);
 			sb.append( String.format("%32s", Integer.toBinaryString(val)).replace(' ', '0') );
 			sb.append(" ");
 

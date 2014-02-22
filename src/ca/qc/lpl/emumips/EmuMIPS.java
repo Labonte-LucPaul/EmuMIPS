@@ -88,16 +88,21 @@ public class EmuMIPS {
 	private void startInterpreter() {
 
 		try {
+
 			Interpreter i = new Interpreter(this.sourceContent);
+
 			WriteFile wf = new WriteFile(Arguments.sourcePath, true, FileType.REGISTERS);
 			wf.writeFile(getRegistersValues());
 			System.out.printf("Saved registers to path: '%s'\n", wf.getNewPath());
+
 			wf.setFileType(FileType.MEMORY_DATA);
 			wf.writeFile(memoryData.getMemoryDump());
 			System.out.printf("Saved Memory DATA to path: '%s'\n", wf.getNewPath());
+
 			wf.setFileType(FileType.MEMORY_DATA_BIN);
 			wf.writeFile(memoryData.getMemoryDumpBinary());
 			System.out.printf("Saved Memory DATA Binary to path: '%s'\n", wf.getNewPath());
+
 		} catch( Exception e ) {
 			System.out.printf(e.getMessage());
 		}

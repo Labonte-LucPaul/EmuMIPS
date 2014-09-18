@@ -13,12 +13,15 @@ public class TestBuildMemoryStack {
 		String expected = "001E3A5F";
 		Reg$sp sp = new Reg$sp();
 		BuildMemoryStack stack = new BuildMemoryStack(sp);
-		stack.push(expected);
+
+		sp.setValue( sp.getValue() - 4 );
+		stack.push(expected, 4);
 		System.out.println(stack.getMemoryDump());
-		String result = stack.popWord();
+		String result = stack.popWord(4);
 
 		assertEquals(expected, result);
 
+		System.out.println(stack.getMemoryDump());
 
 	}
 

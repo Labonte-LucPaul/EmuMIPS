@@ -233,7 +233,7 @@ public class Interpreter extends Walker {
 		int rs = this.registers.get(this.rs).getValue();
 		String rt;
 		if( isSourceSP(rs) ) {
-			rt = EmuMIPS.memoryStack.popWord();
+			rt = EmuMIPS.memoryStack.popWord(this.imm + rs);
 		} else {
 			rt = EmuMIPS.memoryData.getWord(String.format("%X", this.imm + rs));
 		}
@@ -249,7 +249,7 @@ public class Interpreter extends Walker {
 
 		String word = String.format("%08X",rt);
 		if( isSourceSP(rs) ) {
-			EmuMIPS.memoryStack.push(word);
+			EmuMIPS.memoryStack.push(word, rs+this.imm);
 		} else {
 			EmuMIPS.memoryData.addWord(word, rs+this.imm);
 		}

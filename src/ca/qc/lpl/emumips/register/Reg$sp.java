@@ -18,7 +18,7 @@ public class Reg$sp implements Register {
 	public String getHex() {
 		return String.format( "%02X", this.getRegisterNumber() );
 	}
-	
+
 	@Override
 	public void addObserver(Observer o) {
 		this.lstObserver.add(o);
@@ -74,6 +74,7 @@ public class Reg$sp implements Register {
 	@Override
 	public void setValue(int value) {
 		this.value = value;
+		notifyObserver();
 	}
 
 }

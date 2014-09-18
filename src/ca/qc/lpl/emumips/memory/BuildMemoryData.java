@@ -2,6 +2,7 @@ package ca.qc.lpl.emumips.memory;
 
 import ca.qc.lpl.emumips.memory.Exceptions.OverMemorySizeException;
 import ca.qc.lpl.util.DataAlignment;
+import ca.qc.lpl.util.PrintHexMemoryDump;
 
 public class BuildMemoryData {
 
@@ -164,33 +165,8 @@ public class BuildMemoryData {
 	}
 
 	public String getMemoryDump() {
-		StringBuilder sb = new StringBuilder();
-		int address = DATA_MIN;
-		String hex = "";
-		String ascii = "";
-
-		for(int i = 0; i < 500; ++i) {
-			if( (i % 16) == 0 && i > 0 ) {	// && i != 0
-				sb.append("\n");
-				sb.append("[0x"+String.format("%08X", address)+"] ");
-				sb.append(hex);
-				sb.append("  ");
-				sb.append(ascii);
-				hex = "";
-				ascii = "";
-				address = DATA_MIN + i;
-			}
-
-			if( (i % 4) == 0 ) {
-				hex += " ";
-			}
-			hex += this.memoryData[i];
-
-			ascii += this.memoryData[i].equals("00") ? "." : String.format("%c",Integer.valueOf(this.memoryData[i], 16));
-			ascii += " ";
-		}
-
-		return sb.toString();
+		PrintHexMemoryDump dump = new PrintHexMemoryDump(PrintHexMemoryDump.MemoryType.HEAP);
+		return dump.getHexDump(DATA_MIN, memoryData);
 	}
 
 	public String getMemoryDumpBinary() {

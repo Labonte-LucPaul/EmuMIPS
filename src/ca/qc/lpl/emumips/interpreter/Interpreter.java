@@ -231,7 +231,12 @@ public class Interpreter extends Walker {
 	public void caseStmt_Lw(NStmt_Lw node) {
 		node.get_Array().apply(this);
 		int rs = this.registers.get(this.rs).getValue();
-		String rt = EmuMIPS.memoryData.getWord(String.format("%X", this.imm + rs));
+		String rt;
+		if( isSourceSP(rs) ) {
+			rt = EmuMIPS.memoryStack.popWord();
+		} else {
+			rt = EmuMIPS.memoryData.getWord(String.format("%X", this.imm + rs));
+		}
 		long val = Long.parseLong(rt, 16);
 		this.registers.get(this.rt).setValue((int)val);
 	}
@@ -241,9 +246,18 @@ public class Interpreter extends Walker {
 		node.get_Array().apply(this);
 		int rs = this.registers.get(this.rs).getValue();
 		int rt = this.registers.get(this.rt).getValue();
-		EmuMIPS.memoryData.addWord(String.format("%08X",rt), rs+this.imm);
+
+		String word = String.format("%08X",rt);
+		if( isSourceSP(rs) ) {
+			EmuMIPS.memoryStack.push(word);
+		} else {
+			EmuMIPS.memoryData.addWord(word, rs+this.imm);
+		}
 	}
 
+	private boolean isSourceSP(int rs) {
+		return rs == this.registers.get("$sp").getValue();
+	}
 	@Override
 	public void caseStmt_Sb(NStmt_Sb node) {
 		node.get_Array().apply(this);

@@ -12,6 +12,7 @@ import ca.qc.lpl.emumips.interpreter.Interpreter;
 import ca.qc.lpl.emumips.io.ReadFile;
 import ca.qc.lpl.emumips.io.WriteFile;
 import ca.qc.lpl.emumips.memory.BuildMemoryData;
+import ca.qc.lpl.emumips.memory.BuildMemoryStack;
 import ca.qc.lpl.emumips.register.Reg$a0;
 import ca.qc.lpl.emumips.register.Reg$a1;
 import ca.qc.lpl.emumips.register.Reg$a2;
@@ -56,7 +57,8 @@ public class EmuMIPS {
 	public static String sourceContent = "";
 	public static HashMap<String, Integer> lblAssociation;
 	public static ArrayList<StringBuilder> instructions;
-	public static BuildMemoryData memoryData = new BuildMemoryData();
+	public static BuildMemoryData memoryData;
+	public static BuildMemoryStack memoryStack;
 
 	public static int instructionCounter = 0; // Count the number of instructions. Usefull for addresses.
 
@@ -67,6 +69,9 @@ public class EmuMIPS {
 		EmuMIPS self = new EmuMIPS();
 		self.initRegisters();
 
+		memoryData = new BuildMemoryData();
+		memoryStack = new BuildMemoryStack((Reg$sp)registers.get("$sp"));
+
 		if( Arguments.printVersion ) {
 			Version.getInstance().printFullInfos();
 			System.exit(0);
@@ -76,7 +81,7 @@ public class EmuMIPS {
 			mw = new MainWindow();
 		} else {
 			ReadFile rf = new ReadFile(Arguments.sourcePath);
-			self.sourceContent = rf.readFile();
+			sourceContent = rf.readFile();
 			self.startInterpreter();
 		}
 //

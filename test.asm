@@ -7,6 +7,7 @@ val: .word -125, 125, 0
 
 .text
 
+main:
 fuck:
 fuck2:
     addi $a0, $zero, -9
